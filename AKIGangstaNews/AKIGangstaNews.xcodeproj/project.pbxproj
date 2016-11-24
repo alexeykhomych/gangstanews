@@ -1,0 +1,675 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		843D973C1DE48F1B004E06D7 /* AKIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D973B1DE48F1B004E06D7 /* AKIAppDelegate.swift */; };
+		843D976A1DE4ABDE004E06D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843D97641DE4ABDE004E06D7 /* Assets.xcassets */; };
+		843D976B1DE4ABDE004E06D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D97661DE4ABDE004E06D7 /* LaunchScreen.storyboard */; };
+		843D976C1DE4ABDE004E06D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D97681DE4ABDE004E06D7 /* Main.storyboard */; };
+		843D97891DE4B4A6004E06D7 /* AKIRestorePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D97871DE4B4A6004E06D7 /* AKIRestorePasswordViewController.swift */; };
+		843D978A1DE4B4A6004E06D7 /* AKIRestorePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D97881DE4B4A6004E06D7 /* AKIRestorePasswordViewController.xib */; };
+		843D978D1DE4B4B4004E06D7 /* AKINewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D978B1DE4B4B4004E06D7 /* AKINewsViewController.swift */; };
+		843D978E1DE4B4B4004E06D7 /* AKINewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D978C1DE4B4B4004E06D7 /* AKINewsViewController.xib */; };
+		843D97991DE4B4F0004E06D7 /* AKIDetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D97971DE4B4F0004E06D7 /* AKIDetailNewsViewController.swift */; };
+		843D979A1DE4B4F0004E06D7 /* AKIDetailNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D97981DE4B4F0004E06D7 /* AKIDetailNewsViewController.xib */; };
+		843D979D1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D979B1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.swift */; };
+		843D979E1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D979C1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.xib */; };
+		843D97A11DE4B515004E06D7 /* AKICategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D979F1DE4B515004E06D7 /* AKICategoriesViewController.swift */; };
+		843D97A21DE4B515004E06D7 /* AKICategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D97A01DE4B515004E06D7 /* AKICategoriesViewController.xib */; };
+		843D97A51DE4B543004E06D7 /* AKIGangstaNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D97A31DE4B543004E06D7 /* AKIGangstaNewsViewController.swift */; };
+		843D97AA1DE4B739004E06D7 /* AKINewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D97A81DE4B739004E06D7 /* AKINewViewCell.swift */; };
+		843D97AB1DE4B739004E06D7 /* AKINewViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D97A91DE4B739004E06D7 /* AKINewViewCell.xib */; };
+		843D97AF1DE5F70F004E06D7 /* AKIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D97AD1DE5F70F004E06D7 /* AKIRegistrationViewController.swift */; };
+		843D97B01DE5F70F004E06D7 /* AKIRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D97AE1DE5F70F004E06D7 /* AKIRegistrationViewController.xib */; };
+		84B63EEE1DE60113000E6467 /* AKILoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EEC1DE60113000E6467 /* AKILoginViewController.swift */; };
+		84B63EEF1DE60113000E6467 /* AKILoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B63EED1DE60113000E6467 /* AKILoginViewController.xib */; };
+		84B63EF21DE601E4000E6467 /* AKILoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EF11DE601E4000E6467 /* AKILoginView.swift */; };
+		84B63EF41DE603DB000E6467 /* AKIAbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EF31DE603DB000E6467 /* AKIAbstractViewController.swift */; };
+		84B63EF71DE6262A000E6467 /* AKIRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EF61DE6262A000E6467 /* AKIRegistrationView.swift */; };
+		84B63EF91DE62725000E6467 /* AKIConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EF81DE62725000E6467 /* AKIConfirmEmailView.swift */; };
+		84B63EFB1DE62822000E6467 /* AKIDetailNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EFA1DE62822000E6467 /* AKIDetailNewsView.swift */; };
+		84B63EFD1DE62947000E6467 /* AKINewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EFC1DE62947000E6467 /* AKINewsView.swift */; };
+		84B63EFF1DE62AC3000E6467 /* AKIRestorePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B63EFE1DE62AC3000E6467 /* AKIRestorePasswordView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		843D97381DE48F1B004E06D7 /* AKIGangstaNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKIGangstaNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		843D973B1DE48F1B004E06D7 /* AKIAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKIAppDelegate.swift; sourceTree = "<group>"; };
+		843D97471DE48F1B004E06D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		843D97641DE4ABDE004E06D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		843D97671DE4ABDE004E06D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		843D97691DE4ABDE004E06D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		843D97871DE4B4A6004E06D7 /* AKIRestorePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIRestorePasswordViewController.swift; sourceTree = "<group>"; };
+		843D97881DE4B4A6004E06D7 /* AKIRestorePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKIRestorePasswordViewController.xib; sourceTree = "<group>"; };
+		843D978B1DE4B4B4004E06D7 /* AKINewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKINewsViewController.swift; sourceTree = "<group>"; };
+		843D978C1DE4B4B4004E06D7 /* AKINewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKINewsViewController.xib; sourceTree = "<group>"; };
+		843D97971DE4B4F0004E06D7 /* AKIDetailNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIDetailNewsViewController.swift; sourceTree = "<group>"; };
+		843D97981DE4B4F0004E06D7 /* AKIDetailNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKIDetailNewsViewController.xib; sourceTree = "<group>"; };
+		843D979B1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIConfirmEmailViewController.swift; sourceTree = "<group>"; };
+		843D979C1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKIConfirmEmailViewController.xib; sourceTree = "<group>"; };
+		843D979F1DE4B515004E06D7 /* AKICategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesViewController.swift; sourceTree = "<group>"; };
+		843D97A01DE4B515004E06D7 /* AKICategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKICategoriesViewController.xib; sourceTree = "<group>"; };
+		843D97A31DE4B543004E06D7 /* AKIGangstaNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIGangstaNewsViewController.swift; sourceTree = "<group>"; };
+		843D97A81DE4B739004E06D7 /* AKINewViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKINewViewCell.swift; sourceTree = "<group>"; };
+		843D97A91DE4B739004E06D7 /* AKINewViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKINewViewCell.xib; sourceTree = "<group>"; };
+		843D97AD1DE5F70F004E06D7 /* AKIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIRegistrationViewController.swift; sourceTree = "<group>"; };
+		843D97AE1DE5F70F004E06D7 /* AKIRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKIRegistrationViewController.xib; sourceTree = "<group>"; };
+		84B63EEC1DE60113000E6467 /* AKILoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKILoginViewController.swift; sourceTree = "<group>"; };
+		84B63EED1DE60113000E6467 /* AKILoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKILoginViewController.xib; sourceTree = "<group>"; };
+		84B63EF11DE601E4000E6467 /* AKILoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKILoginView.swift; sourceTree = "<group>"; };
+		84B63EF31DE603DB000E6467 /* AKIAbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIAbstractViewController.swift; sourceTree = "<group>"; };
+		84B63EF61DE6262A000E6467 /* AKIRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIRegistrationView.swift; sourceTree = "<group>"; };
+		84B63EF81DE62725000E6467 /* AKIConfirmEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIConfirmEmailView.swift; sourceTree = "<group>"; };
+		84B63EFA1DE62822000E6467 /* AKIDetailNewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIDetailNewsView.swift; sourceTree = "<group>"; };
+		84B63EFC1DE62947000E6467 /* AKINewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKINewsView.swift; sourceTree = "<group>"; };
+		84B63EFE1DE62AC3000E6467 /* AKIRestorePasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIRestorePasswordView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		843D97351DE48F1B004E06D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		843D972F1DE48F1A004E06D7 = {
+			isa = PBXGroup;
+			children = (
+				843D97501DE4AB9D004E06D7 /* Library */,
+				843D975A1DE4AB9D004E06D7 /* Source */,
+				843D97591DE4AB9D004E06D7 /* Resources */,
+				843D973A1DE48F1B004E06D7 /* AKIGangstaNews */,
+				843D97391DE48F1B004E06D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		843D97391DE48F1B004E06D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				843D97381DE48F1B004E06D7 /* AKIGangstaNews.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		843D973A1DE48F1B004E06D7 /* AKIGangstaNews */ = {
+			isa = PBXGroup;
+			children = (
+				843D973B1DE48F1B004E06D7 /* AKIAppDelegate.swift */,
+				843D97471DE48F1B004E06D7 /* Info.plist */,
+			);
+			path = AKIGangstaNews;
+			sourceTree = "<group>";
+		};
+		843D97501DE4AB9D004E06D7 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				843D97511DE4AB9D004E06D7 /* Classes */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		843D97511DE4AB9D004E06D7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				843D97521DE4AB9D004E06D7 /* Models */,
+				843D97561DE4AB9D004E06D7 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		843D97521DE4AB9D004E06D7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				843D97531DE4AB9D004E06D7 /* AKIArrayChangeModel */,
+				843D97541DE4AB9D004E06D7 /* AKIImage */,
+				843D97551DE4AB9D004E06D7 /* AKIModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		843D97531DE4AB9D004E06D7 /* AKIArrayChangeModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKIArrayChangeModel;
+			sourceTree = "<group>";
+		};
+		843D97541DE4AB9D004E06D7 /* AKIImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKIImage;
+			sourceTree = "<group>";
+		};
+		843D97551DE4AB9D004E06D7 /* AKIModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKIModel;
+			sourceTree = "<group>";
+		};
+		843D97561DE4AB9D004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				843D97571DE4AB9D004E06D7 /* AKILoadingView */,
+				843D97581DE4AB9D004E06D7 /* AKIView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D97571DE4AB9D004E06D7 /* AKILoadingView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKILoadingView;
+			sourceTree = "<group>";
+		};
+		843D97581DE4AB9D004E06D7 /* AKIView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKIView;
+			sourceTree = "<group>";
+		};
+		843D97591DE4AB9D004E06D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				843D97641DE4ABDE004E06D7 /* Assets.xcassets */,
+				843D97651DE4ABDE004E06D7 /* Base.lproj */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		843D975A1DE4AB9D004E06D7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				843D975B1DE4AB9D004E06D7 /* Categories */,
+				843D975C1DE4AB9D004E06D7 /* Models */,
+				843D97701DE4B419004E06D7 /* UI */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		843D975B1DE4AB9D004E06D7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		843D975C1DE4AB9D004E06D7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				843D975D1DE4AB9D004E06D7 /* AKIArrayModel */,
+				843D975E1DE4AB9D004E06D7 /* AKIUser */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		843D975D1DE4AB9D004E06D7 /* AKIArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKIArrayModel;
+			sourceTree = "<group>";
+		};
+		843D975E1DE4AB9D004E06D7 /* AKIUser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKIUser;
+			sourceTree = "<group>";
+		};
+		843D97651DE4ABDE004E06D7 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				843D97661DE4ABDE004E06D7 /* LaunchScreen.storyboard */,
+				843D97681DE4ABDE004E06D7 /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		843D97701DE4B419004E06D7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				843D97711DE4B419004E06D7 /* AKIAbstractViewController */,
+				843D97741DE4B419004E06D7 /* AKIViewControllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		843D97711DE4B419004E06D7 /* AKIAbstractViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D97721DE4B419004E06D7 /* AKILoadingViewContainer */,
+				843D97731DE4B419004E06D7 /* Views */,
+				84B63EF31DE603DB000E6467 /* AKIAbstractViewController.swift */,
+			);
+			path = AKIAbstractViewController;
+			sourceTree = "<group>";
+		};
+		843D97721DE4B419004E06D7 /* AKILoadingViewContainer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AKILoadingViewContainer;
+			sourceTree = "<group>";
+		};
+		843D97731DE4B419004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D97741DE4B419004E06D7 /* AKIViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EEB1DE600E0000E6467 /* AKILoginViewController */,
+				843D97AC1DE5F6F0004E06D7 /* AKIRegistrationViewController */,
+				843D97751DE4B419004E06D7 /* AKICategoriesViewController */,
+				843D97771DE4B419004E06D7 /* AKIConfirmEmailViewController */,
+				843D97791DE4B419004E06D7 /* AKIDetailNewsViewController */,
+				843D977F1DE4B419004E06D7 /* AKINewsViewController */,
+				843D97811DE4B419004E06D7 /* AKIRestorePasswordViewController */,
+				843D97A31DE4B543004E06D7 /* AKIGangstaNewsViewController.swift */,
+			);
+			path = AKIViewControllers;
+			sourceTree = "<group>";
+		};
+		843D97751DE4B419004E06D7 /* AKICategoriesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D97761DE4B419004E06D7 /* Views */,
+				843D979F1DE4B515004E06D7 /* AKICategoriesViewController.swift */,
+				843D97A01DE4B515004E06D7 /* AKICategoriesViewController.xib */,
+			);
+			path = AKICategoriesViewController;
+			sourceTree = "<group>";
+		};
+		843D97761DE4B419004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D97771DE4B419004E06D7 /* AKIConfirmEmailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D97781DE4B419004E06D7 /* Views */,
+				843D979B1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.swift */,
+				843D979C1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.xib */,
+			);
+			path = AKIConfirmEmailViewController;
+			sourceTree = "<group>";
+		};
+		843D97781DE4B419004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EF81DE62725000E6467 /* AKIConfirmEmailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D97791DE4B419004E06D7 /* AKIDetailNewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D977A1DE4B419004E06D7 /* Views */,
+				843D97971DE4B4F0004E06D7 /* AKIDetailNewsViewController.swift */,
+				843D97981DE4B4F0004E06D7 /* AKIDetailNewsViewController.xib */,
+			);
+			path = AKIDetailNewsViewController;
+			sourceTree = "<group>";
+		};
+		843D977A1DE4B419004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EFA1DE62822000E6467 /* AKIDetailNewsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D977F1DE4B419004E06D7 /* AKINewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D97A71DE4B703004E06D7 /* AKINewViewCell */,
+				843D97801DE4B419004E06D7 /* Views */,
+				843D978B1DE4B4B4004E06D7 /* AKINewsViewController.swift */,
+				843D978C1DE4B4B4004E06D7 /* AKINewsViewController.xib */,
+			);
+			path = AKINewsViewController;
+			sourceTree = "<group>";
+		};
+		843D97801DE4B419004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EFC1DE62947000E6467 /* AKINewsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D97811DE4B419004E06D7 /* AKIRestorePasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				843D97821DE4B419004E06D7 /* Views */,
+				843D97871DE4B4A6004E06D7 /* AKIRestorePasswordViewController.swift */,
+				843D97881DE4B4A6004E06D7 /* AKIRestorePasswordViewController.xib */,
+			);
+			path = AKIRestorePasswordViewController;
+			sourceTree = "<group>";
+		};
+		843D97821DE4B419004E06D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EFE1DE62AC3000E6467 /* AKIRestorePasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		843D97A71DE4B703004E06D7 /* AKINewViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				843D97A81DE4B739004E06D7 /* AKINewViewCell.swift */,
+				843D97A91DE4B739004E06D7 /* AKINewViewCell.xib */,
+			);
+			path = AKINewViewCell;
+			sourceTree = "<group>";
+		};
+		843D97AC1DE5F6F0004E06D7 /* AKIRegistrationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EF51DE625F4000E6467 /* Views */,
+				843D97AD1DE5F70F004E06D7 /* AKIRegistrationViewController.swift */,
+				843D97AE1DE5F70F004E06D7 /* AKIRegistrationViewController.xib */,
+			);
+			path = AKIRegistrationViewController;
+			sourceTree = "<group>";
+		};
+		84B63EEB1DE600E0000E6467 /* AKILoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EF01DE601BE000E6467 /* Views */,
+				84B63EEC1DE60113000E6467 /* AKILoginViewController.swift */,
+				84B63EED1DE60113000E6467 /* AKILoginViewController.xib */,
+			);
+			path = AKILoginViewController;
+			sourceTree = "<group>";
+		};
+		84B63EF01DE601BE000E6467 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EF11DE601E4000E6467 /* AKILoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84B63EF51DE625F4000E6467 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84B63EF61DE6262A000E6467 /* AKIRegistrationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		843D97371DE48F1B004E06D7 /* AKIGangstaNews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 843D974A1DE48F1B004E06D7 /* Build configuration list for PBXNativeTarget "AKIGangstaNews" */;
+			buildPhases = (
+				843D97341DE48F1B004E06D7 /* Sources */,
+				843D97351DE48F1B004E06D7 /* Frameworks */,
+				843D97361DE48F1B004E06D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AKIGangstaNews;
+			productName = AKIGangstaNews;
+			productReference = 843D97381DE48F1B004E06D7 /* AKIGangstaNews.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		843D97301DE48F1A004E06D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Alexey Khomych";
+				TargetAttributes = {
+					843D97371DE48F1B004E06D7 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WD3U2NTNC9;
+					};
+				};
+			};
+			buildConfigurationList = 843D97331DE48F1A004E06D7 /* Build configuration list for PBXProject "AKIGangstaNews" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 843D972F1DE48F1A004E06D7;
+			productRefGroup = 843D97391DE48F1B004E06D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				843D97371DE48F1B004E06D7 /* AKIGangstaNews */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		843D97361DE48F1B004E06D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843D979A1DE4B4F0004E06D7 /* AKIDetailNewsViewController.xib in Resources */,
+				843D976A1DE4ABDE004E06D7 /* Assets.xcassets in Resources */,
+				84B63EEF1DE60113000E6467 /* AKILoginViewController.xib in Resources */,
+				843D978E1DE4B4B4004E06D7 /* AKINewsViewController.xib in Resources */,
+				843D979E1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.xib in Resources */,
+				843D97A21DE4B515004E06D7 /* AKICategoriesViewController.xib in Resources */,
+				843D978A1DE4B4A6004E06D7 /* AKIRestorePasswordViewController.xib in Resources */,
+				843D97AB1DE4B739004E06D7 /* AKINewViewCell.xib in Resources */,
+				843D97B01DE5F70F004E06D7 /* AKIRegistrationViewController.xib in Resources */,
+				843D976C1DE4ABDE004E06D7 /* Main.storyboard in Resources */,
+				843D976B1DE4ABDE004E06D7 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		843D97341DE48F1B004E06D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B63EEE1DE60113000E6467 /* AKILoginViewController.swift in Sources */,
+				84B63EFB1DE62822000E6467 /* AKIDetailNewsView.swift in Sources */,
+				843D979D1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.swift in Sources */,
+				84B63EF41DE603DB000E6467 /* AKIAbstractViewController.swift in Sources */,
+				84B63EF71DE6262A000E6467 /* AKIRegistrationView.swift in Sources */,
+				84B63EF91DE62725000E6467 /* AKIConfirmEmailView.swift in Sources */,
+				843D97AF1DE5F70F004E06D7 /* AKIRegistrationViewController.swift in Sources */,
+				843D97AA1DE4B739004E06D7 /* AKINewViewCell.swift in Sources */,
+				843D97891DE4B4A6004E06D7 /* AKIRestorePasswordViewController.swift in Sources */,
+				84B63EFD1DE62947000E6467 /* AKINewsView.swift in Sources */,
+				843D97A11DE4B515004E06D7 /* AKICategoriesViewController.swift in Sources */,
+				84B63EFF1DE62AC3000E6467 /* AKIRestorePasswordView.swift in Sources */,
+				843D97A51DE4B543004E06D7 /* AKIGangstaNewsViewController.swift in Sources */,
+				843D973C1DE48F1B004E06D7 /* AKIAppDelegate.swift in Sources */,
+				843D97991DE4B4F0004E06D7 /* AKIDetailNewsViewController.swift in Sources */,
+				84B63EF21DE601E4000E6467 /* AKILoginView.swift in Sources */,
+				843D978D1DE4B4B4004E06D7 /* AKINewsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		843D97661DE4ABDE004E06D7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				843D97671DE4ABDE004E06D7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		843D97681DE4ABDE004E06D7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				843D97691DE4ABDE004E06D7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		843D97481DE48F1B004E06D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		843D97491DE48F1B004E06D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		843D974B1DE48F1B004E06D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AKIGangstaNews/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AKI.AKIGangstaNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		843D974C1DE48F1B004E06D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AKIGangstaNews/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AKI.AKIGangstaNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		843D97331DE48F1A004E06D7 /* Build configuration list for PBXProject "AKIGangstaNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843D97481DE48F1B004E06D7 /* Debug */,
+				843D97491DE48F1B004E06D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		843D974A1DE48F1B004E06D7 /* Build configuration list for PBXNativeTarget "AKIGangstaNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843D974B1DE48F1B004E06D7 /* Debug */,
+				843D974C1DE48F1B004E06D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 843D97301DE48F1A004E06D7 /* Project object */;
+}
