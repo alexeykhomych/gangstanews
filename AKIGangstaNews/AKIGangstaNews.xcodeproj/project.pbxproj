@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A51FA59FBB9642060D73F4B /* Pods_AKIGangstaNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA99003174EE34A0D038973 /* Pods_AKIGangstaNews.framework */; };
 		843D973C1DE48F1B004E06D7 /* AKIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D973B1DE48F1B004E06D7 /* AKIAppDelegate.swift */; };
 		843D976A1DE4ABDE004E06D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843D97641DE4ABDE004E06D7 /* Assets.xcassets */; };
 		843D976B1DE4ABDE004E06D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D97661DE4ABDE004E06D7 /* LaunchScreen.storyboard */; };
@@ -68,6 +69,9 @@
 		84B63EFA1DE62822000E6467 /* AKIDetailNewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIDetailNewsView.swift; sourceTree = "<group>"; };
 		84B63EFC1DE62947000E6467 /* AKINewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKINewsView.swift; sourceTree = "<group>"; };
 		84B63EFE1DE62AC3000E6467 /* AKIRestorePasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIRestorePasswordView.swift; sourceTree = "<group>"; };
+		8DA99003174EE34A0D038973 /* Pods_AKIGangstaNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKIGangstaNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B81A11831C76FCC158C69B10 /* Pods-AKIGangstaNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKIGangstaNews.release.xcconfig"; path = "Pods/Target Support Files/Pods-AKIGangstaNews/Pods-AKIGangstaNews.release.xcconfig"; sourceTree = "<group>"; };
+		BB3F2C205BAC091FC96E9637 /* Pods-AKIGangstaNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKIGangstaNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AKIGangstaNews/Pods-AKIGangstaNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +79,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A51FA59FBB9642060D73F4B /* Pods_AKIGangstaNews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1953FA7E4366338913FDB2AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DA99003174EE34A0D038973 /* Pods_AKIGangstaNews.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		843D972F1DE48F1A004E06D7 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +102,8 @@
 				843D97591DE4AB9D004E06D7 /* Resources */,
 				843D973A1DE48F1B004E06D7 /* AKIGangstaNews */,
 				843D97391DE48F1B004E06D7 /* Products */,
+				89EE823702D4AA6E188151D6 /* Pods */,
+				1953FA7E4366338913FDB2AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -421,6 +436,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		89EE823702D4AA6E188151D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB3F2C205BAC091FC96E9637 /* Pods-AKIGangstaNews.debug.xcconfig */,
+				B81A11831C76FCC158C69B10 /* Pods-AKIGangstaNews.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -428,9 +452,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 843D974A1DE48F1B004E06D7 /* Build configuration list for PBXNativeTarget "AKIGangstaNews" */;
 			buildPhases = (
+				8A25510EF0F9AB2850139CFF /* [CP] Check Pods Manifest.lock */,
 				843D97341DE48F1B004E06D7 /* Sources */,
 				843D97351DE48F1B004E06D7 /* Frameworks */,
 				843D97361DE48F1B004E06D7 /* Resources */,
+				E8FCFF53EB9281045FDA1867 /* [CP] Embed Pods Frameworks */,
+				26FFB5BA7D48356B42B6862A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -448,12 +475,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Alexey Khomych";
 				TargetAttributes = {
 					843D97371DE48F1B004E06D7 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WD3U2NTNC9;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -495,6 +523,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26FFB5BA7D48356B42B6862A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AKIGangstaNews/Pods-AKIGangstaNews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A25510EF0F9AB2850139CFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E8FCFF53EB9281045FDA1867 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AKIGangstaNews/Pods-AKIGangstaNews-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		843D97341DE48F1B004E06D7 /* Sources */ = {
@@ -557,8 +633,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -602,8 +680,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -622,29 +702,36 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		843D974B1DE48F1B004E06D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB3F2C205BAC091FC96E9637 /* Pods-AKIGangstaNews.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AKIGangstaNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AKI.AKIGangstaNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		843D974C1DE48F1B004E06D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81A11831C76FCC158C69B10 /* Pods-AKIGangstaNews.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AKIGangstaNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AKI.AKIGangstaNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

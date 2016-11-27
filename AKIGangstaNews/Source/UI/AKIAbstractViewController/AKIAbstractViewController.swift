@@ -25,7 +25,7 @@ class AKIAbstractViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    internal func pushViewController(viewController: AKIAbstractViewController) {
+    internal func pushViewController(_ viewController: AKIAbstractViewController) {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

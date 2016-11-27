@@ -26,7 +26,7 @@ class AKIConfirmEmailViewController: AKIAbstractViewController {
     }
     
 
-    @IBAction func sendButton(sender: UIButton) {
+    @IBAction func sendButton(_ sender: UIButton) {
         self.pushViewController(AKIRestorePasswordViewController())
     }
 

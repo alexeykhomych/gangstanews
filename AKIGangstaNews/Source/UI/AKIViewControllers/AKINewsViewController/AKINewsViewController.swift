@@ -21,9 +21,9 @@ class AKINewsViewController: AKIAbstractViewController {
 
         let shoppingList: [String] = ["Eggs", "Milk"]
         
-        students = shoppingList
+        students = shoppingList as NSArray?
         
-        self.newsView?.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "AKINewsViewCell")
+        self.newsView?.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "AKINewsViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,19 +35,19 @@ class AKINewsViewController: AKIAbstractViewController {
         super.awakeFromNib()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.students?.count)!
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = self.newsView!.tableView!.dequeueReusableCellWithIdentifier("AKINewsViewCell")! as UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = self.newsView!.tableView!.dequeueReusableCell(withIdentifier: "AKINewsViewCell")! as UITableViewCell
         
         cell.textLabel?.text = self.students![indexPath.row] as? String
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         self.pushViewController(AKIDetailNewsViewController())
     }
 

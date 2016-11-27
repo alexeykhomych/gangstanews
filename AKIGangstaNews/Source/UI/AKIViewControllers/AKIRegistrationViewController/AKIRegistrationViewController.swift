@@ -31,8 +31,8 @@ class AKIRegistrationViewController: AKIAbstractViewController {
 
     // MARK: - View Lifecycle
     
-    @IBAction func registrationButton(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func registrationButton(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

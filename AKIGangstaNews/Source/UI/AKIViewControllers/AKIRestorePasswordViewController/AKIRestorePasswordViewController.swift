@@ -27,7 +27,7 @@ class AKIRestorePasswordViewController: AKIAbstractViewController {
     
 
     @IBAction func sendButton(sender: UIButton) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }

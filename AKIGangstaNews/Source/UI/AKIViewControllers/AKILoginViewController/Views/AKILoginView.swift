@@ -18,4 +18,5 @@ class AKILoginView: UIView {
     @IBOutlet var authorizationButton: UIButton?
     @IBOutlet var loginButton: UIButton?
     @IBOutlet var forgotPasswordButton: UIButton?
+    @IBOutlet var tapRecognizer: UITapGestureRecognizer?
 }
