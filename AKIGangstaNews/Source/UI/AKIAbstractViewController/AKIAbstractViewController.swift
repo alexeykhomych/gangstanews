@@ -10,6 +10,16 @@ import UIKit
 
 class AKIAbstractViewController: UIViewController {
     
+    var model: AnyObject?
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func getView<R>() -> R? {
         return self.viewIfLoaded.flatMap { $0 as? R }
     }

@@ -11,6 +11,9 @@ import Alamofire
 
 class AKILoginViewController: AKIAbstractViewController {
     
+    var user: AKIUser?
+    var context: AKIContext?
+    
     var activeTextField: UITextField?
     
     var loginView: AKILoginView? {
@@ -21,8 +24,10 @@ class AKILoginViewController: AKIAbstractViewController {
         super.viewDidLoad()
         
         self.registerForKeyboardNotifications()
+        self.loadUser()
+        self.loadContext()
     }
-    
+
     override func viewWillDisappear(_ : Bool) {
         self.stopKeyboardObserver()
     }
@@ -65,20 +70,11 @@ class AKILoginViewController: AKIAbstractViewController {
 //    }
 
     private func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                             selector: Selector(("keyboardWasShown:")),
-                                                 name: NSNotification.Name.UIKeyboardDidShow,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: Selector(("keyboardWillBeHidden:")),
-                                               name: NSNotification.Name.UIKeyboardWillHide,
-                                               object: nil)
+
     }
  
     private func stopKeyboardObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
     
     private func keyboardWasShown(notification: Notification) {
@@ -93,5 +89,18 @@ class AKILoginViewController: AKIAbstractViewController {
     private func keyboardWillBeHidden(notification: Notification) {
         self.loginView?.scrollView?.contentInset = UIEdgeInsets.zero
         self.loginView?.scrollView?.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
+    private func loadContext() {
+        let context = AKILoginContext()
+        context.model = self.user
+        self.context = context
+        context.loginRequest()
+    }
+    
+    private func loadUser() {
+        self.user = AKIUser()
+        self.user?.email = "11dsadmail@mail.ua"
+        self.user?.password = "gfgdgdgdgd"
     }
 }

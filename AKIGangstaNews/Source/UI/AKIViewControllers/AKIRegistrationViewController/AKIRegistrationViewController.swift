@@ -10,6 +10,8 @@ import UIKit
 
 class AKIRegistrationViewController: AKIAbstractViewController {
     
+    let signUpContext = AKISignUpContext()
+    
     var registrationView: AKIRegistrationView? {
         return self.getView()
     }
@@ -32,7 +34,8 @@ class AKIRegistrationViewController: AKIAbstractViewController {
     // MARK: - View Lifecycle
     
     @IBAction func registrationButton(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.signUpContext.signUpRequest()
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
 }

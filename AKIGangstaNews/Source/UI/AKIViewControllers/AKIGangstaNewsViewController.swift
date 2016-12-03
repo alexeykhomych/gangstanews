@@ -8,8 +8,24 @@
 
 import UIKit
 
-class AKIGangstaNewsViewController: UIViewController {
+class AKIGangstaNewsViewController: AKIAbstractViewController {
 
+    var user: AKIUser? {
+        get {
+            return self.user
+        } set(newUser) {
+            self.user = newUser
+        }
+    }
+    
+    var context: AKIContext? {
+        get {
+            return self.context
+        } set(newContext) {
+            self.context = newContext
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,16 +36,17 @@ class AKIGangstaNewsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func startObserving(object: AnyObject) {
+        NotificationCenter.default.addObserver(self, selector: #selector(modelDidLoad), name: NSNotification.Name(rawValue: "modelDidLoad"), object: nil)
     }
-    */
-
+    
+    func stopObserving() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func modelDidLoad() {
+        print("modelDidLoad")
+    }
+    
 }
