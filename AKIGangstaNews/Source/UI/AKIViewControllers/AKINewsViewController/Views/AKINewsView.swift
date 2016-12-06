@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKINewsView: UITableView {
+class AKINewsView: UIView {
 
     @IBOutlet var tableView: UITableView?
 

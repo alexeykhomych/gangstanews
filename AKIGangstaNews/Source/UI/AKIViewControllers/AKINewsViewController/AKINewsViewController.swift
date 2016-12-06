@@ -48,9 +48,9 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier)
-            ?? UITableViewCell(style: .subtitle, reuseIdentifier: self.cellReuseIdentifier)) as! AKINewViewCell
-        
+//        let cell = (tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier)
+//            ?? UITableViewCell(style: .subtitle, reuseIdentifier: self.cellReuseIdentifier)) as! AKINewViewCell
+        let cell:AKINewViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKINewViewCell
         let content = self.user?.newsArray[indexPath.row]
         cell.fillModel(content: content! as! AKIContent)
         
@@ -64,6 +64,10 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
         let controller = AKIDetailNewsViewController()
         controller.model = self.user?.newsArray[0] as AnyObject?
         self.pushViewController(controller)
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: AKINewViewCell, forRowAt indexPath: IndexPath) {
+        cell.fillModel(content: AKIContent())
     }
 
     private func loadContext() {

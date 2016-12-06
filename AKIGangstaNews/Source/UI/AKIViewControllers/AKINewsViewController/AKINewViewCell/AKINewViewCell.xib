@@ -41,6 +41,7 @@
                     <constraint firstItem="LN5-Au-pD1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uQT-84-uFW"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="headerLabel" destination="FxR-k5-EXO" id="Yup-nK-uy4"/>
                 <outlet property="logoImage" destination="LN5-Au-pD1" id="4Hu-Fy-Vf1"/>
