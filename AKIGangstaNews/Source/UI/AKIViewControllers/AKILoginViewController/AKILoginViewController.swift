@@ -24,8 +24,7 @@ class AKILoginViewController: AKIAbstractViewController {
         super.viewDidLoad()
         
         self.registerForKeyboardNotifications()
-        self.loadUser()
-        self.loadContext()
+        
     }
 
     override func viewWillDisappear(_ : Bool) {
@@ -44,7 +43,11 @@ class AKILoginViewController: AKIAbstractViewController {
     //MARK: View Lifecycle
     
     @IBAction func loginButton(_ sender: UIButton) {
-        self.navigationController?.pushViewController(AKINewsViewController(), animated: true)
+        self.loadUser()
+//        self.loadContext()
+        let controller = AKINewsViewController()
+        controller.user = self.user
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func authorizationButton(_ sender: UIButton) {
@@ -93,14 +96,17 @@ class AKILoginViewController: AKIAbstractViewController {
     
     private func loadContext() {
         let context = AKILoginContext()
-        context.model = self.user
         self.context = context
+        
+        context.model = self.user
         context.loginRequest()
     }
     
     private func loadUser() {
-        self.user = AKIUser()
-        self.user?.email = "11dsadmail@mail.ua"
-        self.user?.password = "gfgdgdgdgd"
+        if self.user == nil {
+            self.user = AKIUser()
+            self.user?.email = self.loginView?.mailField?.text
+            self.user?.password = self.loginView?.passwordField?.text
+        }
     }
 }

@@ -1,39 +1,34 @@
 //
-//  AKISignUpContext.swift
+//  AKIDetailNewsContext.swift
 //  AKIGangstaNews
 //
-//  Created by Alexey Khomych on 29.11.16.
+//  Created by Alexey Khomych on 05.12.16.
 //  Copyright © 2016 Alexey Khomych. All rights reserved.
 //
 
 import UIKit
 import Alamofire
 
-class AKISignUpContext: AKIContext {
-    
+class AKIDetailNewsContext: AKIContext {
+
     let constants = AKIConstants()
-    let signUp: String = "signup"
     
-    func signUpRequest() {
+    func detailNewsRequest() {
         let user = self.model as? AKIUser
         
-        let url: String = "\(self.constants.kAKIAPIURL)\(self.constants.kAKISignupRequest)"
-        let parameters = [
-            self.constants.kAKIUsername: user?.login,
-            self.constants.kAKIPasswordHash: user?.password,
-            self.constants.kAKIEmail: user?.email
-        ]
+        let url: String = "\(self.constants.kAKIAPIURL)/\(self.constants.kAKIDetailNewsRequest)" ///    !!!!!!!!!!
         
         let headers: HTTPHeaders = [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON
+            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
+            self.constants.kAKIAuthorization: "\(self.constants.kAKIBearerRequest) \(user?.authKey)"
         ]
         
-        self.request(url: url, parameters: parameters, headers: headers)
+        self.request(url: url, headers: headers)
         
     }
-
-    private func request(url: String, parameters: Parameters, headers: HTTPHeaders) {
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+    
+    private func request(url: String, headers: HTTPHeaders) {
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             
             switch(response.result) {
             case .success(_):
@@ -44,7 +39,13 @@ class AKISignUpContext: AKIContext {
                     guard let dictionary = data[0] as? [String: Any] else { return }
                     
                     let user = self.model as? AKIUser
-                    user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
+                    
+                    user?.login = dictionary[self.constants.kAKIUsername] as? String
+                    
+                    for category in dictionary {
+                        print(category)
+                        //                        user?.newsCategories += category
+                    }
                 }
                 break
                 

@@ -7,18 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AKINewViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBOutlet var logoImage: UIImageView?
+    @IBOutlet var headerLabel: UILabel?
+    
+    public func fillModel(content: AKIContent) {
+        self.headerLabel?.text = content.header
+        self.logoImage?.image = UIImage(named: "logonews")
     }
     
 }

@@ -10,7 +10,8 @@ import UIKit
 
 class AKIRegistrationViewController: AKIAbstractViewController {
     
-    let signUpContext = AKISignUpContext()
+    var context = AKISignUpContext()
+    var user: AKIUser?
     
     var registrationView: AKIRegistrationView? {
         return self.getView()
@@ -34,8 +35,34 @@ class AKIRegistrationViewController: AKIAbstractViewController {
     // MARK: - View Lifecycle
     
     @IBAction func registrationButton(_ sender: UIButton) {
-        self.signUpContext.signUpRequest()
+        self.loadContext()
+        
+        let controllers = self.navigationController?.viewControllers
+        let rootViewController = controllers?[(controllers?.count)! - 2] as? AKILoginViewController
+        rootViewController?.user = self.user
+        
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: request context
+    
+    private func loadContext() {
+        let context = AKISignUpContext()
+        self.context = context
+        let model = self.setUser()
+        context.model = model
+        self.user = model
+        
+        context.signUpRequest()
+    }
+    
+    private func setUser() -> AKIUser {
+        let user = AKIUser()
+        user.email = self.registrationView?.emailField?.text
+        user.login = self.registrationView?.loginField?.text
+        user.password = self.registrationView?.passwordField?.text
+        
+        return user
     }
 
 }

@@ -11,6 +11,9 @@
 		840F8BAE1DF0C1790045D9C3 /* AKIContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F8BAD1DF0C1790045D9C3 /* AKIContent.swift */; };
 		840F8BB11DF1ABAC0045D9C3 /* AKIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F8BB01DF1ABAC0045D9C3 /* AKIObserver.swift */; };
 		840F8BB41DF1C5A60045D9C3 /* AKIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F8BB31DF1C5A60045D9C3 /* AKIConstants.swift */; };
+		840F8BB71DF5B2FA0045D9C3 /* AKICategoriesContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F8BB61DF5B2FA0045D9C3 /* AKICategoriesContext.swift */; };
+		840F8BBA1DF5B3160045D9C3 /* AKINewsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F8BB91DF5B3160045D9C3 /* AKINewsContext.swift */; };
+		840F8BBD1DF5B3430045D9C3 /* AKIDetailNewsContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F8BBC1DF5B3430045D9C3 /* AKIDetailNewsContext.swift */; };
 		843D973C1DE48F1B004E06D7 /* AKIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D973B1DE48F1B004E06D7 /* AKIAppDelegate.swift */; };
 		843D976A1DE4ABDE004E06D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843D97641DE4ABDE004E06D7 /* Assets.xcassets */; };
 		843D976B1DE4ABDE004E06D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D97661DE4ABDE004E06D7 /* LaunchScreen.storyboard */; };
@@ -50,6 +53,9 @@
 		840F8BAD1DF0C1790045D9C3 /* AKIContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIContent.swift; sourceTree = "<group>"; };
 		840F8BB01DF1ABAC0045D9C3 /* AKIObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIObserver.swift; sourceTree = "<group>"; };
 		840F8BB31DF1C5A60045D9C3 /* AKIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIConstants.swift; sourceTree = "<group>"; };
+		840F8BB61DF5B2FA0045D9C3 /* AKICategoriesContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesContext.swift; sourceTree = "<group>"; };
+		840F8BB91DF5B3160045D9C3 /* AKINewsContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKINewsContext.swift; sourceTree = "<group>"; };
+		840F8BBC1DF5B3430045D9C3 /* AKIDetailNewsContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIDetailNewsContext.swift; sourceTree = "<group>"; };
 		843D97381DE48F1B004E06D7 /* AKIGangstaNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKIGangstaNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843D973B1DE48F1B004E06D7 /* AKIAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKIAppDelegate.swift; sourceTree = "<group>"; };
 		843D97471DE48F1B004E06D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +138,30 @@
 				840F8BB31DF1C5A60045D9C3 /* AKIConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		840F8BB51DF5B2D40045D9C3 /* AKICategoriesContext */ = {
+			isa = PBXGroup;
+			children = (
+				840F8BB61DF5B2FA0045D9C3 /* AKICategoriesContext.swift */,
+			);
+			path = AKICategoriesContext;
+			sourceTree = "<group>";
+		};
+		840F8BB81DF5B2FE0045D9C3 /* AKINewsContext */ = {
+			isa = PBXGroup;
+			children = (
+				840F8BB91DF5B3160045D9C3 /* AKINewsContext.swift */,
+			);
+			path = AKINewsContext;
+			sourceTree = "<group>";
+		};
+		840F8BBB1DF5B31D0045D9C3 /* AKIDetailNewsContext */ = {
+			isa = PBXGroup;
+			children = (
+				840F8BBC1DF5B3430045D9C3 /* AKIDetailNewsContext.swift */,
+			);
+			path = AKIDetailNewsContext;
 			sourceTree = "<group>";
 		};
 		843D972F1DE48F1A004E06D7 = {
@@ -458,6 +488,9 @@
 		8469318D1DED9FE000A476E9 /* Context */ = {
 			isa = PBXGroup;
 			children = (
+				840F8BBB1DF5B31D0045D9C3 /* AKIDetailNewsContext */,
+				840F8BB81DF5B2FE0045D9C3 /* AKINewsContext */,
+				840F8BB51DF5B2D40045D9C3 /* AKICategoriesContext */,
 				848CECC11DEE1638008209B2 /* AKISignUpContext */,
 				848CECBE1DEE11EB008209B2 /* AKILogoutContext */,
 				846931901DEDA08100A476E9 /* AKILoginContext */,
@@ -669,6 +702,7 @@
 				84B63EFB1DE62822000E6467 /* AKIDetailNewsView.swift in Sources */,
 				843D979D1DE4B4FC004E06D7 /* AKIConfirmEmailViewController.swift in Sources */,
 				84B63EF41DE603DB000E6467 /* AKIAbstractViewController.swift in Sources */,
+				840F8BBA1DF5B3160045D9C3 /* AKINewsContext.swift in Sources */,
 				84B63EF71DE6262A000E6467 /* AKIRegistrationView.swift in Sources */,
 				84B63EF91DE62725000E6467 /* AKIConfirmEmailView.swift in Sources */,
 				840F8BAE1DF0C1790045D9C3 /* AKIContent.swift in Sources */,
@@ -683,9 +717,11 @@
 				84B63EFF1DE62AC3000E6467 /* AKIRestorePasswordView.swift in Sources */,
 				843D97A51DE4B543004E06D7 /* AKIGangstaNewsViewController.swift in Sources */,
 				843D973C1DE48F1B004E06D7 /* AKIAppDelegate.swift in Sources */,
+				840F8BBD1DF5B3430045D9C3 /* AKIDetailNewsContext.swift in Sources */,
 				840F8BB11DF1ABAC0045D9C3 /* AKIObserver.swift in Sources */,
 				848CECC31DEE1652008209B2 /* AKISignUpContext.swift in Sources */,
 				843D97991DE4B4F0004E06D7 /* AKIDetailNewsViewController.swift in Sources */,
+				840F8BB71DF5B2FA0045D9C3 /* AKICategoriesContext.swift in Sources */,
 				84B63EF21DE601E4000E6467 /* AKILoginView.swift in Sources */,
 				848CECC01DEE122A008209B2 /* AKILogoutContext.swift in Sources */,
 				843D978D1DE4B4B4004E06D7 /* AKINewsViewController.swift in Sources */,

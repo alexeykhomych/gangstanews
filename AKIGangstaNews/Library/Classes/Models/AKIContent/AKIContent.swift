@@ -7,14 +7,62 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AKIContent: NSObject {
-    public var dataText: NSString!
-    public var imageModel: UIImageView!
     
-    init(dataText: String, imageModel: UIImageView) {
-        self.dataText = dataText as NSString!
-        self.imageModel = imageModel
+    public var header: String?
+    public var dataText: String?
+    public var image: UIImageView?
+    
+    let disposeBag = DisposeBag()
+    
+    override init() {
+        super.init()
+        
+        self.header = ""
+        self.dataText = ""
+        self.image = nil
+    }
+    
+    init(header: String, dataText: String, image: UIImageView) {
+        self.header = header
+        self.dataText = dataText
+        self.image = image
+    }
+
+}
+
+class AKIContentModel {
+    
+    private let content: AKIContent
+    
+    public var header: BehaviorSubject<String>
+    public var dataText: BehaviorSubject<String>
+    public var image: BehaviorSubject<UIImageView>
+    
+    let disposeBag = DisposeBag()
+    
+    init(content: AKIContent) {
+        self.content = content
+        
+        self.dataText = BehaviorSubject<String>(value: content.dataText!)
+        self.header = BehaviorSubject<String>(value: content.header!)
+        self.image = BehaviorSubject<UIImageView>(value: content.image!)
+        
+        self.dataText.subscribe(onNext: { (dataText) in
+            content.dataText = dataText
+        }).addDisposableTo(self.disposeBag)
+        
+        self.header.subscribe(onNext: { (header) in
+            content.header = header
+        }).addDisposableTo(self.disposeBag)
+        
+        self.header.subscribe(onNext: { (image) in
+//            content.image = image as? UIImageView
+        }).addDisposableTo(self.disposeBag)
+        
     }
     
 }
