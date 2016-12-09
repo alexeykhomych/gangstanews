@@ -53,7 +53,7 @@ class AKIRegistrationViewController: AKIAbstractViewController {
         context.model = model
         self.user = model
         
-        context.signUpRequest()
+        
     }
     
     private func setUser() -> AKIUser {

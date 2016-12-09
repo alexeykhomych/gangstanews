@@ -97,35 +97,38 @@ class AKILoginViewController: AKIAbstractViewController {
     }
     
     private func loadContext() {
-//        let context = AKILoginContext()
-        let user = self.user
-        let observer = user?.observer(AKILoginContext())
-        observer?.subscribe(onNext: { next in
+        let user = self.loadUser()
+        
+        let context = AKILoginContext()
+        context.model = user
+        let observer = context.observer()
+        self.user = user
+        
+        observer.subscribe(onNext: { next in
             print(next)
         }, onError: { error in
             print(error)
         }, onCompleted: {
-            print("completed")
-            let controller = AKINewsViewController()
-            controller.user = self.user
-            self.navigationController?.pushViewController(controller, animated: true)            
+            self.modelDidLoad()
+            
         }, onDisposed: {
             
         }).addDisposableTo(self.disposebag)
+    }
+    
+    private func loadUser() -> AKIUser {
+        let user = AKIUser()
         
-//        self.context = context
-//        
-//        context.model = self.user
-//        context.loginRequest()
+        user.email = self.loginView?.mailField?.text
+        user.password = self.loginView?.passwordField?.text
+        
+        return user
     }
     
-    private func loadUser() {
-        if self.user == nil {
-            self.user = AKIUser()
-            self.user?.email = self.loginView?.mailField?.text
-            self.user?.password = self.loginView?.passwordField?.text
-        }
+    private func modelDidLoad() {
+        let controller = AKINewsViewController()
+        controller.user = self.user
+        self.navigationController?.pushViewController(controller, animated: true)
     }
-    
     
 }

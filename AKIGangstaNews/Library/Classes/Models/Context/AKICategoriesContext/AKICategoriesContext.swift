@@ -7,57 +7,62 @@
 //
 
 import UIKit
+
+import RxSwift
+import RxCocoa
+
 import Alamofire
 
 class AKICategoriesContext: AKIContext {
-
-    let constants = AKIConstants()
     
-    func categoriesRequest() {
-        let user = self.model as? AKIUser
-        
-        let url: String = "\(self.constants.kAKIAPIURL)\(self.constants.kAKICategoriesRequest)"
-        
-        let headers: HTTPHeaders = [
+    override func headers() -> HTTPHeaders {
+        return [
             self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
-            self.constants.kAKIAuthorization: "\(self.constants.kAKIBearerRequest) \(user?.authKey)"
+            self.constants.kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"
         ]
-        
-        self.request(url: url, headers: headers)
-        
     }
     
-    private func request(url: String, headers: HTTPHeaders) {
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            
-            switch(response.result) {
-            case .success(_):
-                if let json = response.result.value as? NSDictionary {
-                    //modelDidLoad
+    override var url: String {
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKICategoriesRequest)" as String
+    }
+
+    public override func observer() -> Observable<(AKIContext)> {
+        return Observable<AKIContext>.create { (observer) -> Disposable in
+            let requestReference = Alamofire.request(self.url,
+                                                     method: self.method,
+                                                     encoding: self.encoding,
+                                                     headers: self.headers()).responseJSON
+                {
+                    response in
                     
-                    guard let data = json.object(forKey: "data") as? [Any] else { return }
-                    guard let dictionary = data[0] as? [String: Any] else { return }
-                    
-                    let user = self.model as? AKIUser
-                    
-                    user?.login = dictionary[self.constants.kAKIUsername] as? String
-                    
-                    for category in dictionary {
-                        print(category)
-//                        user?.newsCategories += category
+                    switch(response.result) {
+                    case .success(_):
+                        if let json = response.result.value as? NSDictionary {
+                            guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
+                            guard let dictionary = data[0] as? [String: Any] else { return }
+                            
+                            let user = self.model as? AKIUser
+                            
+                            for category in dictionary {
+                                print(category)
+                                //                        user?.newsCategories += category
+                            }
+                            
+                            observer.onCompleted()
+                            print("category completed")
+                        }
+                        break
+                        
+                    case .failure(_):
+                        //                    observer.onError()
+                        
+                        break
                     }
-                }
-                break
-                
-            case .failure(_):
-                //modelDidFailLoading
-                print(response.result.value as Any)
-                break
-                
             }
+            
+            return Disposables.create(with: { requestReference.cancel() })
         }
     }
-    
 }
 
 /*

@@ -7,108 +7,71 @@
 //
 
 import UIKit
-import Alamofire
+
 import RxSwift
 import RxCocoa
 
+import Alamofire
+
 class AKILoginContext: AKIContext {
     
-    let constants = AKIConstants()
+    override func headers() -> HTTPHeaders {
+        return [
+            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
+            self.constants.kAKIAuthorization: "\(AuthorizationType.Basic) \(self.accessToken())"
+        ]
+    }
     
+    private func accessToken() -> String {
+        let user = self.model as? AKIUser
+        return self.convertToBase64(email: (user?.email)!, password: (user?.password)!)
+    }
     
-    func loginRequest() {
-        
+    override var url: String {
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKILoginRequest)" as String
+    }
+    
+    override var parameters: [String : String?] {
         let user = self.model as? AKIUser
         
-        let url: String = "\(self.constants.kAKIAPIURL)\(self.constants.kAKILoginRequest)"
-        let parameters = [
+        return [
             self.constants.kAKIEmail: user?.email,
             self.constants.kAKIPassword: user?.password
         ]
-        
-        let basic = self.convertToBase64(email: (user?.email)!, password: (user?.password)!)
-
-        let headers: HTTPHeaders = [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
-            self.constants.kAKIAuthorization: "\(self.constants.kAKIBasicRequest) \(basic)"
-        ]
-        
-        self.request(url: url, parameters: parameters, headers: headers)
-
     }
     
     public override func observer() -> Observable<(AKIContext)> {
-        let user = self.model as? AKIUser
-        
-        let url: String = "\(self.constants.kAKIAPIURL)\(self.constants.kAKILoginRequest)"
-        let parameters = [
-            self.constants.kAKIEmail: user?.email,
-            self.constants.kAKIPassword: user?.password
-        ]
-        
-        let basic = self.convertToBase64(email: (user?.email)!, password: (user?.password)!)
-        
-        let headers: HTTPHeaders = [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
-            self.constants.kAKIAuthorization: "\(self.constants.kAKIBasicRequest) \(basic)"
-        ]
-        
-        
-        
         return Observable<AKIContext>.create { (observer) -> Disposable in
-            let requestReference = Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                print("login")
-                switch(response.result) {
-                case .success(_):
-                    if let json = response.result.value as? NSDictionary {
-                        //modelDidLoad
+            let requestReference = Alamofire.request(self.url,
+                                                     method: self.method,
+                                                     parameters: self.parameters,
+                                                     encoding: self.encoding,
+                                                     headers: self.headers()).responseJSON
+                {
+                    response in
+                
+                    switch(response.result) {
+                    case .success(_):
+                        if let json = response.result.value as? NSDictionary {
+                            guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
+                            guard let dictionary = data[0] as? [String: Any] else { return }
+                            
+                            let user = self.model as? AKIUser
+                            user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
+                            
+                            observer.onCompleted()
+                            print("login completed")
+                        }
+                        break
                         
-                        guard let data = json.object(forKey: "data") as? [Any] else { return }
-                        guard let dictionary = data[0] as? [String: Any] else { return }
+                    case .failure(_):
+                        //                    observer.onError()
                         
-                        let user = self.model as? AKIUser
-                        user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
-                        
-                        print("LOGIN REQUEST COMPLITED")
-                        
-                        observer.onCompleted()
+                        break
                     }
-                    break
-                    
-                case .failure(_):
-                    print("login request failure")
-
-                    break
-                }
             }
             
             return Disposables.create(with: { requestReference.cancel() })
-        }
-    }
-
-    private func request(url: String, parameters: Parameters, headers: HTTPHeaders) {
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-        
-                switch(response.result) {
-                    case .success(_):
-                        if let json = response.result.value as? NSDictionary {
-                        //modelDidLoad
-    
-                        guard let data = json.object(forKey: "data") as? [Any] else { return }
-                        guard let dictionary = data[0] as? [String: Any] else { return }
-                            
-                        let user = self.model as? AKIUser
-                        user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
-                        print("LOGIN REQUEST COMPLITED")
-                    }
-                    break
-    
-                case .failure(_):
-                    //modelDidFailLoading
-                    print(response.result.value as Any)
-                break
-        
-            }
         }
     }
     
@@ -119,10 +82,6 @@ class AKILoginContext: AKIContext {
         }
         
         return (plainData as NSData).base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-    }
-
-    public override func sendRequest() {
-        self.loginRequest()
     }
     
 }

@@ -13,19 +13,23 @@ import RxSwift
 
 import Alamofire
 
-class AKIContext: NSObject {
+public enum AuthorizationType: String {
+    case Bearer = "Bearer"
+    case Basic = "Basic"
+}
+
+class AKIContext {
+    
+    let constants = AKIConstants()
+    
     var model: AnyObject?
     
-    var httpMethod: HTTPMethod {
+    var method: HTTPMethod {
         return .post
     }
     
-    var url: NSString {
+    var url: String {
         return ""
-    }
-    
-    var headers: HTTPHeaders {
-        return [:]
     }
     
     var parameters: [String : String?] {
@@ -36,14 +40,18 @@ class AKIContext: NSObject {
         return ""
     }
     
+    func headers() -> HTTPHeaders {
+        return [:]
+    }
+    
+    var encoding: JSONEncoding {
+        return JSONEncoding.default
+    }
+    
     public func observer() -> Observable<(AKIContext)> {
         return Observable<AKIContext>.create { (observer) -> Disposable in
             return Disposables.create(with: {  })
         }
-    }
-    
-    public func sendRequest() {
-        
     }
     
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class AKIConstants: NSObject {
     
-    let kAKIAPIURL = "http://4fdde853.ngrok.io/"
+    let kAKIAPIURL = "http://7a1ae016.ngrok.io/"
     
     let kAKILoginRequest = "auth/login"
     let kAKILogoutRequest = "auth/logout"
@@ -20,8 +20,6 @@ class AKIConstants: NSObject {
     let kAKIDetailNewsRequest = "news/"
     
     let kAKIAuthorizationRequest = "Authorization"
-    let kAKIBasicRequest = "Basic"
-    let kAKIBearerRequest = "Bearer"
     
     let kAKIAuthorization = "Authorization"
     let kAKIContentType = "Content-Type"
@@ -32,6 +30,8 @@ class AKIConstants: NSObject {
     let kAKIPasswordHash = "password_hash"
     let kAKIUsername = "username"
     let kAKIAuthKey = "auth_key"
+    
+    let kAKIData = "data"
     
     let kAKIPasswordResetToken = "password_reset_token"
     

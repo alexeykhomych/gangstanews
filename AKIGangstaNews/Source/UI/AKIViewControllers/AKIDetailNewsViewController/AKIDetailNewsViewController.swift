@@ -8,11 +8,15 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class AKIDetailNewsViewController: AKIAbstractViewController {
     
     var content: AKIContent?
     var context: AKIDetailNewsContext?
     var user: AKIUser?
+    let disposeBag = DisposeBag()
 
     var detailNewsView: AKIDetailNewsView? {
         return self.getView()
@@ -22,24 +26,34 @@ class AKIDetailNewsViewController: AKIAbstractViewController {
         super.viewDidLoad()
         
         self.loadContext()
-        self.parseNews()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func parseNews() {
-//        self.detailNewsView?.parseContent(content: self.content!)
-    }
-
     private func loadContext() {
-        let context = AKIDetailNewsContext()
-        self.context = context
+        let user = self.user
         
-        context.model = self.user
+        let context = AKIDetailNewsContext()
+        context.model = user
         context.id = (self.model as? AKIContent)?.id
-        context.detailNewsRequest()
+        let observer = context.observer()
+        self.user = user
+        
+        observer.subscribe(onNext: { next in
+            print(next)
+        }, onError: { error in
+            print(error)
+        }, onCompleted: {
+            self.modelDidLoad()
+        }, onDisposed: {
+            
+        }).addDisposableTo(self.disposeBag)
+    }
+    
+    private func modelDidLoad() {
+        self.detailNewsView?.parseContent(content: self.model as! AKIContent)
     }
     
 }

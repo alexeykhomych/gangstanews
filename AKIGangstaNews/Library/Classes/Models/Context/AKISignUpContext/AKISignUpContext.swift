@@ -7,54 +7,65 @@
 //
 
 import UIKit
+
+import RxSwift
+import RxCocoa
+
 import Alamofire
 
 class AKISignUpContext: AKIContext {
     
-    let constants = AKIConstants()
-    let signUp: String = "signup"
+    override func headers() -> HTTPHeaders {
+        return [
+            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON
+        ]
+    }
     
-    func signUpRequest() {
+    override var url: String {
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKISignupRequest)" as String
+    }
+    
+    override var parameters: [String : String?] {
         let user = self.model as? AKIUser
         
-        let url: String = "\(self.constants.kAKIAPIURL)\(self.constants.kAKISignupRequest)"
-        let parameters = [
+        return [
             self.constants.kAKIUsername: user?.login,
             self.constants.kAKIPasswordHash: user?.password,
             self.constants.kAKIEmail: user?.email
         ]
-        
-        let headers: HTTPHeaders = [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON
-        ]
-        
-        self.request(url: url, parameters: parameters, headers: headers)
-        
-    }
-
-    private func request(url: String, parameters: Parameters, headers: HTTPHeaders) {
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            
-            switch(response.result) {
-            case .success(_):
-                if let json = response.result.value as? NSDictionary {
-                    //modelDidLoad
-                    
-                    guard let data = json.object(forKey: "data") as? [Any] else { return }
-                    guard let dictionary = data[0] as? [String: Any] else { return }
-                    
-                    let user = self.model as? AKIUser
-                    user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
-                }
-                break
-                
-            case .failure(_):
-                //modelDidFailLoading
-                print(response.result.value as Any)
-                break
-                
-            }
-        }
     }
     
+    public override func observer() -> Observable<(AKIContext)> {
+        return Observable<AKIContext>.create { (observer) -> Disposable in
+            let requestReference = Alamofire.request(self.url,
+                                                     method: self.method,
+                                                     encoding: self.encoding,
+                                                     headers: self.headers()).responseJSON
+                {
+                    response in
+                    
+                    switch(response.result) {
+                    case .success(_):
+                        if let json = response.result.value as? NSDictionary {
+                            guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
+                            guard let dictionary = data[0] as? [String: Any] else { return }
+                            
+                            let user = self.model as? AKIUser
+                            user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
+                            
+                            observer.onCompleted()
+                            print("signup completed")
+                        }
+                        break
+                        
+                    case .failure(_):
+                        //                    observer.onError()
+                        
+                        break
+                    }
+            }
+            
+            return Disposables.create(with: { requestReference.cancel() })
+        }
+    }
 }
