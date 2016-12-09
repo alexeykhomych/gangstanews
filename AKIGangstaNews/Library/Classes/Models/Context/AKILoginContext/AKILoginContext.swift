@@ -60,7 +60,7 @@ class AKILoginContext: AKIContext {
                             user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
                             
                             observer.onCompleted()
-                            print("login completed")
+                            print("login completed")	
                         }
                         break
                         

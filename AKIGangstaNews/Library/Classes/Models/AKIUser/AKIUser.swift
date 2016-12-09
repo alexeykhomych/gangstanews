@@ -63,33 +63,4 @@ class AKIUser: NSObject, NSCoding {
 //        var array = NSMutableArray()
 //        array.add()
     }
-    
-//    public func observer(_ context: AKIContext) -> Observable<(AKIUser)> {
-//        return Observable.create { observer in
-//            
-//            context.model = self
-//            context.sendRequest()
-//            
-//            observer.onCompleted()
-//            
-//            return Disposables.create()
-//        }
-//    }
-//    
-//    private func observContext(_ context: AKIContext) {
-//        let disposebag = DisposeBag()
-//        let observer = context.observer()
-//        
-//        observer.subscribe(onNext: { next in
-//            print(next)
-//        }, onError: { error in
-//            print(error)
-//        }, onCompleted: {
-//            print("user context completed")
-//            
-//        }, onDisposed: {
-//            
-//        }).addDisposableTo(disposebag)
-//    }
-    
 }
