@@ -17,7 +17,7 @@ class AKIConstants: NSObject {
     let kAKISignupRequest = "signup"
     let kAKICategoriesRequest = "categories"
     let kAKINewsRequest = "news"
-    let kAKIDetailNewsRequest = "news/$news_id"
+    let kAKIDetailNewsRequest = "news/"
     
     let kAKIAuthorizationRequest = "Authorization"
     let kAKIBasicRequest = "Basic"

@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import Alamofire
+
+import RxSwift
+import RxCocoa
 
 class AKILoginViewController: AKIAbstractViewController {
     
@@ -15,6 +17,9 @@ class AKILoginViewController: AKIAbstractViewController {
     var context: AKIContext?
     
     var activeTextField: UITextField?
+    
+    var observer:Observable<AKIUser>?
+    let disposebag = DisposeBag()
     
     var loginView: AKILoginView? {
         return self.getView()
@@ -44,10 +49,7 @@ class AKILoginViewController: AKIAbstractViewController {
     
     @IBAction func loginButton(_ sender: UIButton) {
         self.loadUser()
-//        self.loadContext()
-        let controller = AKINewsViewController()
-        controller.user = self.user
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.loadContext()
     }
     
     @IBAction func authorizationButton(_ sender: UIButton) {
@@ -95,11 +97,26 @@ class AKILoginViewController: AKIAbstractViewController {
     }
     
     private func loadContext() {
-        let context = AKILoginContext()
-        self.context = context
+//        let context = AKILoginContext()
+        let user = self.user
+        let observer = user?.observer(AKILoginContext())
+        observer?.subscribe(onNext: { next in
+            print(next)
+        }, onError: { error in
+            print(error)
+        }, onCompleted: {
+            print("completed")
+            let controller = AKINewsViewController()
+            controller.user = self.user
+            self.navigationController?.pushViewController(controller, animated: true)            
+        }, onDisposed: {
+            
+        }).addDisposableTo(self.disposebag)
         
-        context.model = self.user
-        context.loginRequest()
+//        self.context = context
+//        
+//        context.model = self.user
+//        context.loginRequest()
     }
     
     private func loadUser() {
@@ -109,4 +126,6 @@ class AKILoginViewController: AKIAbstractViewController {
             self.user?.password = self.loginView?.passwordField?.text
         }
     }
+    
+    
 }

@@ -1,5 +1,5 @@
 //
-//  AKINewViewCell.swift
+//  AKINewsViewCell.swift
 //  AKIGangstaNews
 //
 //  Created by Alexey Khomych on 22.11.16.
@@ -10,10 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKINewViewCell: UITableViewCell {
+class AKINewsViewCell: UITableViewCell {
     
     @IBOutlet var logoImage: UIImageView?
     @IBOutlet var headerLabel: UILabel?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
     public func fillModel(content: AKIContent) {
         self.headerLabel?.text = content.header

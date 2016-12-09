@@ -10,30 +10,36 @@ import UIKit
 
 class AKIDetailNewsViewController: AKIAbstractViewController {
     
+    var content: AKIContent?
+    var context: AKIDetailNewsContext?
+    var user: AKIUser?
+
     var detailNewsView: AKIDetailNewsView? {
         return self.getView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.loadContext()
+        self.parseNews()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func parseNews() {
+//        self.detailNewsView?.parseContent(content: self.content!)
     }
-    */
 
+    private func loadContext() {
+        let context = AKIDetailNewsContext()
+        self.context = context
+        
+        context.model = self.user
+        context.id = (self.model as? AKIContent)?.id
+        context.detailNewsRequest()
+    }
+    
 }

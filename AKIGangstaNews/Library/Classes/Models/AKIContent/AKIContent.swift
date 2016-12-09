@@ -12,6 +12,7 @@ import RxCocoa
 
 class AKIContent: NSObject {
     
+    public var id: String?
     public var header: String?
     public var dataText: String?
     public var image: UIImageView?

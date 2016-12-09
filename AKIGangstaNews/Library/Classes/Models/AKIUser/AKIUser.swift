@@ -8,6 +8,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class AKIUser: NSObject, NSCoding {
     
     var login: String?
@@ -53,6 +56,34 @@ class AKIUser: NSObject, NSCoding {
         aCoder.encode(self.authKey, forKey: "authKey")
         aCoder.encode(self.passwordResetToken, forKey: "passwordResetToken")
         aCoder.encode(self.newsArray, forKey: "newsArray")
+    }
+    
+    public func observer(_ context: AKIContext) -> Observable<(AKIUser)> {
+        return Observable.create { observer in
+            
+            context.model = self
+            context.sendRequest()
+            
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
+    private func observContext(_ context: AKIContext) {
+        let disposebag = DisposeBag()
+        let observer = context.observer()
+        
+        observer.subscribe(onNext: { next in
+            print(next)
+        }, onError: { error in
+            print(error)
+        }, onCompleted: {
+            print("user context completed")
+            
+        }, onDisposed: {
+            
+        }).addDisposableTo(disposebag)
     }
     
 }

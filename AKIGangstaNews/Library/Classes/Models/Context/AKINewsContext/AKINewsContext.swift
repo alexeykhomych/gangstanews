@@ -20,8 +20,8 @@ class AKINewsContext: AKIContext {
         
         let headers: HTTPHeaders = [
             self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
-//            self.constants.kAKIAuthorization: "\(self.constants.kAKIBearerRequest) \(user?.authKey)"
-            self.constants.kAKIAuthorization: "\(self.constants.kAKIBearerRequest) UmPblB9MPejCtetfQOH49rtfO-VtpIrC"
+            self.constants.kAKIAuthorization: "\(self.constants.kAKIBearerRequest) \(user?.authKey)"
+//            self.constants.kAKIAuthorization: "\(self.constants.kAKIBearerRequest) UmPblB9MPejCtetfQOH49rtfO-VtpIrC"
         ]
         
         self.request(url: url, headers: headers)
@@ -44,6 +44,8 @@ class AKINewsContext: AKIContext {
                     for category in data {
                         guard let dictionary = category as? [String: Any] else { return }
                         let content = AKIContent()
+                        let id = dictionary["id"] as? NSNumber
+                        content.id = id?.stringValue
                         content.header = dictionary["title"] as! String?
                         let imageUrl = dictionary["image_thumb"] as! String?
                         array.add(content)
