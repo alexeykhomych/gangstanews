@@ -8,12 +8,12 @@
 
 import UIKit
 
-class AKIModel: NSObject {
+class AKIModel {
     
     public func load() {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+//        dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0).asynchronously() {
             self.performLoading()
-        }
+//        }
     }
     
     func performLoading() {

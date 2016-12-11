@@ -10,60 +10,57 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKIContent: NSObject {
+let kAKIID: String = "kAKIID"
+let kAKIHeader: String = "kAKIHeader"
+let kAKIDataText: String = "kAKIDataText"
+let kAKIImageURL: String = "kAKIImageURL"
+
+class AKIContent: NSCopying, NSCoding {
     
     public var id: String?
     public var header: String?
     public var dataText: String?
-    public var image: UIImageView?
+    public var imageURL: String?
     
-    let disposeBag = DisposeBag()
-    
-    override init() {
-        super.init()
-        
+    init() {
         self.header = ""
         self.dataText = ""
-        self.image = nil
+        self.imageURL = ""
     }
     
-    init(header: String, dataText: String, image: UIImageView) {
+    init(id: String, header: String, dataText: String, imageURL: String) {
+        self.id = id
         self.header = header
         self.dataText = dataText
-        self.image = image
-    }
-
-}
-
-class AKIContentModel {
-    
-    private let content: AKIContent
-    
-    public var header: BehaviorSubject<String>
-    public var dataText: BehaviorSubject<String>
-    public var image: BehaviorSubject<UIImageView>
-    
-    let disposeBag = DisposeBag()
-    
-    init(content: AKIContent) {
-        self.content = content
-        
-        self.dataText = BehaviorSubject<String>(value: content.dataText!)
-        self.header = BehaviorSubject<String>(value: content.header!)
-        self.image = BehaviorSubject<UIImageView>(value: content.image!)
-        
-        self.dataText.subscribe(onNext: { (dataText) in
-            content.dataText = dataText
-        }).addDisposableTo(self.disposeBag)
-        
-        self.header.subscribe(onNext: { (header) in
-            content.header = header
-        }).addDisposableTo(self.disposeBag)
-        
-        self.header.subscribe(onNext: { (image) in
-//            content.image = image as? UIImageView
-        }).addDisposableTo(self.disposeBag)
-        
+        self.imageURL = imageURL
     }
     
+    public required init?(coder aDecoder: NSCoder){
+        self.id = self.decode(decoder: aDecoder, key: kAKIID)
+        self.header = self.decode(decoder: aDecoder, key: kAKIHeader)
+        self.dataText = self.decode(decoder: aDecoder, key: kAKIDataText)
+        self.imageURL = self.decode(decoder: aDecoder, key: kAKIImageURL)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        self.encode(encoder: aCoder, field: self.id!, key: kAKIID)
+        self.encode(encoder: aCoder, field: self.header!, key: kAKIHeader)
+        self.encode(encoder: aCoder, field: self.dataText!, key: kAKIDataText)
+        self.encode(encoder: aCoder, field: self.imageURL!, key: kAKIImageURL)
+    }
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return AKIContent(id: self.id!, header: self.header!, dataText: self.dataText!, imageURL: self.imageURL!)
+    }
+    
+    //MARK: Private
+    
+    private func decode(decoder: NSCoder, key: String) -> String {
+        return decoder.decodeObject(forKey: key) as! String
+    }
+    
+    private func encode(encoder: NSCoder, field: String, key: String) {
+        encoder.encode(field, forKey: key)
+    }
+
 }

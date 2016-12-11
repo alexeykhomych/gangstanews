@@ -23,7 +23,7 @@ class AKICategoriesContext: AKIContext {
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKICategoriesRequest)" as String
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKICategories)" as String
     }
 
     public override func observer() -> Observable<(AKIContext)> {
@@ -42,10 +42,11 @@ class AKICategoriesContext: AKIContext {
                             guard let dictionary = data[0] as? [String: Any] else { return }
                             
                             let user = self.model as? AKIUser
+                            let categories = user
                             
                             for category in dictionary {
                                 print(category)
-                                //                        user?.newsCategories += category
+                                //                        user?.categories += category
                             }
                             
                             observer.onCompleted()

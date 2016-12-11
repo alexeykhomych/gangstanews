@@ -22,7 +22,7 @@ class AKISignUpContext: AKIContext {
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKISignupRequest)" as String
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKIAuth)/\(self.constants.kAKISignup)" as String
     }
     
     override var parameters: [String : String?] {

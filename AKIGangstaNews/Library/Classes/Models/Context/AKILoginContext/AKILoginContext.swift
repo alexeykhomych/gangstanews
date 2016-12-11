@@ -28,7 +28,7 @@ class AKILoginContext: AKIContext {
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKILoginRequest)" as String
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKIAuth)/\(self.constants.kAKILogin)" as String
     }
     
     override var parameters: [String : String?] {

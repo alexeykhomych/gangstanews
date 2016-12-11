@@ -21,7 +21,7 @@ class AKIDetailNewsView: UIView {
     }
     
     public func parseContent(content: AKIContent) {
-        self.imageVIew = content.image
+//        self.imageVIew? = content.image
         self.contantField?.text = content.dataText
     }
 

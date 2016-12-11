@@ -23,7 +23,7 @@ class AKILogoutContext: AKIContext {
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKILogoutRequest)" as String
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKIAuth)/\(self.constants.kAKILogout)" as String
     }
     
     public override func observer() -> Observable<(AKIContext)> {

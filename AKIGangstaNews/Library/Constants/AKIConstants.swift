@@ -12,11 +12,12 @@ class AKIConstants: NSObject {
     
     let kAKIAPIURL = "http://7a1ae016.ngrok.io/"
     
-    let kAKILoginRequest = "auth/login"
-    let kAKILogoutRequest = "auth/logout"
-    let kAKISignupRequest = "signup"
-    let kAKICategoriesRequest = "categories"
-    let kAKINewsRequest = "news"
+    let kAKIAuth = "auth"
+    let kAKILogin = "login"
+    let kAKILogout = "logout"
+    let kAKISignup = "signup"
+    let kAKICategories = "categories"
+    let kAKINews = "news"
     let kAKIDetailNewsRequest = "news/"
     
     let kAKIAuthorizationRequest = "Authorization"

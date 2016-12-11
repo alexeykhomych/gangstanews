@@ -18,28 +18,29 @@ class AKIUser: NSObject, NSCoding {
     var authKey: String?
     var password: String?
     var passwordResetToken: String?
-    var modelData: AKIContent?
-    var newsArray: NSMutableArray
-    var newsCategories: Array<Any>?
+    var content: AKIContent?
+    var newsArray: AKIArrayModel?
+    var categories: AKICategoryModel?
+    
+    let rer = AKIConstants().kAKILoginRequest
     
     override init() {
-        self.login = "default"
-        self.email = "default"
-        self.authKey = "default"
+        self.login = ""
+        self.email = ""
+        self.authKey = ""
         self.passwordResetToken = ""
         
-        self.modelData = AKIContent.init(header: "default header", dataText: "default", image: UIImageView.init(image: UIImage.init(named: "logo")))
-        self.newsArray = NSMutableArray()
-        self.newsArray.add(self.modelData!)
+        self.content = AKIContent.init(header: "default header", dataText: "default", image: UIImageView.init(image: UIImage.init(named: "logo")))
+        self.newsArray = AKIArrayModel()
+        self.categories = AKICategoryModel()
     }
     
-    init(login: String, email: String, authKey: String, passwordResetToken: String, newsArray: NSMutableArray) {
+    init(login: String, email: String, authKey: String, passwordResetToken: String, newsArray: AKIArrayModel) {
         self.login = login
         self.email = email
         self.authKey = authKey
         self.passwordResetToken = passwordResetToken
-        self.newsArray = newsArray
-        self.newsArray.add(self.modelData!)
+        self.newsArray?.addObjects(newsArray)
     }
     
     required init(coder: NSCoder) {

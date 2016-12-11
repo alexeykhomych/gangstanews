@@ -9,15 +9,19 @@
 import UIKit
 
 public enum Category: String {
+    case World = "World"
     case Politics = "Politics"
     case Sport = "Sport"
+    case Business = "Business"
+    case Tech = "Tech"
+    case Science = "Science"
+    case Arts = "Arts"
+    case Travel = "Travel"
 }
 
 let kAKIFileName: String = "AKICategoryModel.plist"
 
-class AKICategoryModel: AKIModel {
-    
-    var categories: AKIArrayModel? = nil
+class AKICategoryModel: AKIArrayModel {
     
     var fileManager: FileManager {
         return FileManager.default
@@ -38,12 +42,11 @@ class AKICategoryModel: AKIModel {
     //MARK: Initializations and Deallocations
     
     override init() {
-        self.categories = AKIArrayModel()
-        self.fillDefaulCategories()
+        self.fillCategories()
     }
     
     override init(_ categories: AKIArrayModel) {
-        self.categories = categories
+        self.objects = categories
     }
     
     deinit {
@@ -56,10 +59,12 @@ class AKICategoryModel: AKIModel {
         var model = nil
         
         if self.cached != nil {
-            model = AKIUser()
+            model = self.fillDefaulCategories()
         } else {
-            self.categories?.addObjects(model)
+            model = NSKeyedUnarchiver.unarchiveObject(withFile: self.path)
         }
+        
+        self.addObjects(model)
     }
     
     public func save() {
@@ -69,7 +74,18 @@ class AKICategoryModel: AKIModel {
     
     //MARK: Private
     
-    private func fillDefaulCategories() {
-        self.categories?.addObjects([Category.Politics, Category.Politics])
+    private func fillCategories() {
+        if self.cached {
+            self.load()
+        } else {
+            self.addObjects([Category.World,
+                             Category.Politics,
+                             Category.Sport,
+                             Category.Business,
+                             Category.Tech,
+                             Category.Science,
+                             Category.Arts,
+                             Category.Travel])
+        }
     }
 }
