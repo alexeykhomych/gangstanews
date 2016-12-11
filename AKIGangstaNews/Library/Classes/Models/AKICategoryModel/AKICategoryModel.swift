@@ -28,64 +28,58 @@ class AKICategoryModel: AKIArrayModel {
     }
     
     var documentsPath: String {
-        return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)]
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     }
     
     var path: String {
-        return self.documentsPath + NSTemporaryDirectory().appendingPathComponent(kAKIFileName)
+        return self.documentsPath + NSTemporaryDirectory().appending(kAKIFileName)
     }
     
-    var cached: BOOL {
+    var cached: Bool {
         return self.fileManager.fileExists(atPath: self.path)
     }
     
     //MARK: Initializations and Deallocations
     
     override init() {
+        super.init()
         self.fillCategories()
     }
     
-    override init(_ categories: AKIArrayModel) {
-        self.objects = categories
-    }
-    
-    deinit {
-        self.categories = nil
+    init(_ categories: AKIArrayModel) {
+        super.init()
+        self.addObjects(categories.objects)
     }
     
     //MARK: Public
     
     override func performLoading() {
-        var model = nil
+        var model: Any?
         
-        if self.cached != nil {
-            model = self.fillDefaulCategories()
+        if self.cached {
+            model = self.fillCategories()
         } else {
             model = NSKeyedUnarchiver.unarchiveObject(withFile: self.path)
         }
         
-        self.addObjects(model)
+        self.addObjects(model as! NSArray)
     }
     
     public func save() {
         self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
-        NSKeyedArchiver.archiveRootObject(self.categories, toFile: self.path)
+        NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
     }
     
     //MARK: Private
     
     private func fillCategories() {
-        if self.cached {
-            self.load()
-        } else {
-            self.addObjects([Category.World,
-                             Category.Politics,
-                             Category.Sport,
-                             Category.Business,
-                             Category.Tech,
-                             Category.Science,
-                             Category.Arts,
-                             Category.Travel])
-        }
+        self.addObjects([Category.World,
+                         Category.Politics,
+                         Category.Sport,
+                         Category.Business,
+                         Category.Tech,
+                         Category.Science,
+                         Category.Arts,
+                         Category.Travel])
     }
 }

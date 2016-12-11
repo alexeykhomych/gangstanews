@@ -22,7 +22,7 @@ class AKIUser: NSObject, NSCoding {
     var newsArray: AKIArrayModel?
     var categories: AKICategoryModel?
     
-    let rer = AKIConstants().kAKILoginRequest
+    let constants = AKIConstants()
     
     override init() {
         self.login = ""
@@ -30,33 +30,35 @@ class AKIUser: NSObject, NSCoding {
         self.authKey = ""
         self.passwordResetToken = ""
         
-        self.content = AKIContent.init(header: "default header", dataText: "default", image: UIImageView.init(image: UIImage.init(named: "logo")))
+        self.content = AKIContent()
         self.newsArray = AKIArrayModel()
         self.categories = AKICategoryModel()
     }
     
-    init(login: String, email: String, authKey: String, passwordResetToken: String, newsArray: AKIArrayModel) {
+    init(login: String, email: String, authKey: String, passwordResetToken: String, newsArray: Array<AKIContent>) {
         self.login = login
         self.email = email
         self.authKey = authKey
         self.passwordResetToken = passwordResetToken
-        self.newsArray?.addObjects(newsArray)
+        self.newsArray?.addObjects(newsArray as NSArray)
     }
     
     required init(coder: NSCoder) {
-        self.login = coder.decodeObject(forKey: "login") as? String
-        self.email = coder.decodeObject(forKey: "email") as? String
-        self.authKey = coder.decodeObject(forKey: "authKey") as? String
-        self.passwordResetToken = coder.decodeObject(forKey: "passwordResetToken") as? String
-        self.newsArray = coder.decodeObject(forKey: "newsArray") as! NSMutableArray
+        let constants = self.constants
+        self.login = coder.decodeObject(forKey: constants.kAKILogin) as? String
+        self.email = coder.decodeObject(forKey: constants.kAKIEmail) as? String
+        self.authKey = coder.decodeObject(forKey: constants.kAKIAuthKey) as? String
+        self.passwordResetToken = coder.decodeObject(forKey: constants.kAKIPasswordResetToken) as? String
+        self.newsArray = coder.decodeObject(forKey: constants.kAKINews) as! AKIArrayModel?
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.login, forKey: "login")
-        aCoder.encode(self.email, forKey: "email")
-        aCoder.encode(self.authKey, forKey: "authKey")
-        aCoder.encode(self.passwordResetToken, forKey: "passwordResetToken")
-        aCoder.encode(self.newsArray, forKey: "newsArray")
+        let constants = self.constants
+        aCoder.encode(self.login, forKey: constants.kAKILogin)
+        aCoder.encode(self.email, forKey: constants.kAKIEmail)
+        aCoder.encode(self.authKey, forKey: constants.kAKIAuthKey)
+        aCoder.encode(self.passwordResetToken, forKey: constants.kAKIPasswordResetToken)
+        aCoder.encode(self.newsArray, forKey: constants.kAKINews)
     }
     
     private func defaultSettings() {

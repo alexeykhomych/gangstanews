@@ -10,30 +10,30 @@ import UIKit
 
 class AKIArrayModel: AKIModel {
 
-    private var objects: NSMutableArray?
+    private var mutableObjects: NSMutableArray?
     
     var objects: NSArray {
-        return self.objects as? NSArray
+        return self.mutableObjects?.copy() as! NSArray
     }
     
     //MARK: Initializations and Deallocations
     
     override init() {
-        self.objects = NSMutableArray()
+        self.mutableObjects = NSMutableArray()
     }
     
     deinit {
-        self.objects = nil
+        self.mutableObjects = nil
     }
     
     //MARK: Public
     
     public func addObject(_ object: Any) {
-        self.objects?.add(object)
+        self.mutableObjects?.add(object)
     }
     
     public func removeObject(_ object: Any) {
-        self.objects?.remove(object)
+        self.mutableObjects?.remove(object)
     }
     
     public func addObjects(_ objects: NSArray) {
@@ -43,16 +43,16 @@ class AKIArrayModel: AKIModel {
     }
     
     public func removeAllObjects() {
-        for object in self.objects! {
+        for object in self.mutableObjects! {
             self.removeObject(object)
         }
     }
     
     public func objectAtIndexSubscript(_ index: Int) -> Any {
-        return self.objects![index]
+        return self.mutableObjects![index]
     }
     
     public func indexOfObject(_ object: Any) -> Int {
-        return (self.objects?.index(of: object))!
+        return (self.mutableObjects?.index(of: object))!
     }
 }
