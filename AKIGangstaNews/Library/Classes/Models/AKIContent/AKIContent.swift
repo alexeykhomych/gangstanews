@@ -40,6 +40,7 @@ class AKIContent: NSCopying, NSCoding {
         self.header = self.decode(decoder: aDecoder, key: kAKIHeader)
         self.dataText = self.decode(decoder: aDecoder, key: kAKIDataText)
         self.imageURL = self.decode(decoder: aDecoder, key: kAKIImageURL)
+        print("content decoded")
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -47,9 +48,11 @@ class AKIContent: NSCopying, NSCoding {
         self.encode(encoder: aCoder, field: self.header!, key: kAKIHeader)
         self.encode(encoder: aCoder, field: self.dataText!, key: kAKIDataText)
         self.encode(encoder: aCoder, field: self.imageURL!, key: kAKIImageURL)
+        print("content encoded")
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
+        print("content copied with zone")
         return AKIContent(id: self.id!, header: self.header!, dataText: self.dataText!, imageURL: self.imageURL!)
     }
     

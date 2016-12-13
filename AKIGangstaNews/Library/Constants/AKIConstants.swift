@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKIConstants: NSObject {
+class AKIConstants {
     
     let kAKIAPIURL = "http://7a1ae016.ngrok.io/"
     

@@ -8,16 +8,14 @@
 
 import UIKit
 
-public enum Category: String {
-    case World = "World"
-    case Politics = "Politics"
-    case Sport = "Sport"
-    case Business = "Business"
-    case Tech = "Tech"
-    case Science = "Science"
-    case Arts = "Arts"
-    case Travel = "Travel"
-}
+let kAKICategoryWorld = "World"
+let kAKICategoryPolitics = "Politics"
+let kAKICategorySport = "Sport"
+let kAKICategoryBusiness = "Business"
+let kAKICategoryTech = "Tech"
+let kAKICategoryScience = "Science"
+let kAKICategoryArts = "Arts"
+let kAKICategoryTravel = "Travel"
 
 let kAKIFileName: String = "AKICategoryModel.plist"
 
@@ -53,33 +51,45 @@ class AKICategoryModel: AKIArrayModel {
     
     //MARK: Public
     
+    override func addObject(_ object: Any) {
+        super.addObject(object)
+        self.save()
+    }
+    
+    override func removeObject(_ object: Any) {
+        super.removeObject(object)
+        self.save()
+    }
+    
+    override func removeObjectAtIndex(_ index: Int) {
+        super.removeObjectAtIndex(index)
+        self.save()
+    }
+    
     override func performLoading() {
         var model: Any?
         
         if self.cached {
-            model = self.fillCategories()
-        } else {
             model = NSKeyedUnarchiver.unarchiveObject(withFile: self.path)
+        } else {
+            model = self.fillCategories()
         }
         
         self.addObjects(model as! NSArray)
+        print("performLoading CategoryModel")
     }
     
     public func save() {
         self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
         NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
+        print("save CategoryModel")
     }
     
     //MARK: Private
     
     private func fillCategories() {
-        self.addObjects([Category.World,
-                         Category.Politics,
-                         Category.Sport,
-                         Category.Business,
-                         Category.Tech,
-                         Category.Science,
-                         Category.Arts,
-                         Category.Travel])
+        if self.cached {
+            self.load()
+        }
     }
 }

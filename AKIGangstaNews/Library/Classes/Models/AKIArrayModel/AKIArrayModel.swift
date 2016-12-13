@@ -12,6 +12,10 @@ class AKIArrayModel: AKIModel {
 
     private var mutableObjects: NSMutableArray?
     
+    var count: Int {
+        return self.objects.count
+    }
+    
     var objects: NSArray {
         return self.mutableObjects?.copy() as! NSArray
     }
@@ -48,6 +52,10 @@ class AKIArrayModel: AKIModel {
         }
     }
     
+    func removeObjectAtIndex(_ index: Int) {
+        self.mutableObjects?.removeObject(at: index)
+    }
+    
     public func objectAtIndexSubscript(_ index: Int) -> Any {
         return self.mutableObjects![index]
     }
@@ -55,4 +63,5 @@ class AKIArrayModel: AKIModel {
     public func indexOfObject(_ object: Any) -> Int {
         return (self.mutableObjects?.index(of: object))!
     }
+    
 }

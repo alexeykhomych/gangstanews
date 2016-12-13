@@ -25,6 +25,10 @@ class AKICategoriesContext: AKIContext {
     override var url: String {
         return "\(self.constants.kAKIAPIURL)\(self.constants.kAKICategories)" as String
     }
+    
+    override var method: HTTPMethod {
+        return .get
+    }
 
     public override func observer() -> Observable<(AKIContext)> {
         return Observable<AKIContext>.create { (observer) -> Disposable in
@@ -39,14 +43,12 @@ class AKICategoriesContext: AKIContext {
                     case .success(_):
                         if let json = response.result.value as? NSDictionary {
                             guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
-                            guard let dictionary = data[0] as? [String: Any] else { return }
-                            
                             let user = self.model as? AKIUser
-                            let categories = user
+                            let categories = user?.categories
                             
-                            for category in dictionary {
-                                print(category)
-                                //                        user?.categories += category
+                            for category in data {
+                                guard let dictionary = category as? [String: Any] else { return }
+                                categories?.addObject(dictionary["title"]!)
                             }
                             
                             observer.onCompleted()
@@ -65,39 +67,3 @@ class AKICategoriesContext: AKIContext {
         }
     }
 }
-
-/*
- {
- "success": true,
- "data": [
- {
- "id": 1,
- "title": "World"
- },
- {
- "id": 2,
- "title": "Politics"
- },
- {
- "id": 3,
- "title": "Business"
- },
- {
- "id": 4,
- "title": "Tech"
- },
- {
- "id": 5,
- "title": "Science"
- },
- {
- "id": 6,
- "title": "Arts"
- },
- {
- "id": 7,
- "title": "Travel"
- }
- ]
- }
- */

@@ -11,9 +11,9 @@ import UIKit
 class AKIModel {
     
     public func load() {
-//        dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0).asynchronously() {
+        DispatchQueue.global().async {
             self.performLoading()
-//        }
+        }
     }
     
     func performLoading() {

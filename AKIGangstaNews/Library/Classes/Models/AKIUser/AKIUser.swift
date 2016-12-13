@@ -24,23 +24,29 @@ class AKIUser: NSObject, NSCoding {
     
     let constants = AKIConstants()
     
-    override init() {
-        self.login = ""
-        self.email = ""
-        self.authKey = ""
-        self.passwordResetToken = ""
-        
-        self.content = AKIContent()
-        self.newsArray = AKIArrayModel()
-        self.categories = AKICategoryModel()
+    override convenience init()
+    {
+        self.init(login: "",
+                  email: "",
+                  authKey: "",
+                  passwordResetToken: "",
+                  newsArray: AKIArrayModel(),
+                  categories: AKICategoryModel())
     }
     
-    init(login: String, email: String, authKey: String, passwordResetToken: String, newsArray: Array<AKIContent>) {
+    init(login: String,
+         email: String,
+         authKey: String,
+         passwordResetToken: String,
+         newsArray: AKIArrayModel,
+         categories: AKICategoryModel)
+    {
         self.login = login
         self.email = email
         self.authKey = authKey
         self.passwordResetToken = passwordResetToken
-        self.newsArray?.addObjects(newsArray as NSArray)
+        self.newsArray = newsArray
+        self.categories = categories
     }
     
     required init(coder: NSCoder) {
@@ -50,6 +56,7 @@ class AKIUser: NSObject, NSCoding {
         self.authKey = coder.decodeObject(forKey: constants.kAKIAuthKey) as? String
         self.passwordResetToken = coder.decodeObject(forKey: constants.kAKIPasswordResetToken) as? String
         self.newsArray = coder.decodeObject(forKey: constants.kAKINews) as! AKIArrayModel?
+        print("user decoded")
     }
     
     func encode(with aCoder: NSCoder) {
@@ -59,11 +66,6 @@ class AKIUser: NSObject, NSCoding {
         aCoder.encode(self.authKey, forKey: constants.kAKIAuthKey)
         aCoder.encode(self.passwordResetToken, forKey: constants.kAKIPasswordResetToken)
         aCoder.encode(self.newsArray, forKey: constants.kAKINews)
-    }
-    
-    private func defaultSettings() {
-//        let categories 
-//        var array = NSMutableArray()
-//        array.add()
+        print("user encoded")
     }
 }

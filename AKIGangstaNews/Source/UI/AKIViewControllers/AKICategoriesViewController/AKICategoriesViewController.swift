@@ -8,28 +8,78 @@
 
 import UIKit
 
-class AKICategoriesViewController: AKIGangstaNewsViewController {
+import RxSwift
+import RxCocoa
 
+class AKICategoriesViewController: AKIAbstractViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var user: AKIUser?
+    var context: AKINewsContext?
+    let disposeBag = DisposeBag()
+
+    let cellReuseIdentifier = "AKICategoriesViewCell"
+    
+    var categoriesView: AKICategoriesView? {
+        return self.getView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.categoriesView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
+        self.loadContext()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (self.user?.categories?.count)!
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKICategoriesViewCell
+        
+        if self.user?.categories?.count != nil {
+            let content = self.user?.categories?.objectAtIndexSubscript(indexPath.row)
+            cell.fillCategory(categoryName: content as! String, categoryState: true)
 
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.user.categories?.removeObjectAtIndex(indexPath.row)
+    }
+    
+    private func tableView(_ tableView: UITableView, didEndDisplaying cell: AKINewsViewCell, forRowAt indexPath: IndexPath) {
+        cell.fillCategory(categoryName: nil, categoryState: false)
+    }
+    
+    private func loadContext() {
+        let user = self.user
+        
+        let context = AKICategoriesContext()
+        context.model = self.model
+        let observer = context.observer()
+        
+        observer.subscribe(onNext: { next in
+            print(next)
+        }, onError: { error in
+            print(error)
+        }, onCompleted: {
+            self.modelDidLoad()
+            
+        }, onDisposed: {
+            
+        }).addDisposableTo(self.disposeBag)
+    }
+
+    private func modelDidLoad() {
+        self.categoriesView?.tableView?.reloadData()
+    }
+    
 }

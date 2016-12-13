@@ -37,10 +37,10 @@ class AKIDetailNewsContext: AKINewsContext {
                             guard let dictionary = data[0] as? [String: Any] else { return }
                             
                             let user = self.model as? AKIUser
-                            let newsArray = user?.newsArray
+                            let newsArray = user?.newsArray?.objects
                             var content: AKIContent?
                             
-                            for news in (newsArray! as NSArray as! [AKIContent]) {
+                            for news in newsArray! as! Array<AKIContent> {
                                 if news.id == self.id {
                                     content = news
                                     
