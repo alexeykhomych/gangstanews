@@ -54,7 +54,7 @@ class AKINewsContext: AKIContext {
                                 guard let dictionary = categoryDictionary as? [String : Any] else { return }
                                 guard let categoriesDictionary = dictionary["category"] as? [String : Any] else { return }
                                 
-                                let categoryName = categoriesDictionary["title"] as! String
+                                let categoryName = AKICategory(name: categoriesDictionary["title"] as! String)
                                 
                                 if ((categories?.indexOfObject(categoryName)) != nil || categories?.count == 0) {
                                     let content = AKIContent()

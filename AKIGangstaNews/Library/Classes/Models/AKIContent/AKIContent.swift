@@ -21,6 +21,7 @@ class AKIContent: NSCopying, NSCoding {
     public var header: String?
     public var dataText: String?
     public var imageURL: String?
+    public var category: AKICategory?
     
     init() {
         self.header = ""
@@ -33,6 +34,7 @@ class AKIContent: NSCopying, NSCoding {
         self.header = header
         self.dataText = dataText
         self.imageURL = imageURL
+        self.category = AKICategory(name: "none")
     }
     
     public required init?(coder aDecoder: NSCoder){

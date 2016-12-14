@@ -8,18 +8,14 @@
 
 import UIKit
 
-let kAKICategoryWorld = "World"
-let kAKICategoryPolitics = "Politics"
-let kAKICategorySport = "Sport"
-let kAKICategoryBusiness = "Business"
-let kAKICategoryTech = "Tech"
-let kAKICategoryScience = "Science"
-let kAKICategoryArts = "Arts"
-let kAKICategoryTravel = "Travel"
+import RxSwift
+import RxCocoa
 
 let kAKIFileName: String = "AKICategoryModel.plist"
 
 class AKICategoryModel: AKIArrayModel {
+    
+    private var categoryStatusArray: Array<Any>
     
     var fileManager: FileManager {
         return FileManager.default
@@ -40,25 +36,44 @@ class AKICategoryModel: AKIArrayModel {
     //MARK: Initializations and Deallocations
     
     override init() {
+        self.categoryStatusArray = Array()
         super.init()
+        
         self.fillCategories()
-    }
-    
-    init(_ categories: AKIArrayModel) {
-        super.init()
-        self.addObjects(categories.objects)
     }
     
     //MARK: Public
     
-    override func addObject(_ object: Any) {
-        super.addObject(object)
+    func addObject(_ category: AKICategory) {
+        let objects = self.objects as! Array<AKICategory>
+        var conteints = false
+        for object in objects {
+            if object.name == category.name {
+                conteints = true
+            }
+        }
+        
+        if !conteints {
+            super.addObject(category)
+            self.save()
+        }
+    }
+    
+    func removeObject(_ category: AKICategory) {
+        super.removeObject(category)
         self.save()
     }
     
-    override func removeObject(_ object: Any) {
-        super.removeObject(object)
-        self.save()
+    func enabledCategories() -> AKICategory? {
+        let objects = self.objects
+        
+        for object in objects {
+            if ((object as? AKICategory)?.enabled!)! {
+                return object as? AKICategory
+            }
+        }
+        
+        return nil
     }
     
     override func removeObjectAtIndex(_ index: Int) {
@@ -83,6 +98,14 @@ class AKICategoryModel: AKIArrayModel {
         self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
         NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
         print("save CategoryModel")
+    }
+    
+    public func observer() -> Observable<AKICategory> {
+        return Observable.create { observer in
+
+            
+            return Disposables.create()
+        }
     }
     
     //MARK: Private

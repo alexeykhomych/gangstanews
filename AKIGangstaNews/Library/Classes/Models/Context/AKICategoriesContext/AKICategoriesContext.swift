@@ -48,7 +48,7 @@ class AKICategoriesContext: AKIContext {
                             
                             for category in data {
                                 guard let dictionary = category as? [String: Any] else { return }
-                                categories?.addObject(dictionary["title"]!)
+                                categories?.addObject(AKICategory(name: dictionary["title"]! as! String, enabled: true))
                             }
                             
                             observer.onCompleted()

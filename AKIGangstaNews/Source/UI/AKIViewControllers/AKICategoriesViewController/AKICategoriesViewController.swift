@@ -28,7 +28,6 @@ class AKICategoriesViewController: AKIAbstractViewController, UITableViewDelegat
         
         self.categoriesView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
         self.loadContext()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,25 +42,21 @@ class AKICategoriesViewController: AKIAbstractViewController, UITableViewDelegat
         let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKICategoriesViewCell
         
         if self.user?.categories?.count != nil {
-            let content = self.user?.categories?.objectAtIndexSubscript(indexPath.row)
-            cell.fillCategory(categoryName: content as! String, categoryState: true)
-
+            let category = self.user?.categories?.objectAtIndexSubscript(indexPath.row)
+            cell.fillCategory(category: (category as? AKICategory)!)
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.user.categories?.removeObjectAtIndex(indexPath.row)
-    }
-    
-    private func tableView(_ tableView: UITableView, didEndDisplaying cell: AKINewsViewCell, forRowAt indexPath: IndexPath) {
-        cell.fillCategory(categoryName: nil, categoryState: false)
+        let category = self.user?.categories?.objectAtIndexSubscript(indexPath.row)
+        let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKICategoriesViewCell
+        cell.editCategory(category: (category as? AKICategory)!)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     private func loadContext() {
-        let user = self.user
-        
         let context = AKICategoriesContext()
         context.model = self.model
         let observer = context.observer()

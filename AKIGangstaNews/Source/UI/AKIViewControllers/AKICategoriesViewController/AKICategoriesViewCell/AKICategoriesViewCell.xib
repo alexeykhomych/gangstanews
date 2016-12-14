@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,28 +17,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="457" height="82"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7E-am-oAT">
-                        <rect key="frame" x="22" y="26" width="51" height="31"/>
-                    </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqZ-Ko-3AS">
-                        <rect key="frame" x="91" y="0.0" width="366" height="83"/>
+                        <rect key="frame" x="93" y="0.0" width="364" height="83"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-co-IwE">
+                        <rect key="frame" x="0.0" y="0.0" width="85" height="82"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="PdD-z1-tfK"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="i7E-am-oAT" firstAttribute="centerY" secondItem="gqZ-Ko-3AS" secondAttribute="centerY" id="A69-3r-Svs"/>
-                    <constraint firstItem="gqZ-Ko-3AS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Inl-l4-gqA"/>
-                    <constraint firstItem="i7E-am-oAT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="LcC-rJ-qjh"/>
-                    <constraint firstAttribute="trailing" secondItem="gqZ-Ko-3AS" secondAttribute="trailing" id="Qfu-sD-zn0"/>
-                    <constraint firstItem="i7E-am-oAT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XP6-ZH-znn"/>
-                    <constraint firstItem="gqZ-Ko-3AS" firstAttribute="leading" secondItem="i7E-am-oAT" secondAttribute="trailing" constant="20" id="nMI-IX-F64"/>
+                    <constraint firstItem="K2z-co-IwE" firstAttribute="centerY" secondItem="gqZ-Ko-3AS" secondAttribute="centerY" id="0eU-IX-xFo"/>
+                    <constraint firstItem="K2z-co-IwE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6fC-TQ-Q3U"/>
+                    <constraint firstAttribute="bottom" secondItem="K2z-co-IwE" secondAttribute="bottom" id="9FC-zK-fZT"/>
+                    <constraint firstAttribute="trailing" secondItem="gqZ-Ko-3AS" secondAttribute="trailing" id="RvN-4m-wpO"/>
+                    <constraint firstItem="gqZ-Ko-3AS" firstAttribute="leading" secondItem="K2z-co-IwE" secondAttribute="trailing" constant="8" symbolic="YES" id="Y8Q-1g-N7b"/>
+                    <constraint firstItem="K2z-co-IwE" firstAttribute="top" secondItem="gqZ-Ko-3AS" secondAttribute="top" id="gPE-DZ-bJn"/>
+                    <constraint firstItem="K2z-co-IwE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lbg-u5-DVr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="categoryNameLabel" destination="gqZ-Ko-3AS" id="W0J-MR-sht"/>
-                <outlet property="switchCategory" destination="i7E-am-oAT" id="wlW-Da-LkG"/>
+                <outlet property="categoryImageView" destination="K2z-co-IwE" id="Qkb-9k-5bs"/>
+                <outlet property="categoryNameLabel" destination="gqZ-Ko-3AS" id="NWO-ET-lEs"/>
             </connections>
             <point key="canvasLocation" x="30.5" y="-159.5"/>
         </tableViewCell>

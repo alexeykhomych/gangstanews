@@ -10,16 +10,19 @@ import UIKit
 
 class AKICategoriesViewCell: UITableViewCell {
     
-    @IBOutlet var switchCategory: UISwitch?
     @IBOutlet var categoryNameLabel: UILabel?
+    @IBOutlet var categoryImageView: UIImageView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func fillCategory(categoryName: String, categoryState: Bool) {
-        self.categoryNameLabel?.text = categoryName
-        self.switchCategory?.setOn(categoryState, animated: true)
+    func fillCategory(category: AKICategory) {
+        self.categoryNameLabel?.text = category.name
+        self.categoryImageView?.image = UIImage(named: "logonews")
     }
     
+    func editCategory(category: AKICategory) {
+        category.enabled = !category.enabled!
+    }    
 }

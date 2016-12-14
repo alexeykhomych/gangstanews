@@ -18,7 +18,11 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
     
     var user: AKIUser?
     var context: AKINewsContext?
+    
+    private var categories: Variable<AKICategoryModel>?
     let disposeBag = DisposeBag()
+    
+    var sortedArrayModel: AKIArrayModel?
     
     var newsView: AKINewsView? {
         return self.getView()
@@ -31,6 +35,7 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
 
         self.newsView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
         self.loadContext()
+        self.loadCategory()
         
     }
 
@@ -43,14 +48,30 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.user?.newsArray!.count)!
+        return self.sortedArrayModel != nil ? (self.sortedArrayModel!.count) : (self.user?.newsArray!.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let selectedCategory = self.user?.categories?.enabledCategories()
         let cell:AKINewsViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKINewsViewCell
-    
-        let content = self.user?.newsArray?.objectAtIndexSubscript(indexPath.row)
-        cell.fillModel(content: content! as! AKIContent)
+        if selectedCategory == nil {
+            
+            
+            let content = self.user?.newsArray?.objectAtIndexSubscript(indexPath.row)
+            cell.fillModel(content: content! as! AKIContent)
+            
+            return cell
+        } else {
+            
+            
+            let content = self.user?.newsArray?.objectAtIndexSubscript(indexPath.row) as! AKIContent
+            if content.category?.name == selectedCategory?.name {
+                cell.fillModel(content: content)
+            }
+            
+            
+            
+        }
         
         return cell
     }
@@ -85,8 +106,30 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
         }).addDisposableTo(self.disposeBag)
     }
     
+    private func loadCategory() {
+//        let observer = self.user?.categories?.observer()
+//        
+//        observer?.subscribe(onNext: { next in
+//            print(next)
+//        }, onError: { error in
+//            print(error)
+//        }, onCompleted: {
+//            self.modelDidLoad()
+//            
+//        }, onDisposed: {
+//            
+//        }).addDisposableTo(self.disposeBag)
+    }
+    
     private func modelDidLoad() {
+        self.filterNewsModel()
         self.newsView?.tableView?.reloadData()
+    }
+    
+    private func filterNewsModel() {
+        let sort = AKISortedArrayModel()
+        let selectedCategory = AKICategoryModel()
+        self.sortedArrayModel?.addObjects(sort.sortArrayModel(arrayModel: (self.user?.newsArray)!, parameters: (selectedCategory.enabledCategories()?.name!)!))
     }
     
     private func initBarButtonItem() {
