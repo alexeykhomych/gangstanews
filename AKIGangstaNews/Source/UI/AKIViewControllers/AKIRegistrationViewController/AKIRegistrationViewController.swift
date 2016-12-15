@@ -8,10 +8,7 @@
 
 import UIKit
 
-class AKIRegistrationViewController: AKIAbstractViewController {
-    
-    var context = AKISignUpContext()
-    var user: AKIUser?
+class AKIRegistrationViewController: AKIGangstaNewsViewController {
     
     var registrationView: AKIRegistrationView? {
         return self.getView()
@@ -19,8 +16,7 @@ class AKIRegistrationViewController: AKIAbstractViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.keyboardObserver((self.registrationView?.scrollView)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,24 +32,29 @@ class AKIRegistrationViewController: AKIAbstractViewController {
     
     @IBAction func registrationButton(_ sender: UIButton) {
         self.loadContext()
-        
-        let controllers = self.navigationController?.viewControllers
-        let rootViewController = controllers?[(controllers?.count)! - 2] as? AKILoginViewController
-        rootViewController?.user = self.user
-        
-        _ = self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: request context
     
     private func loadContext() {
         let context = AKISignUpContext()
+        
         self.context = context
-        let model = self.setUser()
-        context.model = model
-        self.user = model
+        self.model = self.setUser()
         
+        context.model = self.model
+        let observer = context.observer()
         
+        observer.subscribe(onNext: { next in
+            print(next)
+        }, onError: { error in
+            print(error)
+        }, onCompleted: {
+            self.modelDidLoad()
+            
+        }, onDisposed: {
+            
+        }).addDisposableTo(self.disposeBag)
     }
     
     private func setUser() -> AKIUser {
@@ -63,6 +64,14 @@ class AKIRegistrationViewController: AKIAbstractViewController {
         user.password = self.registrationView?.passwordField?.text
         
         return user
+    }
+    
+    override func modelDidLoad() {
+        let controllers = self.navigationController?.viewControllers
+        let rootViewController = controllers?[(controllers?.count)! - 2] as? AKILoginViewController
+        rootViewController?.user = self.model as! AKIUser?
+        
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
 }

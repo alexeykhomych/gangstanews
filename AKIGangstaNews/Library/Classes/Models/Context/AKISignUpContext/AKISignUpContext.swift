@@ -22,7 +22,7 @@ class AKISignUpContext: AKIContext {
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKIAuth)/\(self.constants.kAKISignup)" as String
+        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKISignup)" as String
     }
     
     override var parameters: [String : String?] {
@@ -39,6 +39,7 @@ class AKISignUpContext: AKIContext {
         return Observable<AKIContext>.create { (observer) -> Disposable in
             let requestReference = Alamofire.request(self.url,
                                                      method: self.method,
+                                                     parameters: self.parameters,
                                                      encoding: self.encoding,
                                                      headers: self.headers()).responseJSON
                 {

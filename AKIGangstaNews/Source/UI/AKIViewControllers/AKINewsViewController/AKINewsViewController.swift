@@ -11,16 +11,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UITableViewDataSource {
+class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, UITableViewDataSource {
     
     let kAKISettings = "Settings"
+    let kAKILogout = "Logout"
     let cellReuseIdentifier = "AKINewsViewCell"
     
-    var user: AKIUser?
-    var context: AKINewsContext?
-    
     private var categories: Variable<AKICategoryModel>?
-    let disposeBag = DisposeBag()
     
     var sortedArrayModel: AKIArrayModel?
     
@@ -31,7 +28,8 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initBarButtonItem()
+        self.initLeftBarButtonItem()
+        self.initRightBarButtonItem()
 
         self.newsView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
         self.loadContext()
@@ -68,9 +66,6 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
             if content.category?.name == selectedCategory?.name {
                 cell.fillModel(content: content)
             }
-            
-            
-            
         }
         
         return cell
@@ -121,7 +116,7 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
 //        }).addDisposableTo(self.disposeBag)
     }
     
-    private func modelDidLoad() {
+    internal override func modelDidLoad() {
         self.filterNewsModel()
         self.newsView?.tableView?.reloadData()
     }
@@ -132,7 +127,7 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
         self.sortedArrayModel?.addObjects(sort.sortArrayModel(arrayModel: (self.user?.newsArray)!, parameters: (selectedCategory.enabledCategories()?.name!)!))
     }
     
-    private func initBarButtonItem() {
+    private func initLeftBarButtonItem() {
                 let settingsButton = UIBarButtonItem.init(title: kAKISettings,
                                                           style: UIBarButtonItemStyle.plain,
                                                           target: self,
@@ -141,11 +136,24 @@ class AKINewsViewController: AKIAbstractViewController, UITableViewDelegate, UIT
         self.navigationItem.setLeftBarButton(settingsButton, animated: true)
     }
     
+    private func initRightBarButtonItem() {
+        let logoutButton = UIBarButtonItem.init(title: kAKISettings,
+                                                  style: UIBarButtonItemStyle.plain,
+                                                  target: self,
+                                                  action: #selector(logout))
+        
+        self.navigationItem.setRightBarButton(logoutButton, animated: true)
+    }
+    
     func settings() {
         let controller = AKICategoriesViewController()
         controller.model = self.user
         controller.user = self.user
         self.pushViewController(controller)
+    }
+    
+    func logout() {
+        
     }
     
 }

@@ -11,11 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKICategoriesViewController: AKIAbstractViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var user: AKIUser?
-    var context: AKINewsContext?
-    let disposeBag = DisposeBag()
+class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDelegate, UITableViewDataSource {
 
     let cellReuseIdentifier = "AKICategoriesViewCell"
     
@@ -73,7 +69,7 @@ class AKICategoriesViewController: AKIAbstractViewController, UITableViewDelegat
         }).addDisposableTo(self.disposeBag)
     }
 
-    private func modelDidLoad() {
+    internal override func modelDidLoad() {
         self.categoriesView?.tableView?.reloadData()
     }
     

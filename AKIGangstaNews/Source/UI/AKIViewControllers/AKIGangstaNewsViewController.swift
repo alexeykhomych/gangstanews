@@ -8,45 +8,35 @@
 
 import UIKit
 
-class AKIGangstaNewsViewController: AKIAbstractViewController {
+import RxSwift
+import RxCocoa
+import RxKeyboard
 
-    var user: AKIUser? {
-        get {
-            return self.user
-        } set(newUser) {
-            self.user = newUser
-        }
-    }
+class AKIGangstaNewsViewController: AKIAbstractViewController {
     
-    var context: AKIContext? {
-        get {
-            return self.context
-        } set(newContext) {
-            self.context = newContext
-        }
-    }
+    let disposeBag = DisposeBag()
+
+    var user: AKIUser?
+    var context: AKIContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func startObserving(object: AnyObject) {
-        NotificationCenter.default.addObserver(self, selector: #selector(modelDidLoad), name: NSNotification.Name(rawValue: "modelDidLoad"), object: nil)
-    }
-    
-    func stopObserving() {
-        NotificationCenter.default.removeObserver(self)
     }
     
     func modelDidLoad() {
         print("modelDidLoad")
+    }
+    
+    func keyboardObserver(_ scrollView: UIScrollView) {
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { keyboardVisibleHeight in
+                scrollView.contentInset.bottom = keyboardVisibleHeight
+            })
+            .addDisposableTo(disposeBag)
     }
     
 }

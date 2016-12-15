@@ -11,12 +11,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKIDetailNewsViewController: AKIAbstractViewController {
+class AKIDetailNewsViewController: AKIGangstaNewsViewController {
     
     var content: AKIContent?
-    var context: AKIDetailNewsContext?
-    var user: AKIUser?
-    let disposeBag = DisposeBag()
 
     var detailNewsView: AKIDetailNewsView? {
         return self.getView()
@@ -52,7 +49,7 @@ class AKIDetailNewsViewController: AKIAbstractViewController {
         }).addDisposableTo(self.disposeBag)
     }
     
-    private func modelDidLoad() {
+    override func modelDidLoad() {
         self.detailNewsView?.parseContent(content: self.model as! AKIContent)
     }
     

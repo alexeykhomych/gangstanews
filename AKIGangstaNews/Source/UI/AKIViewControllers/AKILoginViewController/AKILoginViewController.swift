@@ -11,15 +11,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKILoginViewController: AKIAbstractViewController {
-    
-    var user: AKIUser?
-    var context: AKIContext?
+class AKILoginViewController: AKIGangstaNewsViewController {
     
     var activeTextField: UITextField?
     
-    var observer:Observable<AKIUser>?
-    let disposebag = DisposeBag()
+//    var observer:Observable<AKIUser>?
+//    let disposeBag = DisposeBag()
     
     var loginView: AKILoginView? {
         return self.getView()
@@ -27,18 +24,19 @@ class AKILoginViewController: AKIAbstractViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.registerForKeyboardNotifications()
-        
-    }
-
-    override func viewWillDisappear(_ : Bool) {
-        self.stopKeyboardObserver()
+        self.keyboardObserver((self.loginView?.scrollView)!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loginView?.mailField?.text = self.user?.email
+        self.loginView?.passwordField?.text = self.user?.password
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -48,7 +46,6 @@ class AKILoginViewController: AKIAbstractViewController {
     //MARK: View Lifecycle
     
     @IBAction func loginButton(_ sender: UIButton) {
-        self.loadUser()
         self.loadContext()
     }
     
@@ -66,43 +63,12 @@ class AKILoginViewController: AKIAbstractViewController {
     
     //MARK: Private methods
     
-    fileprivate func openNextController() {
-        
-    }
-    
-//    internal func navigationController(controller: UIViewController) -> UINavigationController {
-//        return UINavigationController(rootViewController: controller)
-//    }
-
-    private func registerForKeyboardNotifications() {
-
-    }
- 
-    private func stopKeyboardObserver() {
-        
-    }
-    
-    private func keyboardWasShown(notification: Notification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
-                _ = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
-                self.loginView?.scrollView?.scrollRectToVisible((self.activeTextField?.frame)!, animated: true)
-            }
-        }
-    }
-    
-    private func keyboardWillBeHidden(notification: Notification) {
-        self.loginView?.scrollView?.contentInset = UIEdgeInsets.zero
-        self.loginView?.scrollView?.scrollIndicatorInsets = UIEdgeInsets.zero
-    }
-    
     private func loadContext() {
-        let user = self.loadUser()
+        let user = (self.user != nil) ? self.user : self.loadUser()
         
         let context = AKILoginContext()
         context.model = user
         let observer = context.observer()
-        self.user = user
         
         observer.subscribe(onNext: { next in
             print(next)
@@ -113,7 +79,7 @@ class AKILoginViewController: AKIAbstractViewController {
             
         }, onDisposed: {
             
-        }).addDisposableTo(self.disposebag)
+        }).addDisposableTo(self.disposeBag)
     }
     
     private func loadUser() -> AKIUser {
@@ -125,7 +91,7 @@ class AKILoginViewController: AKIAbstractViewController {
         return user
     }
     
-    private func modelDidLoad() {
+    override func modelDidLoad() {
         let controller = AKINewsViewController()
         controller.user = self.user
         self.navigationController?.pushViewController(controller, animated: true)

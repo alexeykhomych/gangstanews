@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKIRestorePasswordViewController: AKIAbstractViewController {
+class AKIRestorePasswordViewController: AKIGangstaNewsViewController {
     
     var restorePasswordView: AKIRestorePasswordView? {
         return self.getView()
@@ -17,7 +17,7 @@ class AKIRestorePasswordViewController: AKIAbstractViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.keyboardObserver((self.restorePasswordView?.scrollView)!)
     }
 
     override func didReceiveMemoryWarning() {

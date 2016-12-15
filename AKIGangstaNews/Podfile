@@ -6,4 +6,5 @@ target 'AKIGangstaNews' do
     pod 'Alamofire', '~> 4.0'
     pod "RxSwift"
     pod "RxCocoa"
+    pod 'RxKeyboard', '~> 0.3'
 end

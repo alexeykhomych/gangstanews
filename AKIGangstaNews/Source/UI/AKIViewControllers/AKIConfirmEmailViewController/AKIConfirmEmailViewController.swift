@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKIConfirmEmailViewController: AKIAbstractViewController {
+class AKIConfirmEmailViewController: AKIGangstaNewsViewController {
     
     var confirmEmailView: AKIConfirmEmailView? {
         return self.getView()
@@ -17,7 +17,7 @@ class AKIConfirmEmailViewController: AKIAbstractViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.keyboardObserver((self.confirmEmailView?.scrollView)!)
     }
 
     override func didReceiveMemoryWarning() {
