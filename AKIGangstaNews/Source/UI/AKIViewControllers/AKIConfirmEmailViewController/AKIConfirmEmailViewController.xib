@@ -62,6 +62,9 @@
                                 <constraint firstItem="2gU-XO-xjw" firstAttribute="leading" secondItem="EV9-8z-rZn" secondAttribute="leading" id="rCD-DB-JHh"/>
                                 <constraint firstItem="KNo-Gb-zCW" firstAttribute="top" secondItem="EV9-8z-rZn" secondAttribute="bottom" constant="40" id="wNs-vK-1fS"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="TgK-9R-Zuf" appends="YES" id="QZ7-Ut-a6D"/>
+                            </connections>
                         </view>
                     </subviews>
                     <constraints>
@@ -87,9 +90,15 @@
                 <outlet property="scrollView" destination="JhJ-4j-qbx" id="piT-1O-eW8"/>
                 <outlet property="sendButton" destination="KNo-Gb-zCW" id="wbs-2V-uwj"/>
                 <outlet property="supportView" destination="0S0-mg-iUs" id="YZi-Ur-0HU"/>
+                <outlet property="tapRecognizer" destination="TgK-9R-Zuf" id="K6U-pH-hoE"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
+        <tapGestureRecognizer id="TgK-9R-Zuf">
+            <connections>
+                <action selector="tapGestureRecognizerWithSender:" destination="-1" id="GE8-TC-dfQ"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="logo" width="476" height="350"/>

@@ -33,10 +33,26 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     
     func keyboardObserver(_ scrollView: UIScrollView) {
         RxKeyboard.instance.visibleHeight
-            .drive(onNext: { keyboardVisibleHeight in
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
                 scrollView.contentInset.bottom = keyboardVisibleHeight
+                self?.view.setNeedsLayout()
+                UIView.animate(withDuration: 0) {
+                    self?.view.layoutIfNeeded()
+                }
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    func saveDataToDisk(data: AnyObject, key: String) {
+        UserDefaults.standard.set(data, forKey: key)
+    }
+    
+    func loadDataFromDisk(key: String) -> AnyObject? {
+        return UserDefaults.standard.string(forKey: key) as AnyObject
+    }
+    
+    @IBAction func tapGestureRecognizer(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
 }

@@ -27,7 +27,7 @@ class AKIRestorePasswordViewController: AKIGangstaNewsViewController {
     
 
     @IBAction func sendButton(sender: UIButton) {
-        self.navigationController?.popToRootViewController(animated: true)
+        let _ = self.navigationController?.popToRootViewController(animated: true)
     }
 
 }

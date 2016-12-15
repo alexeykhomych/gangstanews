@@ -12,6 +12,7 @@ class AKIConfirmEmailView: UIView {
 
     @IBOutlet var scrollView: UIScrollView?
     @IBOutlet var supportView: UIView?
+    @IBOutlet var tapRecognizer: UITapGestureRecognizer?
     
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var emailField: UITextField?

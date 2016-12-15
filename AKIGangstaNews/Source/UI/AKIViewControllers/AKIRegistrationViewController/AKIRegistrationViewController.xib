@@ -85,6 +85,9 @@
                                 <constraint firstItem="Cjv-WI-Qvq" firstAttribute="top" secondItem="th1-1O-YtK" secondAttribute="bottom" constant="30" id="t76-Yd-o3t"/>
                                 <constraint firstItem="BWH-U5-o0q" firstAttribute="trailing" secondItem="th1-1O-YtK" secondAttribute="trailing" id="zoV-ly-pRG"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="9GT-mi-Bkn" appends="YES" id="1QO-wA-pyH"/>
+                            </connections>
                         </view>
                     </subviews>
                     <constraints>
@@ -112,9 +115,15 @@
                 <outlet property="passwordField" destination="th1-1O-YtK" id="Ffx-CD-dSF"/>
                 <outlet property="scrollView" destination="0SW-5L-tdM" id="swB-vQ-6c4"/>
                 <outlet property="supportView" destination="lYI-iM-r16" id="W2S-u4-Yc8"/>
+                <outlet property="tapRecognizer" destination="9GT-mi-Bkn" id="vzw-KT-rOM"/>
             </connections>
             <point key="canvasLocation" x="26.5" y="51.5"/>
         </view>
+        <tapGestureRecognizer id="9GT-mi-Bkn">
+            <connections>
+                <action selector="tapGestureRecognizerWithSender:" destination="-1" id="eU6-x6-cEp"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="logo" width="476" height="350"/>

@@ -11,12 +11,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+let kAKIUser = "kAKIUser"
+
 class AKILoginViewController: AKIGangstaNewsViewController {
     
     var activeTextField: UITextField?
-    
-//    var observer:Observable<AKIUser>?
-//    let disposeBag = DisposeBag()
     
     var loginView: AKILoginView? {
         return self.getView()
@@ -25,11 +24,12 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.keyboardObserver((self.loginView?.scrollView)!)
+        
+        self.loadUser()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,15 +57,11 @@ class AKILoginViewController: AKIGangstaNewsViewController {
         self.navigationController?.pushViewController(AKIConfirmEmailViewController(), animated: true)
     }
     
-    @IBAction func tapGestureRecognizer(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
-    
     //MARK: Private methods
     
     private func loadContext() {
-        let user = (self.user != nil) ? self.user : self.loadUser()
-        
+        let user = self.user
+    
         let context = AKILoginContext()
         context.model = user
         let observer = context.observer()
@@ -82,19 +78,32 @@ class AKILoginViewController: AKIGangstaNewsViewController {
         }).addDisposableTo(self.disposeBag)
     }
     
-    private func loadUser() -> AKIUser {
-        let user = AKIUser()
+    private func loadUser() {
+        self.user = AKIUser()
+        self.user?.email = self.loadDataFromDisk(key: "email")! as? String
+        self.user?.password = self.loadDataFromDisk(key: "password")! as? String
         
-        user.email = self.loginView?.mailField?.text
-        user.password = self.loginView?.passwordField?.text
-        
-        return user
+        self.loginView?.fillFields(user: self.user)
     }
     
     override func modelDidLoad() {
+        self.saveDataToDisk(data: self.user?.email as AnyObject, key: "email")
+        self.saveDataToDisk(data: self.user?.password as AnyObject, key: "password")
+        
         let controller = AKINewsViewController()
         controller.user = self.user
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.pushViewController(controller)
+    }
+    
+    func check() {
+        if 5 > (user?.login?.characters.count)! {
+            
+        }
+        
+        if 6 > (user?.password?.characters.count)! {
+            
+        }
+        
     }
     
 }

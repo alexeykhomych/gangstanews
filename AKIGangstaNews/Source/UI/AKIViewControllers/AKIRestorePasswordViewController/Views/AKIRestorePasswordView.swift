@@ -12,6 +12,7 @@ class AKIRestorePasswordView: UIView {
 
     @IBOutlet var scrollView: UIScrollView?
     @IBOutlet var supportView: UIView?
+    @IBOutlet var tapRecognizer: UITapGestureRecognizer?
     
     @IBOutlet var imageVIew: UIImageView?
     @IBOutlet var passwordField: UITextField?

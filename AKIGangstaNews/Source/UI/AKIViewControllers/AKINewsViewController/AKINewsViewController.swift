@@ -45,6 +45,12 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         super.awakeFromNib()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.filterNewsModel()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sortedArrayModel != nil ? (self.sortedArrayModel!.count) : (self.user?.newsArray!.count)!
     }
@@ -125,6 +131,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         let sort = AKISortedArrayModel()
         let selectedCategory = AKICategoryModel()
         self.sortedArrayModel?.addObjects(sort.sortArrayModel(arrayModel: (self.user?.newsArray)!, parameters: (selectedCategory.enabledCategories()?.name!)!))
+        print("done")
     }
     
     private func initLeftBarButtonItem() {
@@ -137,7 +144,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     private func initRightBarButtonItem() {
-        let logoutButton = UIBarButtonItem.init(title: kAKISettings,
+        let logoutButton = UIBarButtonItem.init(title: kAKILogout,
                                                   style: UIBarButtonItemStyle.plain,
                                                   target: self,
                                                   action: #selector(logout))

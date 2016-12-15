@@ -19,4 +19,10 @@ class AKILoginView: UIView {
     @IBOutlet var loginButton: UIButton?
     @IBOutlet var forgotPasswordButton: UIButton?
     @IBOutlet var tapRecognizer: UITapGestureRecognizer?
+    
+    func fillFields(user: AKIUser?) {
+        self.mailField?.text = user?.email
+        self.passwordField?.text = user?.password
+    }
+    
 }
