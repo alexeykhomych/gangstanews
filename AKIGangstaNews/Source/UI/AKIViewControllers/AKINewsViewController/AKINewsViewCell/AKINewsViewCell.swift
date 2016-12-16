@@ -19,9 +19,11 @@ class AKINewsViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func fillModel(content: AKIContent) {
-        self.headerLabel?.text = content.header
-        self.logoImage?.image = UIImage(named: "logonews")
+    func fillModel(content: AKIContent?) {
+        self.headerLabel?.text = content?.header
+        self.logoImage?.image = NSURL(string: (content?.imageURL!)!)
+            .flatMap { NSData(contentsOf: $0 as URL) }
+            .flatMap { UIImage(data: $0 as Data) }
     }
     
 }

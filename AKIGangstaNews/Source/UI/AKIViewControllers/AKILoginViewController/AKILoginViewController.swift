@@ -35,8 +35,7 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loginView?.mailField?.text = self.user?.email
-        self.loginView?.passwordField?.text = self.user?.password
+        self.loginView?.fillFields(user: self.user)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -79,21 +78,23 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     }
     
     private func loadUser() {
-        self.user = AKIUser()
-        self.user?.email = self.loadDataFromDisk(key: "email")! as? String
-        self.user?.password = self.loadDataFromDisk(key: "password")! as? String
+        let user = AKIUser()
+        let loginView = self.loginView
+        user.login = loginView?.mailField?.text
+        user.password = loginView?.passwordField?.text
+        user.authKey = self.loadDataFromDisk(key: "authKey")! as? String
+        if user.authKey != nil {
+            self.pushViewController(AKINewsViewController(), model: user)
+        }
         
-        self.loginView?.fillFields(user: self.user)
+        self.user = user
     }
     
     override func modelDidLoad() {
-        self.saveDataToDisk(data: self.user?.email as AnyObject, key: "email")
-        self.saveDataToDisk(data: self.user?.password as AnyObject, key: "password")
-        
-        let controller = AKINewsViewController()
-        controller.user = self.user
-        self.pushViewController(controller)
+        self.saveDataToDisk(data: self.user?.authKey as AnyObject, key: "authKey")
+        self.pushViewController(AKINewsViewController(), model: self.user!)
     }
+    
     
     func check() {
         if 5 > (user?.login?.characters.count)! {

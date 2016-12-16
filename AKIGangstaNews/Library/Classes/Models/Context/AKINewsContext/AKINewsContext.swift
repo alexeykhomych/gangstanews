@@ -48,23 +48,20 @@ class AKINewsContext: AKIContext {
                             
                             let user = self.model as? AKIUser
                             let objects = NSMutableArray()
-                            let categories = user?.categories
                             
                             for categoryDictionary in data {
                                 guard let dictionary = categoryDictionary as? [String : Any] else { return }
                                 guard let categoriesDictionary = dictionary["category"] as? [String : Any] else { return }
                                 
+                                let content = AKIContent()
                                 let categoryName = AKICategory(name: categoriesDictionary["title"] as! String)
+                                let id = dictionary["id"] as? NSNumber
                                 
-                                if ((categories?.indexOfObject(categoryName)) != nil || categories?.count == 0) {
-                                    let content = AKIContent()
-                                    
-                                    let id = dictionary["id"] as? NSNumber
-                                    content.id = id?.stringValue
-                                    content.header = dictionary["title"] as! String?
-                                    content.imageURL = dictionary["image_thumb"] as! String?
-                                    objects.add(content)
-                                }
+                                content.id = id?.stringValue
+                                content.header = dictionary["title"] as! String?
+                                content.imageURL = dictionary["image_thumb"] as! String?
+                                content.category = categoryName
+                                objects.add(content)
                             }
                             
                             user?.newsArray?.addObjects(objects)
@@ -83,9 +80,5 @@ class AKINewsContext: AKIContext {
             
             return Disposables.create(with: { requestReference.cancel() })
         }
-    }
-    
-    private func fillModel() {
-    
     }
 }

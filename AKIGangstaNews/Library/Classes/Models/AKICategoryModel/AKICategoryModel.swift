@@ -1,4 +1,4 @@
-//
+	//
 //  AKICategoryModel.swift
 //  AKIGangstaNews
 //
@@ -21,6 +21,8 @@ class AKICategoryModel: AKIArrayModel {
         return FileManager.default
     }
     
+    var selectedCategory: AKICategory?
+    
     var documentsPath: String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     }
@@ -37,8 +39,7 @@ class AKICategoryModel: AKIArrayModel {
     
     override init() {
         self.categoryStatusArray = Array()
-        super.init()
-        
+        super.init()        
         self.fillCategories()
     }
     
@@ -68,7 +69,7 @@ class AKICategoryModel: AKIArrayModel {
         let objects = self.objects
         
         for object in objects {
-            if ((object as? AKICategory)?.enabled!)! {
+            if ((object as? AKICategory)?.selected!)! {
                 return object as? AKICategory
             }
         }
@@ -106,6 +107,11 @@ class AKICategoryModel: AKIArrayModel {
             
             return Disposables.create()
         }
+    }
+    
+    func selectedCategory(newCategory: AKICategory) {
+        self.selectedCategory?.selected = false
+        self.selectedCategory = newCategory
     }
     
     //MARK: Private

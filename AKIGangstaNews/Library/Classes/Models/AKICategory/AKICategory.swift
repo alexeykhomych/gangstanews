@@ -14,15 +14,15 @@ let kAKICategoryState = "kAKICategoryState"
 class AKICategory: NSObject, NSCoding {
     
     var name: String?
-    var enabled: Bool?
+    var selected: Bool?
     
     convenience init(name: String) {
-        self.init(name: name, enabled: true)
+        self.init(name: name, selected: false)
     }
     
-    init(name: String, enabled: Bool) {
+    init(name: String, selected: Bool) {
         self.name = name
-        self.enabled = enabled
+        self.selected = selected
     }
     
     public required init?(coder aDecoder: NSCoder){
@@ -41,7 +41,7 @@ class AKICategory: NSObject, NSCoding {
     
     public func copy(with zone: NSZone? = nil) -> Any {
         print("content copied with zone")
-        return AKICategory(name: self.name!, enabled: self.enabled!)
+        return AKICategory(name: self.name!, selected: self.selected!)
     }
     
     //MARK: Private

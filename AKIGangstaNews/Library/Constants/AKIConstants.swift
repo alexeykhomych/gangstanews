@@ -10,7 +10,7 @@ import UIKit
 
 class AKIConstants {
     
-    let kAKIAPIURL = "http://7a1ae016.ngrok.io/"
+    let kAKIAPIURL = "http://443b10cf.ngrok.io/"
     
     let kAKIAuth = "auth"
     let kAKILogin = "login"

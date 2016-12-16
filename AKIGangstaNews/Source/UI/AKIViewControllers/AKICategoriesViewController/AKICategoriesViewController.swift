@@ -31,14 +31,16 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.user?.categories?.count)!
+        return ((self.model as! AKIUser?)?.categories?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKICategoriesViewCell
         
-        if self.user?.categories?.count != nil {
-            let category = self.user?.categories?.objectAtIndexSubscript(indexPath.row)
+        let user = self.model as? AKIUser
+        
+        if user?.categories?.count != nil {
+            let category = user?.categories?.objectAtIndexSubscript(indexPath.row)
             cell.fillCategory(category: (category as? AKICategory)!)
         }
         
@@ -46,9 +48,8 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = self.user?.categories?.objectAtIndexSubscript(indexPath.row)
-        let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKICategoriesViewCell
-        cell.editCategory(category: (category as? AKICategory)!)
+        let categories = (self.model as! AKIUser?)?.categories
+        categories?.selectedCategory = categories?.objectAtIndexSubscript(indexPath.row) as! AKICategory?
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

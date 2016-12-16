@@ -23,8 +23,4 @@ class AKIAbstractViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    internal func pushViewController(_ viewController: AKIAbstractViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
 }

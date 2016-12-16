@@ -23,6 +23,6 @@ class AKICategoriesViewCell: UITableViewCell {
     }
     
     func editCategory(category: AKICategory) {
-        category.enabled = !category.enabled!
+        category.selected = !category.selected!
     }    
 }

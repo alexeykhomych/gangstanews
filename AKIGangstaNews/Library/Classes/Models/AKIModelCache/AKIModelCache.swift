@@ -12,7 +12,7 @@ final class AKIModelCache {
     
     static let shared = AKIModelCache()
     
-    private var mapTable: NSMapTable<AnyObject, AnyObject>?
+    private var mapTable: NSMapTable<AnyObject, AKIImageModel>?
     
     //MARK: Initializations and Deallocations
     
@@ -26,16 +26,16 @@ final class AKIModelCache {
     
     //MARK: Public
     
-    func objectForKey(_ key: URL) -> AnyObject {
+    func objectForKey(_ key: URL) -> AKIImageModel {
         return (self.mapTable?.object(forKey: key as AnyObject?))!
     }
     
-    func addObject(_ object: AKIContent) {
-        self.mapTable?.setObject(object, forKey: object.imageURL as AnyObject?)
+    func addObject(_ object: AKIImageModel) {
+        self.mapTable?.setObject(object, forKey: object.url)
     }
     
     
-    func removeObject(_ object: AKIContent) {
-        self.mapTable?.removeObject(forKey: object.imageURL as AnyObject?)
+    func removeObject(_ object: AKIImageModel) {
+        self.mapTable?.removeObject(forKey: object.url)
     }
 }

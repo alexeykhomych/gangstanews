@@ -24,5 +24,4 @@ class AKILoginView: UIView {
         self.mailField?.text = user?.email
         self.passwordField?.text = user?.password
     }
-    
 }

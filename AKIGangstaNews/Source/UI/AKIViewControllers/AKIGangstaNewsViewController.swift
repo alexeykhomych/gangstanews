@@ -55,4 +55,13 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         self.view.endEditing(true)
     }
     
+    func pushViewController(_ viewController: AKIGangstaNewsViewController) {
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushViewController(_ viewController: AKIGangstaNewsViewController, model: AKIUser) {
+        viewController.model = model
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
