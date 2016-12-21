@@ -15,8 +15,6 @@ import RxKeyboard
 class AKIGangstaNewsViewController: AKIAbstractViewController {
     
     let disposeBag = DisposeBag()
-
-    var user: AKIUser?
     var context: AKIContext?
     
     override func viewDidLoad() {

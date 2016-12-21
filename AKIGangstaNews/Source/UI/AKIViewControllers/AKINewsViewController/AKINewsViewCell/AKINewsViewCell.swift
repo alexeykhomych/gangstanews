@@ -12,7 +12,7 @@ import RxCocoa
 
 class AKINewsViewCell: UITableViewCell {
     
-    @IBOutlet var logoImage: UIImageView?
+    @IBOutlet var newsImageView: AKIImageView?
     @IBOutlet var headerLabel: UILabel?
     
     override func awakeFromNib() {
@@ -21,9 +21,7 @@ class AKINewsViewCell: UITableViewCell {
     
     func fillModel(content: AKIContent?) {
         self.headerLabel?.text = content?.header
-        self.logoImage?.image = NSURL(string: (content?.imageURL!)!)
-            .flatMap { NSData(contentsOf: $0 as URL) }
-            .flatMap { UIImage(data: $0 as Data) }
+        self.newsImageView?.imageModel = (content?.imageModel)!
     }
     
 }

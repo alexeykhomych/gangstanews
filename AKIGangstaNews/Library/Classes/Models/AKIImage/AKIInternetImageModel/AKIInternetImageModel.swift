@@ -8,17 +8,23 @@
 
 import UIKit
 
-class AKIInternetImageModel: AKIImageModel {
+class AKIInternetImageModel: AKILocalImageModel {
     
-    var downloadTask: URLSessionDataTask {
-        get {
-            return self.downloadTask
-        } set (newDownloadTask) {
-            self.downloadTask.cancel()
+    var downloadTask: URLSessionDownloadTask? = nil {
+        willSet (newDownloadTask) {
+            self.downloadTask?.cancel()
             self.downloadTask = newDownloadTask
-            self.downloadTask.resume()
+            self.downloadTask?.resume()
         }
     }
+    
+//    var downloadTask: URLSessionDataTask? = nil {
+//        willSet(newDownloadTask) {
+//            self.downloadTask?.cancel()
+//            self.downloadTask = newDownloadTask
+//            self.downloadTask?.resume()
+//        }
+//    }
     
     var fileManager: FileManager {
         return FileManager.default
@@ -35,14 +41,14 @@ class AKIInternetImageModel: AKIImageModel {
     }
     
     var fileName: String {
-        return (self.url?.absoluteString?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlUserAllowed))!
+        return (self.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlUserAllowed))!
     }
     
     var filePath: String {
         return self.path.appending(self.fileName)
     }
     
-    var fileURL: NSURL {
+    var fileURL: URL {
         return self.url!
     }
     
@@ -76,30 +82,25 @@ class AKIInternetImageModel: AKIImageModel {
     }
     
     func loadFromInternet() {
-//        self.downloadTask = self.session.downloadTask(with: self.url!)
-        
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration:configuration)
-        let theRequest = URLRequest(url: URL(string: "")!)
-        let task = session.dataTask(with: URL(string: "")!) { (data:Data?, response:URLResponse?, error:Error?) in
-            
-        }
-        
-        let task1 = session.dataTask(with: theRequest) { (data:Data?, response:URLResponse?, error:Error?) in
-            
-        }
-        
-
+        let url = URL(string: "https://static01.nyt.com/images/2016/12/20/us/20assess-web3/20assess-web3-sfSpan.jpg")
+        self.downloadTask = self.session.downloadTask(with: url!, completionHandler: self.completionHandler())
     }
     
-//    open func downloadTask(with url: URL, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDownloadTask
-    
-//    func completionHandler() -> (URL?, URLResponse?, Error?) {
-//        return (url: URL?, response: URLResponse?, error: Error?) {
-//            if error != nil {
-//                self.fileManager.copyItem(atPath: url?.path., toPath: self.filePath) throws
-//            }
-//        }
-//    }
+    func completionHandler() -> (URL?, URLResponse?, Error?) -> Swift.Void {
+        return { (location, response, error) in
+            var downloadedImage: UIImage? = nil
+            do {
+                if error == nil {
+                    try self.fileManager.copyItem(atPath: (location?.path)!, toPath: self.filePath)
+                    downloadedImage = self.loadImageAtURL(URL.init(string: self.filePath)!)
+                }
+                
+                self.finishLoadingImage(downloadedImage!)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        }
+    }
 
 }

@@ -11,20 +11,12 @@ import UIKit
 class AKIModel {
     
     public func load() {
-        DispatchQueue.global().async {
+//        DispatchQueue.global().async {
             self.performLoading()
-        }
+//        }
     }
     
     func performLoading() {
         
-    }
-    
-    public class var nameOfClass: String {
-        return NSStringFromClass(self).components(separatedBy: ".").last!
-    }
-    
-    public var nameOfClass: String {
-        return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
     }
 }

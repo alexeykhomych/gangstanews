@@ -22,16 +22,10 @@ class AKIUser: NSObject, NSCoding {
     var newsArray: AKIArrayModel?
     var categories: AKICategoryModel?
     
-    let constants = AKIConstants()
-    
-    override convenience init()
-    {
-        self.init(login: "",
-                  email: "",
-                  authKey: "",
-                  passwordResetToken: "",
-                  newsArray: AKIArrayModel(),
-                  categories: AKICategoryModel())
+    override init() {
+        self.content = AKIContent()
+        self.newsArray = AKIArrayModel()
+        self.categories = AKICategoryModel()
     }
     
     init(login: String,
@@ -50,22 +44,18 @@ class AKIUser: NSObject, NSCoding {
     }
     
     required init(coder: NSCoder) {
-        let constants = self.constants
-        self.login = coder.decodeObject(forKey: constants.kAKILogin) as? String
-        self.email = coder.decodeObject(forKey: constants.kAKIEmail) as? String
-        self.authKey = coder.decodeObject(forKey: constants.kAKIAuthKey) as? String
-        self.passwordResetToken = coder.decodeObject(forKey: constants.kAKIPasswordResetToken) as? String
-        self.newsArray = coder.decodeObject(forKey: constants.kAKINews) as! AKIArrayModel?
-        print("user decoded")
+        self.login = coder.decodeObject(forKey: kAKILogin) as? String
+        self.email = coder.decodeObject(forKey: kAKIEmail) as? String
+        self.authKey = coder.decodeObject(forKey: kAKIParserAuthKey) as? String
+        self.passwordResetToken = coder.decodeObject(forKey: kAKIPasswordResetToken) as? String
+        self.newsArray = coder.decodeObject(forKey: kAKINews) as! AKIArrayModel?
     }
     
     func encode(with aCoder: NSCoder) {
-        let constants = self.constants
-        aCoder.encode(self.login, forKey: constants.kAKILogin)
-        aCoder.encode(self.email, forKey: constants.kAKIEmail)
-        aCoder.encode(self.authKey, forKey: constants.kAKIAuthKey)
-        aCoder.encode(self.passwordResetToken, forKey: constants.kAKIPasswordResetToken)
-        aCoder.encode(self.newsArray, forKey: constants.kAKINews)
-        print("user encoded")
+        aCoder.encode(self.login, forKey: kAKILogin)
+        aCoder.encode(self.email, forKey: kAKIEmail)
+        aCoder.encode(self.authKey, forKey: kAKIParserAuthKey)
+        aCoder.encode(self.passwordResetToken, forKey: kAKIPasswordResetToken)
+        aCoder.encode(self.newsArray, forKey: kAKINews)
     }
 }

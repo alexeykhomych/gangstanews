@@ -49,7 +49,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sortedArrayModel != nil ? (self.sortedArrayModel!.count) : (self.user?.newsArray!.count)!
+        return self.sortedArrayModel != nil ? (self.sortedArrayModel!.count) : ((self.model as? AKIUser)?.newsArray!.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,7 +61,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         if sortedArrayModel != nil {
             content = sortedArrayModel?.objectAtIndexSubscript(indexPath.row) as? AKIContent
         } else {
-            content = self.user?.newsArray?.objectAtIndexSubscript(indexPath.row) as? AKIContent
+            content = (self.model as? AKIUser)?.newsArray?.objectAtIndexSubscript(indexPath.row) as? AKIContent
         }
         
         cell.fillModel(content: content!)
@@ -71,8 +71,9 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = AKIDetailNewsViewController()
-        controller.user = self.user
-        controller.model = self.user?.newsArray?.objectAtIndexSubscript(indexPath.row) as AnyObject?
+        let user = self.model as? AKIUser
+        controller.model = user!
+        controller.content = user?.newsArray?.objectAtIndexSubscript(indexPath.row) as? AKIContent
         self.pushViewController(controller)
     }
     
@@ -81,7 +82,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
 
     private func loadContext() {
-        let user = self.user
+        let user = self.model
         
         let context = AKINewsContext()
         context.model = user
@@ -104,11 +105,11 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     private func filterNewsModel() {
-        let category = self.user?.categories?.selectedCategory	
+        let category = (self.model as? AKIUser)?.categories?.selectedCategory
         
         if category != nil {
             let sort = AKISortedArrayModel()
-            sort.addObjects(sort.sortArrayModel(arrayModel: (self.user?.newsArray)!,
+            sort.addObjects(sort.sortArrayModel(arrayModel: ((self.model as? AKIUser)?.newsArray)!,
                                                 parameters: (category?.name)!))
             self.sortedArrayModel = sort
             self.newsView?.tableView?.reloadData()
@@ -135,12 +136,12 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     
     func selectCategories() {
         let controller = AKICategoriesViewController()
-        controller.model = self.user
+        controller.model = self.model
         self.pushViewController(controller)
     }
     
     func logout() {
-        let user = self.user
+        let user = self.model as? AKIUser
         
         let context = AKILogoutContext()
         context.model = user

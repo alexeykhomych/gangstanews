@@ -22,7 +22,8 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.categoriesView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
+        self.categoriesView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil),
+                                                 forCellReuseIdentifier: self.cellReuseIdentifier)
         self.loadContext()
     }
 
@@ -71,7 +72,9 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     }
 
     internal override func modelDidLoad() {
-        self.categoriesView?.tableView?.reloadData()
+        DispatchQueue.main.async {
+            self.categoriesView?.tableView?.reloadData()
+        }
     }
     
 }

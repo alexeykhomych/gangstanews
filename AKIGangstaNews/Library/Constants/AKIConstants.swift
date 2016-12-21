@@ -8,32 +8,57 @@
 
 import UIKit
 
+//DispatchQueue.main.async {
+    //Update your UI here
+//}
+
+let kAKIAPIURL = "http://31db5601.ngrok.io/"
+
+let kAKIAuth = "auth"
+let kAKILogin = "login"
+let kAKILogout = "logout"
+let kAKISignup = "signup"
+let kAKICategories = "categories"
+let kAKINews = "news"
+let kAKIDetailNewsRequest = "news/"
+
+let kAKIAuthorizationRequest = "Authorization"
+
+let kAKIAuthorization = "Authorization"
+let kAKIContentType = "Content-Type"
+let kAKIApplicationJSON = "application/json"
+
+let kAKIEmail = "email"
+let kAKIPassword = "password"
+let kAKIPasswordHash = "password_hash"
+let kAKIUsername = "username"
+
+let kAKIPasswordResetToken = "password_reset_token"
+
+//MARK: Parser API
+
+let kAKIParserDesc = "desc"
+let kAKIParserData = "data"
+let kAKIParserCategory = "category"
+let kAKIParserTitle = "title"
+let kAKIParserID = "id"
+let kAKIParserImageThumb = "image_thumb"
+let kAKIParserAuthKey = "auth_key"
+
+//MARK: Categories
+
+let kAKICategoryName = "kAKICategoryName"
+let kAKICategoryState = "kAKICategoryState"
+let kAKIFileName: String = "AKICategoryModel.plist"
+
+//MARK: Content
+
+let kAKIID: String = "kAKIID"
+let kAKIHeader: String = "kAKIHeader"
+let kAKIDataText: String = "kAKIDataText"
+let kAKIImageURL: String = "kAKIImageURL"
+
+
 class AKIConstants {
-    
-    let kAKIAPIURL = "http://443b10cf.ngrok.io/"
-    
-    let kAKIAuth = "auth"
-    let kAKILogin = "login"
-    let kAKILogout = "logout"
-    let kAKISignup = "signup"
-    let kAKICategories = "categories"
-    let kAKINews = "news"
-    let kAKIDetailNewsRequest = "news/"
-    
-    let kAKIAuthorizationRequest = "Authorization"
-    
-    let kAKIAuthorization = "Authorization"
-    let kAKIContentType = "Content-Type"
-    let kAKIApplicationJSON = "application/json"
-    
-    let kAKIEmail = "email"
-    let kAKIPassword = "password"
-    let kAKIPasswordHash = "password_hash"
-    let kAKIUsername = "username"
-    let kAKIAuthKey = "auth_key"
-    
-    let kAKIData = "data"
-    
-    let kAKIPasswordResetToken = "password_reset_token"
     
 }

@@ -11,8 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-let kAKIUser = "kAKIUser"
-
 class AKILoginViewController: AKIGangstaNewsViewController {
     
     var activeTextField: UITextField?
@@ -35,7 +33,7 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loginView?.fillFields(user: self.user)
+        self.loginView?.fillFields(user: (self.model as! AKIUser?))
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -59,7 +57,7 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     //MARK: Private methods
     
     private func loadContext() {
-        let user = self.user
+        let user = self.model as! AKIUser?
     
         let context = AKILoginContext()
         context.model = user
@@ -78,33 +76,39 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     }
     
     private func loadUser() {
-        let user = AKIUser()
-        let loginView = self.loginView
-        user.login = loginView?.mailField?.text
-        user.password = loginView?.passwordField?.text
-        user.authKey = self.loadDataFromDisk(key: "authKey")! as? String
-        if user.authKey != nil {
-            self.pushViewController(AKINewsViewController(), model: user)
+        DispatchQueue.global().async {
+            let user = AKIUser()
+            self.model = user
+            user.authKey = self.loadDataFromDisk(key: kAKIParserAuthKey)! as? String
+            
+            if user.authKey == nil {
+                let loginView = self.loginView
+                user.login = loginView?.mailField?.text
+                user.password = loginView?.passwordField?.text
+            } else {
+                self.pushViewController(AKINewsViewController(), model: user)
+            }
         }
         
-        self.user = user
     }
     
     override func modelDidLoad() {
-        self.saveDataToDisk(data: self.user?.authKey as AnyObject, key: "authKey")
-        self.pushViewController(AKINewsViewController(), model: self.user!)
+        DispatchQueue.global().async {
+            let user = self.model as! AKIUser?
+            self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
+            self.pushViewController(AKINewsViewController(), model: user!)
+        }
     }
     
     
     func check() {
-        if 5 > (user?.login?.characters.count)! {
-            
-        }
-        
-        if 6 > (user?.password?.characters.count)! {
-            
-        }
-        
+//        if 5 > (user?.login?.characters.count)! {
+//            
+//        }
+//        
+//        if 6 > (user?.password?.characters.count)! {
+//            
+//        }
     }
     
 }

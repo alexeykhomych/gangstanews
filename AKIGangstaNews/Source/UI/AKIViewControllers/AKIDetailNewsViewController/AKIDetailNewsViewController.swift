@@ -11,7 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKIDetailNewsViewController: AKIGangstaNewsViewController, UITextViewDelegate {
+class AKIDetailNewsViewController: AKIGangstaNewsViewController {
     
     var content: AKIContent?
 
@@ -22,18 +22,7 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController, UITextViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.detailNewsView?.contentField?.delegate = self
-        
         self.loadContext()        
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        let fixedWidth = textView.frame.size.width
-        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = textView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        textView.frame = newFrame;
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,13 +30,10 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController, UITextViewDeleg
     }
     
     private func loadContext() {
-        let user = self.user
-        
         let context = AKIDetailNewsContext()
-        context.model = user
-        context.id = (self.model as? AKIContent)?.id
+        context.model = self.model as! AKIUser?
+        context.id = self.content?.id
         let observer = context.observer()
-        self.user = user
         
         observer.subscribe(onNext: { next in
             print(next)
@@ -61,18 +47,26 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController, UITextViewDeleg
     }
     
     override func modelDidLoad() {
-        let textView = self.detailNewsView?.contentField
-        self.detailNewsView?.parseContent(content: self.model as! AKIContent)
+        self.detailNewsView?.parseContent(content: self.content!)
+        self.resizeScrollView()
+    }
+    
+    private func resizeScrollView() {
+        let detailNewsView = self.detailNewsView
+        
+        let scrollView = detailNewsView?.scrollView
+        let textView = detailNewsView?.contentField
         
         let fixedWidth = textView?.frame.size.width
         textView?.sizeThatFits(CGSize(width: fixedWidth!, height: CGFloat.greatestFiniteMagnitude))
+        
         let newSize = textView?.sizeThatFits(CGSize(width: fixedWidth!, height: CGFloat.greatestFiniteMagnitude))
         var newFrame = textView?.frame
+        
         newFrame?.size = CGSize(width: max((newSize?.width)!, fixedWidth!), height: (newSize?.height)!)
         textView?.frame = newFrame!
         
-        self.detailNewsView?.scrollView?.layoutIfNeeded()
-        self.detailNewsView?.scrollView?.contentSize.height = (self.detailNewsView?.scrollView?.contentSize.height)! + (textView?.bounds.size.height)!
+        scrollView?.layoutIfNeeded()
+        scrollView?.contentSize.height = (scrollView?.contentSize.height)! + (textView?.bounds.size.height)!
     }
-    
 }

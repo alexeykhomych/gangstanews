@@ -46,9 +46,6 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="70x-9h-aSG"/>
-                            </connections>
                         </textView>
                     </subviews>
                     <constraints>

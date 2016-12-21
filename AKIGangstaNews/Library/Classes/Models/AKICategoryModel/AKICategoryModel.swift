@@ -11,8 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-let kAKIFileName: String = "AKICategoryModel.plist"
-
 class AKICategoryModel: AKIArrayModel {
     
     private var categoryStatusArray: Array<Any>
@@ -92,13 +90,11 @@ class AKICategoryModel: AKIArrayModel {
         }
         
         self.addObjects(model as! NSArray)
-        print("performLoading CategoryModel")
     }
     
     public func save() {
         self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
         NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
-        print("save CategoryModel")
     }
     
     public func observer() -> Observable<AKICategory> {

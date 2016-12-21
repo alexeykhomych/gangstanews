@@ -17,13 +17,13 @@ class AKICategoriesContext: AKIContext {
     
     override func headers() -> HTTPHeaders {
         return [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
-            self.constants.kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"
+            kAKIContentType: kAKIApplicationJSON,
+            kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"
         ]
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKICategories)" as String
+        return "\(kAKIAPIURL)\(kAKICategories)" as String
     }
     
     override var method: HTTPMethod {
@@ -42,23 +42,20 @@ class AKICategoriesContext: AKIContext {
                     switch(response.result) {
                     case .success(_):
                         if let json = response.result.value as? NSDictionary {
-                            guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
+                            guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
                             let user = self.model as? AKIUser
                             let categories = user?.categories
                             
                             for category in data {
                                 guard let dictionary = category as? [String: Any] else { return }
-                                categories?.addObject(AKICategory(name: dictionary["title"]! as! String, selected: true))
+                                categories?.addObject(AKICategory(name: dictionary[kAKIParserTitle]! as! String, selected: true))
                             }
                             
                             observer.onCompleted()
-                            print("category completed")
                         }
                         break
                         
-                    case .failure(_):
-                        //                    observer.onError()
-                        
+                    case .failure(_):                        
                         break
                     }
             }

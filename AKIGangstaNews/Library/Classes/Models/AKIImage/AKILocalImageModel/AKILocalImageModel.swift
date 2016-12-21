@@ -11,10 +11,10 @@ import UIKit
 class AKILocalImageModel: AKIImageModel {
 
     override func performLoading() {
-        self.finishLoadingImage(self.loadImageAtURL(self.url!))
+        self.finishLoadingImage(self.loadImageAtURL(self.url! as URL)!)
     }
     
-    override func loadImageAtURL(_ url: NSURL) -> UIImage {
-        return UIImage.init(named: url.absoluteString!)!
+    public func loadImageAtURL(_ url: URL) -> UIImage? {
+        return UIImage(named: url.absoluteString)
     }
 }

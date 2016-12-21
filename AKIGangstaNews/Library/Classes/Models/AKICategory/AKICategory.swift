@@ -8,9 +8,6 @@
 
 import UIKit
 
-let kAKICategoryName = "kAKICategoryName"
-let kAKICategoryState = "kAKICategoryState"
-
 class AKICategory: NSObject, NSCoding {
     
     var name: String?
@@ -29,18 +26,14 @@ class AKICategory: NSObject, NSCoding {
         super.init()
         self.name = self.decode(decoder: aDecoder, key: kAKICategoryName)
 //        self.enabled = self.decode(decoder: aDecoder, key: kAKICategoryState)
-        print("content decoded")
     }
     
     public func encode(with aCoder: NSCoder) {
         self.encode(encoder: aCoder, field: self.name!, key: kAKICategoryName)
 //        self.encode(encoder: aCoder, field: self.enabled!, key: kAKICategoryState)
-        
-        print("content encoded")
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        print("content copied with zone")
         return AKICategory(name: self.name!, selected: self.selected!)
     }
     

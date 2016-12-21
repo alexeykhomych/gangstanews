@@ -48,10 +48,37 @@ class AKIContext {
         return JSONEncoding.default
     }
     
-    public func observer() -> Observable<(AKIContext)> {
+    func observer() -> Observable<(AKIContext)> {
         return Observable<AKIContext>.create { (observer) -> Disposable in
-            return Disposables.create(with: {  })
+            let requestReference = Alamofire.request(self.url,
+                                                     method: self.method,
+                                                     parameters: self.parameters,
+                                                     encoding: self.encoding,
+                                                     headers: self.headers()).responseJSON
+                {
+                    response in
+                    
+                    switch(response.result) {
+                    case .success(_):
+                        if let json = response.result.value as? NSDictionary {
+                            self.parseJSON(json)
+                            observer.onCompleted()
+                        }
+                        
+                        break
+                        
+                    case .failure(_):
+                        //                    observer.onError()
+                        
+                        break
+                    }
+            }
+            
+            return Disposables.create(with: { requestReference.cancel() })
         }
     }
     
+    private func parseJSON(_ json: NSDictionary) {
+
+    }
 }

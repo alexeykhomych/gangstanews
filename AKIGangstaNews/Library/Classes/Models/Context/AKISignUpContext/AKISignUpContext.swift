@@ -17,21 +17,21 @@ class AKISignUpContext: AKIContext {
     
     override func headers() -> HTTPHeaders {
         return [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON
+            kAKIContentType: kAKIApplicationJSON
         ]
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKISignup)" as String
+        return "\(kAKIAPIURL)\(kAKISignup)" as String
     }
     
     override var parameters: [String : String?] {
         let user = self.model as? AKIUser
         
         return [
-            self.constants.kAKIUsername: user?.login,
-            self.constants.kAKIPasswordHash: user?.password,
-            self.constants.kAKIEmail: user?.email
+            kAKIUsername: user?.login,
+            kAKIPasswordHash: user?.password,
+            kAKIEmail: user?.email
         ]
     }
     
@@ -48,14 +48,13 @@ class AKISignUpContext: AKIContext {
                     switch(response.result) {
                     case .success(_):
                         if let json = response.result.value as? NSDictionary {
-                            guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
+                            guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
                             guard let dictionary = data[0] as? [String: Any] else { return }
                             
                             let user = self.model as? AKIUser
-                            user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
+                            user?.authKey = dictionary[kAKIParserAuthKey] as? String
                             
                             observer.onCompleted()
-                            print("signup completed")
                         }
                         break
                         

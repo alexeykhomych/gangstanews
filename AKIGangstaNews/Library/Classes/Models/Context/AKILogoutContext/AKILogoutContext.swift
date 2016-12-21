@@ -17,13 +17,13 @@ class AKILogoutContext: AKIContext {
     
     override func headers() -> HTTPHeaders {
         return [
-            self.constants.kAKIContentType: self.constants.kAKIApplicationJSON,
-            self.constants.kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"
+            kAKIContentType: kAKIApplicationJSON,
+            kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"
         ]
     }
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKIAuth)/\(self.constants.kAKILogout)" as String
+        return "\(kAKIAPIURL)\(kAKIAuth)/\(kAKILogout)" as String
     }
     
     public override func observer() -> Observable<(AKIContext)> {
@@ -38,14 +38,13 @@ class AKILogoutContext: AKIContext {
                     switch(response.result) {
                     case .success(_):
                         if let json = response.result.value as? NSDictionary {
-                            guard let data = json.object(forKey: self.constants.kAKIData) as? [Any] else { return }
+                            guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
                             guard let dictionary = data[0] as? [String: Any] else { return }
                             
                             let user = self.model as? AKIUser
-                            user?.authKey = dictionary[self.constants.kAKIAuthKey] as? String
+                            user?.authKey = dictionary[kAKIParserAuthKey] as? String
                             
                             observer.onCompleted()
-                            print("logout completed")
                         }
                         
                         break

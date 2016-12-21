@@ -18,7 +18,7 @@ class AKIDetailNewsContext: AKINewsContext {
     var id: String?
     
     override var url: String {
-        return "\(self.constants.kAKIAPIURL)\(self.constants.kAKIDetailNewsRequest)\(self.id!)" as String
+        return "\(kAKIAPIURL)\(kAKIDetailNewsRequest)\(self.id!)" as String
     }
     
     public override func observer() -> Observable<(AKIContext)> {
@@ -33,7 +33,7 @@ class AKIDetailNewsContext: AKINewsContext {
                     switch(response.result) {
                     case .success(_):
                         if let json = response.result.value as? NSDictionary {
-                            guard let data = json.object(forKey: "data") as? [Any] else { return }
+                            guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
                             guard let dictionary = data[0] as? [String: Any] else { return }
                             
                             let user = self.model as? AKIUser
@@ -48,9 +48,8 @@ class AKIDetailNewsContext: AKINewsContext {
                                 }
                             }
                             
-                            content?.dataText = dictionary["desc"] as! String?
+                            content?.dataText = dictionary[kAKIParserDesc] as! String?
                             observer.onCompleted()
-                            print("detailnews completed")
                         }
                         
                         break

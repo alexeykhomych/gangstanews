@@ -40,7 +40,7 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
         let context = AKISignUpContext()
         
         self.context = context
-        self.model = self.setUser()
+        self.loadUser()        
         
         context.model = self.model
         let observer = context.observer()
@@ -57,21 +57,26 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
         }).addDisposableTo(self.disposeBag)
     }
     
-    private func setUser() -> AKIUser {
-        let user = AKIUser()
-        user.email = self.registrationView?.emailField?.text
-        user.login = self.registrationView?.loginField?.text
-        user.password = self.registrationView?.passwordField?.text
-        
-        return user
+    private func loadUser() {
+        DispatchQueue.global().async {
+            let user = AKIUser()
+            let registrationView = self.registrationView
+            user.email = registrationView?.emailField?.text
+            user.login = registrationView?.loginField?.text
+            user.password = registrationView?.passwordField?.text
+            
+            self.model = user
+        }
     }
     
     override func modelDidLoad() {
-        let controllers = self.navigationController?.viewControllers
-        let rootViewController = controllers?[(controllers?.count)! - 2] as? AKILoginViewController
-        rootViewController?.user = self.model as! AKIUser?
-        
-        _ = self.navigationController?.popViewController(animated: true)
+        DispatchQueue.global().async {
+            let controllers = self.navigationController?.viewControllers
+            let rootViewController = controllers?[(controllers?.count)! - 2] as? AKILoginViewController
+            rootViewController?.model = self.model
+            
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     }
 
 }
