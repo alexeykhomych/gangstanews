@@ -21,8 +21,12 @@ class AKISignUpContext: AKIContext {
         ]
     }
     
+    override var method: HTTPMethod? {
+        return .post
+    }
+    
     override var url: String {
-        return "\(kAKIAPIURL)\(kAKISignup)" as String
+        return "\(kAKIAPIURL)\(kAKISignup)"
     }
     
     override var parameters: [String : String?] {
@@ -35,37 +39,11 @@ class AKISignUpContext: AKIContext {
         ]
     }
     
-    public override func observer() -> Observable<(AKIContext)> {
-        return Observable<AKIContext>.create { (observer) -> Disposable in
-            let requestReference = Alamofire.request(self.url,
-                                                     method: self.method,
-                                                     parameters: self.parameters,
-                                                     encoding: self.encoding,
-                                                     headers: self.headers()).responseJSON
-                {
-                    response in
-                    
-                    switch(response.result) {
-                    case .success(_):
-                        if let json = response.result.value as? NSDictionary {
-                            guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
-                            guard let dictionary = data[0] as? [String: Any] else { return }
-                            
-                            let user = self.model as? AKIUser
-                            user?.authKey = dictionary[kAKIParserAuthKey] as? String
-                            
-                            observer.onCompleted()
-                        }
-                        break
-                        
-                    case .failure(_):
-                        //                    observer.onError()
-                        
-                        break
-                    }
-            }
-            
-            return Disposables.create(with: { requestReference.cancel() })
-        }
+    override func parseJSON(_ json: NSDictionary) {
+        guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
+        guard let dictionary = data[0] as? [String: Any] else { return }
+        
+        let user = self.model as? AKIUser
+        user?.authKey = dictionary[kAKIParserAuthKey] as? String
     }
 }

@@ -22,6 +22,10 @@ class AKILoginContext: AKIContext {
         ]
     }
     
+    override var method: HTTPMethod? {
+        return .post
+    }
+    
     private func accessToken() -> String {
         let user = self.model as? AKIUser
         return self.convertToBase64(email: (user?.email)!, password: (user?.password)!)
@@ -40,7 +44,7 @@ class AKILoginContext: AKIContext {
         ]
     }
     
-    private func parseJSON(_ json: NSDictionary) {
+     override func parseJSON(_ json: NSDictionary) {
             guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
             guard let dictionary = data[0] as? [String: Any] else { return }
             

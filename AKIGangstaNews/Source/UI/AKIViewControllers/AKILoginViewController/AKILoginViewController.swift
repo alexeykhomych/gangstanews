@@ -51,7 +51,7 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     }
     
     @IBAction func forgotPasswordButton(_ sender: UIButton) {
-        self.navigationController?.pushViewController(AKIConfirmEmailViewController(), animated: true)
+        
     }
     
     //MARK: Private methods

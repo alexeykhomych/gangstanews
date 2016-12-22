@@ -59,22 +59,21 @@ class AKIImageModel: AKIModel {
             return Disposables.create(with: {  })
         }
         
-        let observable = Observable<Int>.create { (observer) -> Disposable in
-            observer.onNext(1)
-            return NopDisposable.instance
-        }
-        
-        let boolObservable : Observable<Bool> = observable.map { (element) -> Bool in
-            if (element == 0) {
-                return false
-            } else {
-                return true
-            }
-        }
-        
-        boolObservable.subscribeNext { (boolElement) in
-            print(boolElement)
-            }.addDisposableTo(disposeBag)
+//        let observable = Observable<Int>.create { (observer) -> Disposable in
+//            observer.onNext(1)
+//            return NopDisposable.instance
+//        }
+//        
+//        let boolObservable : Observable<Bool> = observable.map { (element) -> Bool in
+//            if (element == 0) {
+//                return false
+//            } else {
+//                return true
+//            }
+//        }
+//        
+//        boolObservable.subscribeNext { (boolElement) in
+//            print(boolElement)
+//            }.addDisposableTo(disposeBag)
     }
-    
 }

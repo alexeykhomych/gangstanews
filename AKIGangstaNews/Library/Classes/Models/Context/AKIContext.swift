@@ -19,29 +19,22 @@ public enum AuthorizationType: String {
 }
 
 class AKIContext {
-    
-    let constants = AKIConstants()
-    
     var model: AnyObject?
     
-    var method: HTTPMethod {
-        return .post
+    var method: HTTPMethod? {
+        return .get
     }
     
-    var url: String {
-        return ""
+    var url: String? {
+        return nil
     }
     
-    var parameters: [String : String?] {
-        return ["" : ""]
+    var parameters: [String : String?]? {
+        return nil
     }
     
-    var request: Any {
-        return ""
-    }
-    
-    func headers() -> HTTPHeaders {
-        return [:]
+    func headers() -> HTTPHeaders? {
+        return nil
     }
     
     var encoding: JSONEncoding {
@@ -50,8 +43,8 @@ class AKIContext {
     
     func observer() -> Observable<(AKIContext)> {
         return Observable<AKIContext>.create { (observer) -> Disposable in
-            let requestReference = Alamofire.request(self.url,
-                                                     method: self.method,
+            let requestReference = Alamofire.request(self.url!,
+                                                     method: self.method!,
                                                      parameters: self.parameters,
                                                      encoding: self.encoding,
                                                      headers: self.headers()).responseJSON
@@ -78,7 +71,7 @@ class AKIContext {
         }
     }
     
-    private func parseJSON(_ json: NSDictionary) {
+    func parseJSON(_ json: NSDictionary) {
 
     }
 }

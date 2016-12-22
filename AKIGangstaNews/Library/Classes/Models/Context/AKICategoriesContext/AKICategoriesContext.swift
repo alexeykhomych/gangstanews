@@ -23,44 +23,18 @@ class AKICategoriesContext: AKIContext {
     }
     
     override var url: String {
-        return "\(kAKIAPIURL)\(kAKICategories)" as String
+        return "\(kAKIAPIURL)\(kAKICategories)"
     }
     
-    override var method: HTTPMethod {
-        return .get
-    }
-
-    public override func observer() -> Observable<(AKIContext)> {
-        return Observable<AKIContext>.create { (observer) -> Disposable in
-            let requestReference = Alamofire.request(self.url,
-                                                     method: self.method,
-                                                     encoding: self.encoding,
-                                                     headers: self.headers()).responseJSON
-                {
-                    response in
-                    
-                    switch(response.result) {
-                    case .success(_):
-                        if let json = response.result.value as? NSDictionary {
-                            guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
-                            let user = self.model as? AKIUser
-                            let categories = user?.categories
-                            
-                            for category in data {
-                                guard let dictionary = category as? [String: Any] else { return }
-                                categories?.addObject(AKICategory(name: dictionary[kAKIParserTitle]! as! String, selected: true))
-                            }
-                            
-                            observer.onCompleted()
-                        }
-                        break
-                        
-                    case .failure(_):                        
-                        break
-                    }
-            }
-            
-            return Disposables.create(with: { requestReference.cancel() })
+    override func parseJSON(_ json: NSDictionary) {
+        guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
+        let user = self.model as? AKIUser
+        let categories = user?.categories
+        
+        for category in data {
+            guard let dictionary = category as? [String: Any] else { return }
+            categories?.addObject(AKICategory(name: dictionary[kAKIParserTitle]! as! String, selected: true))
         }
+
     }
 }
