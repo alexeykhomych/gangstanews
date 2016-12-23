@@ -62,4 +62,10 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func synced(lock: AnyObject, closure: () -> ()) {
+        objc_sync_enter(lock)
+        closure()
+        objc_sync_exit(lock)
+    }
+    
 }

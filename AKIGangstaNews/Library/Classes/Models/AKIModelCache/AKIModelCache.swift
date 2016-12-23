@@ -26,16 +26,26 @@ final class AKIModelCache {
     
     //MARK: Public
     
-    func objectForKey(_ key: String) -> AKIImageModel? {
-        return (self.mapTable?.object(forKey: key as AnyObject?))
+    func objectForKey(_ key: AnyObject) -> AKIImageModel? {
+        return self.mapTable?.object(forKey: key)
     }
     
     func addObject(_ object: AKIImageModel) {
-        self.mapTable?.setObject(object, forKey: object.url as AnyObject)
+        self.synced(lock: self) {
+            self.mapTable?.setObject(object, forKey: object.url as AnyObject)
+        }
     }
     
     
     func removeObject(_ object: AKIImageModel) {
-        self.mapTable?.removeObject(forKey: object.url as AnyObject?)
+        self.synced(lock: self) {
+            self.mapTable?.removeObject(forKey: object.url as AnyObject?)
+        }
+    }
+    
+    func synced(lock: AnyObject, closure: () -> ()) {
+        objc_sync_enter(lock)
+        closure()
+        objc_sync_exit(lock)
     }
 }

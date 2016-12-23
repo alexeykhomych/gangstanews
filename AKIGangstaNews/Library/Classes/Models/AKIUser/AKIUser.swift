@@ -23,7 +23,6 @@ class AKIUser: NSObject, NSCoding {
     var categories: AKICategoryModel?
     
     override init() {
-        self.content = AKIContent()
         self.newsArray = AKIArrayModel()
         self.categories = AKICategoryModel()
     }

@@ -22,6 +22,7 @@ class AKINewsViewCell: UITableViewCell {
     func fillModel(content: AKIContent?) {
         self.headerLabel?.text = content?.header
         self.newsImageView?.imageModel = (content?.imageModel)!
+        self.newsImageView?.imageModel?.image = (content?.imageModel)!.image
     }
     
 }

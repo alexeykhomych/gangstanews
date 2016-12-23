@@ -14,7 +14,11 @@ import RxCocoa
 class AKIImageView: UIView {
     
     let disposeBag = DisposeBag()
-    static var observable: Variable<AKIImageModel>? = nil
+    
+    
+    static var obsr: PublishSubject<AKIImageModel>? = nil
+    
+    
     @IBOutlet var imageView: UIImageView?
     var imageModel: AKIImageModel? = nil {
         willSet(value) {
@@ -53,35 +57,44 @@ class AKIImageView: UIView {
     }
     
     func modelDidLoad(_ model: AKIImageModel) {
-//        DispatchQueue.main.async {
+        DispatchQueue.main.async {
             self.imageView?.image = model.image
-//        }
+        }
     }
     
     private func loadImageModel() {
-        let observer = self.imageModel?.observer((self.imageModel)!)
-        var model: AKIImageModel?
-        observer?.subscribe(onNext: { next in
-            print(next)
+        var imageModel = self.imageModel
+        AKIImageView.obsr = PublishSubject<AKIImageModel>()
+        AKIImageView.obsr?.subscribe(onNext: { model in
+            imageModel = model
+            model.load()
         }, onError: { error in
             print(error)
-        }, onCompleted: { completed in
-            print(completed)
-            self.modelDidLoad(self.imageModel!)
+        }, onCompleted: {
+            self.modelDidLoad(imageModel!)
         }, onDisposed: {
             
         }).addDisposableTo(self.disposeBag)
         
-//        var m: AKIImageModel? = nil
-//        let image = Variable(AKIImageModel.imageWithURL((self.imageModel?.url)!))
-//        AKIImageView.observable = image.asObservable()
-//            .subscribe(onNext: { model in
-//                m = model
-//                model.load()
-//            }, onCompleted: { model in
-//                self.modelDidLoad(m!)
-//            }) as? Variable<AKIImageModel>
-        
-        
+        AKIImageView.obsr?.onNext(imageModel!)
+    }
+    
+    func synced(lock: AnyObject, closure: () -> ()) {
+        objc_sync_enter(lock)
+        closure()
+        objc_sync_exit(lock)
     }
 }
+
+//class NotificationClass {
+//    static let bus = PublishSubject<AnyObject>()
+//    
+//    static func send(object : AnyObject) {
+//        bus.onNext(object)
+//    }
+//    
+//    static func toObservable() -> Observable<AnyObject> {
+//        return bus
+//    }
+//    
+//}

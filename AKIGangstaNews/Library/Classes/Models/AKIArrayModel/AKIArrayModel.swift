@@ -33,11 +33,15 @@ class AKIArrayModel: AKIModel {
     //MARK: Public
     
     public func addObject(_ object: Any) {
-        self.mutableObjects?.add(object)
+        self.synced(lock: self) {
+            self.mutableObjects?.add(object)
+        }
     }
     
     public func removeObject(_ object: Any) {
-        self.mutableObjects?.remove(object)
+        self.synced(lock: self) {
+            self.mutableObjects?.remove(object)
+        }
     }
     
     public func addObjects(_ objects: NSArray) {
@@ -53,15 +57,21 @@ class AKIArrayModel: AKIModel {
     }
     
     func removeObjectAtIndex(_ index: Int) {
-        self.mutableObjects?.removeObject(at: index)
+        self.synced(lock: self) {
+            self.mutableObjects?.removeObject(at: index)
+        }
     }
     
     public func objectAtIndexSubscript(_ index: Int) -> Any {
-        return self.mutableObjects![index]
+//        self.synced(lock: self) {
+            return self.mutableObjects![index]
+//        }
     }
     
     public func indexOfObject(_ object: Any) -> Int {
-        return (self.mutableObjects?.index(of: object))!
+//        self.synced(lock: self) {
+            return (self.mutableObjects?.index(of: object))!
+//        }
     }
     
 }

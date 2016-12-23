@@ -290,7 +290,6 @@
 			children = (
 				8426CD881E0836970050C234 /* AKIImageView */,
 				843D97571DE4AB9D004E06D7 /* AKILoadingView */,
-				843D97581DE4AB9D004E06D7 /* AKIView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,7 +305,8 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = AKIView;
+			name = AKIView;
+			path = ../Library/Classes/Views/AKIView;
 			sourceTree = "<group>";
 		};
 		843D97591DE4AB9D004E06D7 /* Resources */ = {
@@ -321,6 +321,7 @@
 		843D975A1DE4AB9D004E06D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				843D97581DE4AB9D004E06D7 /* AKIView */,
 				843D975B1DE4AB9D004E06D7 /* Categories */,
 				843D975C1DE4AB9D004E06D7 /* Models */,
 				843D97701DE4B419004E06D7 /* UI */,

@@ -16,8 +16,12 @@ class AKIImageModel: AKIModel {
     var image: UIImage? = nil
     var url: URL? = nil
     
+//    var observer: Observable<AKIImageModel> {
+//        return self.observer(self)
+//    }
+    
     static func imageWithURL(_ url: URL) -> AKIImageModel {
-        let model = AKIModelCache.shared.objectForKey(url.absoluteString)
+        let model = AKIModelCache.shared.objectForKey(url as AnyObject)
         if model != nil {
             return model!
         }
@@ -35,45 +39,35 @@ class AKIImageModel: AKIModel {
     
     func finishLoadingImage(_ loadedImage: UIImage) {
         self.image = loadedImage
-        //modelDidLoad imageView
-        print("finish")
-        
-        
-//        AKIImageView.observable?.asObservable()
-//            .map { model -> (AKIImageModel) in
-//                .onCompleted()
-//                return model
-//        }
+        AKIImageView.obsr?.onCompleted()
     }
     
-    func observer(_ model: AKIImageModel) -> Observable<(AKIImageModel)> {
-        return Observable<AKIImageModel>.create { (observer) -> Disposable in
-            var copy = model
-            copy = AKIImageModel.imageWithURL((model.url)!)
-            model.load()
-            
-            if model.image != nil {
-                
-                observer.onCompleted()
-            }
-            return Disposables.create(with: {  })
-        }
-        
-//        let observable = Observable<Int>.create { (observer) -> Disposable in
-//            observer.onNext(1)
-//            return NopDisposable.instance
-//        }
+//    func observer() -> PublishSubject<AKIImageModel> {
+//        return PublishSubject<AKIImageModel>()
+//        //        return PublishSubject<AKIImageModel>.create { (observer) -> Disposable in
+////            print("observer")
+////            print(model)
+////            model.load()
+////            observer.onCompleted()
+////            
+////            return Disposables.create(with: {  })
+////        }
 //        
-//        let boolObservable : Observable<Bool> = observable.map { (element) -> Bool in
-//            if (element == 0) {
-//                return false
-//            } else {
-//                return true
-//            }
-//        }
-//        
-//        boolObservable.subscribeNext { (boolElement) in
-//            print(boolElement)
-//            }.addDisposableTo(disposeBag)
-    }
+////        let observable = Observable<Int>.create { (observer) -> Disposable in
+////            observer.onNext(1)
+////            return NopDisposable.instance
+////        }
+////        
+////        let boolObservable : Observable<Bool> = observable.map { (element) -> Bool in
+////            if (element == 0) {
+////                return false
+////            } else {
+////                return true
+////            }
+////        }
+////        
+////        boolObservable.subscribeNext { (boolElement) in
+////            print(boolElement)
+////            }.addDisposableTo(disposeBag)
+//    }
 }

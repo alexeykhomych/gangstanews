@@ -12,7 +12,7 @@ import UIKit
     //Update your UI here
 //}
 
-let kAKIAPIURL = "http://31db5601.ngrok.io/"
+let kAKIAPIURL = "http://52f03058.ngrok.io/"
 
 let kAKIAuth = "auth"
 let kAKILogin = "login"

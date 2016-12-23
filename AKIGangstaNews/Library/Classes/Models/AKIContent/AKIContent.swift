@@ -23,36 +23,28 @@ class AKIContent: NSCopying, NSCoding {
         return AKIImageModel.imageWithURL(self.imageURL!)
     }
     
-    init() {
-        self.header = ""
-        self.dataText = ""
-//        self.imageURL = ""
-    }
-    
-    init(id: String, header: String, dataText: String) {
+    init(id: String, header: String, dataText: String, imageURL: URL, category: AKICategory) {
         self.id = id
         self.header = header
         self.dataText = dataText
-//        self.imageURL = imageURL
-        self.category = AKICategory(name: "none")
+        self.category = category
+        self.imageURL = imageURL
     }
     
     public required init?(coder aDecoder: NSCoder){
         self.id = self.decode(decoder: aDecoder, key: kAKIID)
         self.header = self.decode(decoder: aDecoder, key: kAKIHeader)
         self.dataText = self.decode(decoder: aDecoder, key: kAKIDataText)
-//        self.imageURL = self.decode(decoder: aDecoder, key: kAKIImageURL)
     }
     
     public func encode(with aCoder: NSCoder) {
         self.encode(encoder: aCoder, field: self.id!, key: kAKIID)
         self.encode(encoder: aCoder, field: self.header!, key: kAKIHeader)
         self.encode(encoder: aCoder, field: self.dataText!, key: kAKIDataText)
-//        self.encode(encoder: aCoder, field: self.imageURL!, key: kAKIImageURL)
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        return AKIContent(id: self.id!, header: self.header!, dataText: self.dataText!)
+        return AKIContent(id: self.id!, header: self.header!, dataText: self.dataText!, imageURL: self.imageURL!, category: self.category!)
     }
     
     //MARK: Private

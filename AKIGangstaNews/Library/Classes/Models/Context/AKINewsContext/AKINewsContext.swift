@@ -36,15 +36,16 @@ class AKINewsContext: AKIContext {
             guard let dictionary = categoryDictionary as? [String : Any] else { return }
             guard let categoriesDictionary = dictionary[kAKIParserCategory] as? [String : Any] else { return }
             
-            let content = AKIContent()
-            let categoryName = AKICategory(name: categoriesDictionary[kAKIParserTitle] as! String)
             let id = dictionary[kAKIParserID] as? NSNumber
+            let content = AKIContent(id: (id?.stringValue)!,
+                                     header: (dictionary[kAKIParserTitle] as! String?)!,
+                                     dataText: "",
+//                                     imageURL: URL(string: (dictionary[kAKIParserImageThumb] as! String?)!)!,
+                imageURL: URL(string: "http://cdn.arstechnica.net/wp-content/uploads/2016/02/5718897981_10faa45ac3_b-640x624.jpg")!,
+                                     category: AKICategory(name: categoriesDictionary[kAKIParserTitle] as! String))
             
-            content.id = id?.stringValue
-            content.header = dictionary[kAKIParserTitle] as! String?
-            content.imageURL = URL.init(string: (dictionary[kAKIParserImageThumb] as! String?)!)
-            content.category = categoryName
             objects.add(content)
+            break
         }
         
         user?.newsArray?.addObjects(objects)

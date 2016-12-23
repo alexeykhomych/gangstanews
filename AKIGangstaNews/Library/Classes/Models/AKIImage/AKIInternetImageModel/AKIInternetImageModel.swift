@@ -17,20 +17,10 @@ class AKIInternetImageModel: AKILocalImageModel {
             self.downloadTask?.resume()
         }
     }
-    
-//    var downloadTask: URLSessionDataTask? = nil {
-//        willSet(newDownloadTask) {
-//            self.downloadTask?.cancel()
-//            self.downloadTask = newDownloadTask
-//            self.downloadTask?.resume()
-//        }
-//    }
-    
+
     var fileManager: FileManager {
         return FileManager.default
     }
-    
-    var selectedCategory: AKICategory?
     
     var documentsPath: String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -45,7 +35,7 @@ class AKIInternetImageModel: AKILocalImageModel {
     }
     
     var filePath: String {
-        return self.path.appending(self.fileName)
+        return self.path.appending("/\(self.fileName)")
     }
     
     var fileURL: URL {
@@ -62,11 +52,12 @@ class AKIInternetImageModel: AKILocalImageModel {
     
     override func performLoading() {
         if self.cached {
-            let image = self.loadImageAtURL(self.fileURL)
+            let image = self.loadImageAtURL(URL(string: self.filePath)!)
             if image == nil {
                 self.removeCorruptedImage()
             } else {
                 self.finishLoadingImage(image!)
+                return
             }
         }
         
@@ -77,13 +68,12 @@ class AKIInternetImageModel: AKILocalImageModel {
         do {
             try self.fileManager.removeItem(atPath: self.filePath)
         } catch {
-            print("pizdos, kartinka ne ydalilas")
+            
         }
     }
     
     func loadFromInternet() {
-        let url = URL(string: "https://static01.nyt.com/images/2016/12/20/us/20assess-web3/20assess-web3-sfSpan.jpg")
-        self.downloadTask = self.session.downloadTask(with: url!, completionHandler: self.completionHandler())
+        self.downloadTask = self.session.downloadTask(with: self.fileURL, completionHandler: self.completionHandler())
     }
     
     func completionHandler() -> (URL?, URLResponse?, Error?) -> Swift.Void {
@@ -93,14 +83,13 @@ class AKIInternetImageModel: AKILocalImageModel {
                 if error == nil {
                     try self.fileManager.copyItem(atPath: (location?.path)!, toPath: self.filePath)
                     downloadedImage = self.loadImageAtURL(URL.init(string: self.filePath)!)
+                    self.finishLoadingImage(downloadedImage!)
+                } else {
+                    
                 }
-                
-                self.finishLoadingImage(downloadedImage!)
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
-            
         }
     }
-
 }

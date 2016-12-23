@@ -141,20 +141,21 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func logout() {
-        let user = self.model as? AKIUser
-        
-        let context = AKILogoutContext()
-        context.model = user
-        let observer = context.observer()
-        
-        observer.subscribe(onNext: { next in
-            print(next)
-        }, onError: { error in
-            print(error)
-        }, onCompleted: {
-            _ = self.navigationController?.popToRootViewController(animated: true)
-        }, onDisposed: {
-            
-        }).addDisposableTo(self.disposeBag)
+//        let user = self.model as? AKIUser
+//        
+//        let context = AKILogoutContext()
+//        context.model = user
+//        let observer = context.observer()
+//        
+//        observer.subscribe(onNext: { next in
+//            print(next)
+//        }, onError: { error in
+//            print(error)
+//        }, onCompleted: {
+//            _ = self.navigationController?.popToRootViewController(animated: true)
+//        }, onDisposed: {
+//            
+//        }).addDisposableTo(self.disposeBag)
+        self.newsView?.tableView?.reloadData()
     }
 }

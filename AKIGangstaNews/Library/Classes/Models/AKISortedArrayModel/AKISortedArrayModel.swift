@@ -18,17 +18,9 @@ class AKISortedArrayModel: AKIArrayModel {
     }
     
     func sortArrayModel(arrayModel: AKIArrayModel, parameters: String) -> NSArray {
-        let mutableObjects = NSMutableArray()
-        let objects = arrayModel.objects
-        
-        for object in objects {
-            let category = (object as! AKIContent).category
-            if category?.name == parameters {
-                mutableObjects.add(object)
-            }
-        }
-        
-        return mutableObjects
+        return arrayModel.objects.filter({
+            ($0 as? AKIContent)?.category?.name == parameters
+        }) as NSArray
     }
     
 }

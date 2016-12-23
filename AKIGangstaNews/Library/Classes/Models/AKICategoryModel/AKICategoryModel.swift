@@ -19,7 +19,14 @@ class AKICategoryModel: AKIArrayModel {
         return FileManager.default
     }
     
-    var selectedCategory: AKICategory?
+    var selectedCategory: AKICategory? = nil {
+        willSet (newSelectedCategory) {
+            self.synced(lock: self) {
+                self.selectedCategory?.selected = false
+                self.selectedCategory = newSelectedCategory
+            }
+        }
+    }
     
     var documentsPath: String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -44,23 +51,27 @@ class AKICategoryModel: AKIArrayModel {
     //MARK: Public
     
     func addObject(_ category: AKICategory) {
-        let objects = self.objects as! Array<AKICategory>
-        var conteints = false
-        for object in objects {
-            if object.name == category.name {
-                conteints = true
+        self.synced(lock: self) {
+            let objects = self.objects as! Array<AKICategory>
+            var conteints = false
+            for object in objects {
+                if object.name == category.name {
+                    conteints = true
+                }
             }
-        }
-        
-        if !conteints {
-            super.addObject(category)
-            self.save()
+            
+            if !conteints {
+                super.addObject(category)
+                self.save()
+            }
         }
     }
     
     func removeObject(_ category: AKICategory) {
-        super.removeObject(category)
-        self.save()
+        self.synced(lock: self) {
+            super.removeObject(category)
+            self.save()
+        }
     }
     
     func enabledCategories() -> AKICategory? {
@@ -76,8 +87,10 @@ class AKICategoryModel: AKIArrayModel {
     }
     
     override func removeObjectAtIndex(_ index: Int) {
-        super.removeObjectAtIndex(index)
-        self.save()
+        self.synced(lock: self) {
+            super.removeObjectAtIndex(index)
+            self.save()
+        }
     }
     
     override func performLoading() {
@@ -93,8 +106,10 @@ class AKICategoryModel: AKIArrayModel {
     }
     
     public func save() {
-        self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
-        NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
+        self.synced(lock: self) {
+            self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
+            NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
+        }
     }
     
     public func observer() -> Observable<AKICategory> {
@@ -106,15 +121,19 @@ class AKICategoryModel: AKIArrayModel {
     }
     
     func selectedCategory(newCategory: AKICategory) {
-        self.selectedCategory?.selected = false
-        self.selectedCategory = newCategory
+        self.synced(lock: self) {
+            self.selectedCategory?.selected = false
+            self.selectedCategory = newCategory
+        }
     }
     
     //MARK: Private
     
     private func fillCategories() {
-        if self.cached {
-            self.load()
+        self.synced(lock: self) {
+            if self.cached {
+                self.load()
+            }
         }
     }
 }
