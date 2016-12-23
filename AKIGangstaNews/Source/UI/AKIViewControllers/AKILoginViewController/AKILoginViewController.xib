@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,11 +25,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lW1-H6-DLJ">
-                                    <rect key="frame" x="31" y="0.0" width="317" height="406"/>
+                                    <rect key="frame" x="31" y="0.0" width="317" height="350"/>
                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eF6-Nd-aef">
-                                    <rect key="frame" x="31" y="433" width="317" height="30"/>
+                                    <rect key="frame" x="31" y="377" width="317" height="30"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="GYV-vB-h8m"/>
@@ -42,7 +41,7 @@
                                     </connections>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="18" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vo6-sr-yey">
-                                    <rect key="frame" x="31" y="488" width="317" height="30"/>
+                                    <rect key="frame" x="31" y="432" width="317" height="30"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="aDI-Rj-Cps"/>
@@ -53,18 +52,8 @@
                                         <outlet property="delegate" destination="-1" id="bIQ-NL-DXW"/>
                                     </connections>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3i-dM-R7H">
-                                    <rect key="frame" x="82" y="629" width="206" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="AMY-EN-bf3"/>
-                                    </constraints>
-                                    <state key="normal" title="Forgot password?"/>
-                                    <connections>
-                                        <action selector="forgotPasswordButton:" destination="-1" eventType="touchUpInside" id="PTh-gD-Yom"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalCompressionResistancePriority="747" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRb-TU-BYV">
-                                    <rect key="frame" x="198" y="564" width="150" height="30"/>
+                                    <rect key="frame" x="198" y="508" width="150" height="30"/>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <state key="normal" title="Authorization">
@@ -75,7 +64,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jN1-Ld-pyh">
-                                    <rect key="frame" x="31" y="564" width="150" height="30"/>
+                                    <rect key="frame" x="31" y="508" width="150" height="30"/>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="i6T-pb-yB4"/>
@@ -98,14 +87,10 @@
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="lW1-H6-DLJ" firstAttribute="leading" secondItem="G86-5b-fOy" secondAttribute="leading" constant="31" id="08X-X4-F8E"/>
-                                <constraint firstAttribute="trailing" secondItem="S3i-dM-R7H" secondAttribute="trailing" constant="87" id="4O5-f4-spF"/>
-                                <constraint firstItem="S3i-dM-R7H" firstAttribute="top" secondItem="jN1-Ld-pyh" secondAttribute="bottom" constant="35" id="4s2-tX-6qx"/>
                                 <constraint firstItem="Vo6-sr-yey" firstAttribute="top" secondItem="eF6-Nd-aef" secondAttribute="bottom" constant="25" id="8C5-i6-BZq"/>
                                 <constraint firstItem="Vo6-sr-yey" firstAttribute="trailing" secondItem="LRb-TU-BYV" secondAttribute="trailing" id="Dfa-sC-GVp"/>
                                 <constraint firstItem="jN1-Ld-pyh" firstAttribute="top" secondItem="LRb-TU-BYV" secondAttribute="top" id="GCv-4T-odC"/>
-                                <constraint firstItem="S3i-dM-R7H" firstAttribute="leading" secondItem="G86-5b-fOy" secondAttribute="leading" constant="82" id="Neo-G1-u12"/>
                                 <constraint firstItem="lW1-H6-DLJ" firstAttribute="top" secondItem="G86-5b-fOy" secondAttribute="top" id="P9l-qM-Dgi"/>
-                                <constraint firstItem="S3i-dM-R7H" firstAttribute="bottom" secondItem="G86-5b-fOy" secondAttribute="bottomMargin" id="Xob-o3-0qt"/>
                                 <constraint firstItem="eF6-Nd-aef" firstAttribute="top" secondItem="lW1-H6-DLJ" secondAttribute="bottom" constant="27" id="cZu-7t-QyO"/>
                                 <constraint firstItem="jN1-Ld-pyh" firstAttribute="bottom" secondItem="LRb-TU-BYV" secondAttribute="bottom" id="gAx-di-FMS"/>
                                 <constraint firstItem="eF6-Nd-aef" firstAttribute="leading" secondItem="Vo6-sr-yey" secondAttribute="leading" id="gTf-q6-xrc"/>
@@ -142,7 +127,6 @@
             </constraints>
             <connections>
                 <outlet property="authorizationButton" destination="LRb-TU-BYV" id="O1v-nd-48N"/>
-                <outlet property="forgotPasswordButton" destination="S3i-dM-R7H" id="s6r-ic-erC"/>
                 <outlet property="imageView" destination="lW1-H6-DLJ" id="lhO-w7-qz5"/>
                 <outlet property="loginButton" destination="jN1-Ld-pyh" id="ivi-gu-Oit"/>
                 <outlet property="mailField" destination="eF6-Nd-aef" id="tZR-Sd-ueo"/>

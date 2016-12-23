@@ -13,7 +13,7 @@ class AKIDetailNewsView: UIView {
     @IBOutlet var scrollView: UIScrollView?
     @IBOutlet var supportView: UIView?
     
-    @IBOutlet var imageVIew: UIImageView?
+    @IBOutlet var imageView: AKIImageView?
     @IBOutlet var contentField: UITextView?
     
     override func awakeFromNib() {
@@ -21,7 +21,7 @@ class AKIDetailNewsView: UIView {
     }
     
     public func parseContent(content: AKIContent) {
-//        self.imageVIew? = content.image
+        self.imageView?.imageModel = content.imageModel
         self.contentField?.text = content.dataText
     }
     

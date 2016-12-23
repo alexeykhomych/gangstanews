@@ -78,14 +78,12 @@ class AKIInternetImageModel: AKILocalImageModel {
     
     func completionHandler() -> (URL?, URLResponse?, Error?) -> Swift.Void {
         return { (location, response, error) in
-            var downloadedImage: UIImage? = nil
+//            var downloadedImage: UIImage? = nil
             do {
                 if error == nil {
                     try self.fileManager.copyItem(atPath: (location?.path)!, toPath: self.filePath)
-                    downloadedImage = self.loadImageAtURL(URL.init(string: self.filePath)!)
-                    self.finishLoadingImage(downloadedImage!)
-                } else {
-                    
+//                    downloadedImage = self.loadImageAtURL(URL.init(string: self.filePath)!)
+                    self.finishLoadingImage(self.loadImageAtURL(URL.init(string: self.filePath)!)!)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)

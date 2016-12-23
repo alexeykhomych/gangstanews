@@ -24,16 +24,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXx-ha-BMO">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="HoQ-ci-0t3">
-                                    <rect key="frame" x="22" y="0.0" width="331" height="350"/>
-                                </imageView>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEy-sg-dFp" customClass="AKIImageView" customModule="AKIGangstaNews" customModuleProvider="target">
+                                    <rect key="frame" x="8" y="36" width="359" height="311"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstItem="HoQ-ci-0t3" firstAttribute="top" secondItem="xXx-ha-BMO" secondAttribute="top" id="SCg-cy-qfq"/>
-                                <constraint firstItem="HoQ-ci-0t3" firstAttribute="leading" secondItem="xXx-ha-BMO" secondAttribute="leading" constant="22" id="eMC-bT-Ocd"/>
-                                <constraint firstItem="HoQ-ci-0t3" firstAttribute="centerX" secondItem="xXx-ha-BMO" secondAttribute="centerX" id="yn9-ac-FDM"/>
-                            </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCU-Wg-J2C">
                             <rect key="frame" x="22" y="351" width="329" height="316"/>
@@ -67,14 +64,11 @@
             </constraints>
             <connections>
                 <outlet property="contentField" destination="aCU-Wg-J2C" id="F1T-Ag-mjW"/>
-                <outlet property="imageVIew" destination="HoQ-ci-0t3" id="VdG-bJ-2U7"/>
+                <outlet property="imageView" destination="hEy-sg-dFp" id="K77-T2-NE0"/>
                 <outlet property="scrollView" destination="JnU-7I-HKe" id="qix-qv-BrE"/>
                 <outlet property="supportView" destination="xXx-ha-BMO" id="dfR-ql-E4Z"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="logo" width="476" height="350"/>
-    </resources>
 </document>

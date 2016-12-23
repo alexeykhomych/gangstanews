@@ -1,4 +1,4 @@
-//
+
 //  AKIImageView.swift
 //  AKIGangstaNews
 //
@@ -18,8 +18,14 @@ class AKIImageView: UIView {
     
     static var obsr: PublishSubject<AKIImageModel>? = nil
     
-    
-    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var imageView: UIImageView? {
+        willSet(newImageView) {
+            if self.imageView != newImageView {
+                self.imageView = newImageView
+                self.addSubview(newImageView!)
+            }
+        }
+    }
     var imageModel: AKIImageModel? = nil {
         willSet(value) {
             self.imageModel = value
@@ -85,16 +91,3 @@ class AKIImageView: UIView {
         objc_sync_exit(lock)
     }
 }
-
-//class NotificationClass {
-//    static let bus = PublishSubject<AnyObject>()
-//    
-//    static func send(object : AnyObject) {
-//        bus.onNext(object)
-//    }
-//    
-//    static func toObservable() -> Observable<AnyObject> {
-//        return bus
-//    }
-//    
-//}

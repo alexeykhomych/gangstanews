@@ -40,12 +40,10 @@ class AKINewsContext: AKIContext {
             let content = AKIContent(id: (id?.stringValue)!,
                                      header: (dictionary[kAKIParserTitle] as! String?)!,
                                      dataText: "",
-//                                     imageURL: URL(string: (dictionary[kAKIParserImageThumb] as! String?)!)!,
-                imageURL: URL(string: "http://cdn.arstechnica.net/wp-content/uploads/2016/02/5718897981_10faa45ac3_b-640x624.jpg")!,
+                                     imageURL: URL(string: (dictionary[kAKIParserImageThumb] as! String?)!)!,
                                      category: AKICategory(name: categoriesDictionary[kAKIParserTitle] as! String))
             
             objects.add(content)
-            break
         }
         
         user?.newsArray?.addObjects(objects)
