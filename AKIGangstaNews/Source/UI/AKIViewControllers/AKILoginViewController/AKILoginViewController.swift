@@ -57,22 +57,20 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     //MARK: Private methods
     
     private func loadContext() {
-        let user = self.model as! AKIUser?
-    
         let context = AKILoginContext()
-        context.model = user
-        let observer = context.observer()
+        context.model = self.model as! AKIUser?
+        self.setObserver(context, cls: AKILoginContext.self)
         
-        observer.subscribe(onNext: { next in
-            print(next)
-        }, onError: { error in
-            print(error)
-        }, onCompleted: {
-            self.modelDidLoad()
-            
-        }, onDisposed: {
-            
-        }).addDisposableTo(self.disposeBag)
+//        observer.subscribe(onNext: { next in
+//            print(next)
+//        }, onError: { error in
+//            print(error)
+//        }, onCompleted: {
+//            self.modelDidLoad()
+//            
+//        }, onDisposed: {
+//            
+//        }).addDisposableTo(self.disposeBag)
     }
     
     private func loadUser() {

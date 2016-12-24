@@ -83,25 +83,30 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
 
     private func loadContext() {
         let user = self.model
-        
         let context = AKINewsContext()
         context.model = user
-        let observer = context.observer()
+        self.setObserver(context, cls: AKINewsContext.self)
         
-        observer.subscribe(onNext: { next in
-            print(next)
-        }, onError: { error in
-            print(error)
-        }, onCompleted: {
-            self.modelDidLoad()
-            
-        }, onDisposed: {
-            
-        }).addDisposableTo(self.disposeBag)
+//        let observer = context.observer()
+//        
+//        observer.subscribe(onNext: { next in
+//            print(next)
+//            print("AKINewsViewController - loadContext next")
+//        }, onError: { error in
+//            print(error)
+//            print("AKINewsViewController - loadContext error")
+//        }, onCompleted: {
+//            self.modelDidLoad()
+//            
+//        }, onDisposed: {
+//            print("AKINewsViewController - loadContext disposed")
+//        }).addDisposableTo(self.disposeBag)
     }
     
     internal override func modelDidLoad() {
-        self.newsView?.tableView?.reloadData()
+        DispatchQueue.main.async {
+            self.newsView?.tableView?.reloadData()
+        }
     }
     
     private func filterNewsModel() {
@@ -120,7 +125,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         let settingsButton = UIBarButtonItem.init(title: kAKICategories,
                                                   style: UIBarButtonItemStyle.plain,
                                                   target: self,
-                                                  action: #selector(selectCategories))
+                                                  action: #selector(selectCategory))
         
         self.navigationItem.setLeftBarButton(settingsButton, animated: true)
     }
@@ -134,13 +139,14 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         self.navigationItem.setRightBarButton(logoutButton, animated: true)
     }
     
-    func selectCategories() {
+    func selectCategory() {
         let controller = AKICategoriesViewController()
         controller.model = self.model
         self.pushViewController(controller)
     }
     
     func logout() {
+        self.newsView?.tableView?.reloadData()
 //        let user = self.model as? AKIUser
 //        
 //        let context = AKILogoutContext()
@@ -156,6 +162,5 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
 //        }, onDisposed: {
 //            
 //        }).addDisposableTo(self.disposeBag)
-        self.newsView?.tableView?.reloadData()
     }
 }

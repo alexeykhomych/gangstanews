@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 
 import Alamofire
+    
+let kAKIArchivedCategoryModel = "AKIArchivedCategoryModel"
 
 class AKINewsContext: AKIContext {
     
@@ -24,6 +26,43 @@ class AKINewsContext: AKIContext {
     
     override var url: String {
         return "\(kAKIAPIURL)\(kAKINews)"
+    }
+    
+    var fileManager: FileManager {
+        return FileManager.default
+    }
+    
+    var documentsPath: String {
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    }
+    
+    var filePath: String {
+        return self.path.appending("/\(kAKIArchivedCategoryModel)")
+    }
+    
+    var path: String {
+        return self.documentsPath
+    }
+    
+    var cached: Bool {
+        return self.fileManager.fileExists(atPath: self.filePath)
+    }
+    
+    override func switchResponse(_ response: Alamofire.DataResponse<Any>) {
+        switch(response.result) {
+        case .success(_):
+            if let json = response.result.value as? NSDictionary {
+                self.parseJSON(json)
+                self.save()
+                self.parseCompleted()
+            }
+            break
+            
+        case .failure(_):
+            self.load()
+            self.parseCompleted()
+            break
+        }
     }
     
     override func parseJSON(_ json: NSDictionary) {
@@ -47,5 +86,37 @@ class AKINewsContext: AKIContext {
         }
         
         user?.newsArray?.addObjects(objects)
+    }
+    
+    func load() {
+        var model: Any?
+        
+        if self.cached {
+            model = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath)
+        } else {
+            //error
+            return
+        }
+        
+        let user = self.model as? AKIUser
+        user?.newsArray?.addObjects((model as! NSArray?)!)
+    }
+    
+    func save() {
+        self.removeCachedModel()
+        self.fileManager.createFile(atPath: self.filePath, contents: nil, attributes: nil)
+        NSKeyedArchiver.archiveRootObject(self.archivingModel(), toFile: self.filePath)
+    }
+    
+    func archivingModel() -> NSArray {
+        return ((self.model as? AKIUser)!.newsArray?.objects)!
+    }
+    
+    func removeCachedModel() {
+        do {
+            try self.fileManager.removeItem(atPath: self.filePath)
+        } catch {
+            
+        }
     }
 }

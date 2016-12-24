@@ -13,8 +13,6 @@ import RxCocoa
 
 class AKICategoryModel: AKIArrayModel {
     
-    private var categoryStatusArray: Array<Any>
-    
     var fileManager: FileManager {
         return FileManager.default
     }
@@ -42,11 +40,10 @@ class AKICategoryModel: AKIArrayModel {
     
     //MARK: Initializations and Deallocations
     
-    override init() {
-        self.categoryStatusArray = Array()
-        super.init()        
-        self.fillCategories()
-    }
+//    override init() {
+//        super.init()
+//        self.fillCategories()
+//    }
     
     //MARK: Public
     
@@ -62,7 +59,7 @@ class AKICategoryModel: AKIArrayModel {
             
             if !conteints {
                 super.addObject(category)
-                self.save()
+//                self.save()
             }
         }
     }
@@ -70,7 +67,7 @@ class AKICategoryModel: AKIArrayModel {
     func removeObject(_ category: AKICategory) {
         self.synced(lock: self) {
             super.removeObject(category)
-            self.save()
+//            self.save()
         }
     }
     
@@ -89,36 +86,30 @@ class AKICategoryModel: AKIArrayModel {
     override func removeObjectAtIndex(_ index: Int) {
         self.synced(lock: self) {
             super.removeObjectAtIndex(index)
-            self.save()
+//            self.save()
         }
     }
     
-    override func performLoading() {
-        var model: Any?
-        
-        if self.cached {
-            model = NSKeyedUnarchiver.unarchiveObject(withFile: self.path)
-        } else {
-            model = self.fillCategories()
-        }
-        
-        self.addObjects(model as! NSArray)
-    }
-    
-    public func save() {
-        self.synced(lock: self) {
-            self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
-            NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
-        }
-    }
-    
-    public func observer() -> Observable<AKICategory> {
-        return Observable.create { observer in
-
-            
-            return Disposables.create()
-        }
-    }
+//    override func performLoading() {
+//        var model: Any?
+//        
+//        if self.cached {
+//            model = NSKeyedUnarchiver.unarchiveObject(withFile: self.path)
+//        } else {
+//            model = self.fillCategories()
+//        }
+//        
+//        self.addObjects(model as! NSArray)
+//        print("\(self) load")
+//    }
+//    
+//    public func save() {
+//        self.synced(lock: self) {
+//            self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
+//            NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
+//            print("\(self) save")
+//        }
+//    }
     
     func selectedCategory(newCategory: AKICategory) {
         self.synced(lock: self) {
@@ -129,11 +120,11 @@ class AKICategoryModel: AKIArrayModel {
     
     //MARK: Private
     
-    private func fillCategories() {
-        self.synced(lock: self) {
-            if self.cached {
-                self.load()
-            }
-        }
-    }
+//    private func fillCategories() {
+//        self.synced(lock: self) {
+//            if self.cached {
+//                self.load()
+//            }
+//        }
+//    }
 }

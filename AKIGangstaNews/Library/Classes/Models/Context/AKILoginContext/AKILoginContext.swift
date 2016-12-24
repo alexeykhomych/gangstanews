@@ -22,7 +22,7 @@ class AKILoginContext: AKIContext {
         ]
     }
     
-    override var method: HTTPMethod? {
+    override var httpMethod: HTTPMethod? {
         return .post
     }
     

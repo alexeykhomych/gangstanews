@@ -13,9 +13,15 @@ import RxCocoa
 
 import Alamofire
 
+let kAKIArchivedContentModel = "AKIArchivedContentModel"
+
 class AKIDetailNewsContext: AKINewsContext {
     
     var id: String?
+    
+    override var filePath: String {
+        return self.path.appending("/\(kAKIArchivedContentModel)\(self.id)")
+    }
     
     override var url: String {
         return "\(kAKIAPIURL)\(kAKIDetailNewsRequest)\(self.id!)"
@@ -24,19 +30,42 @@ class AKIDetailNewsContext: AKINewsContext {
     override func parseJSON(_ json: NSDictionary) {
         guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
         guard let dictionary = data[0] as? [String: Any] else { return }
-        
-        let user = self.model as? AKIUser
-        let newsArray = user?.newsArray?.objects
-        var content: AKIContent?
-        
-        for news in newsArray! as! Array<AKIContent> {
+
+        let content = self.selectedContent(((self.model as? AKIUser)?.newsArray?.objects)!)
+        content?.dataText = dictionary[kAKIParserDesc] as! String?
+    }
+    
+    private func selectedContent(_ newsArray: NSArray) -> AKIContent? {
+        for news in newsArray as! Array<AKIContent> {
             if news.id == self.id {
-                content = news
-                
-                break
+                return news
             }
         }
         
-        content?.dataText = dictionary[kAKIParserDesc] as! String?
+        return nil
+    }
+    
+    override func load() {
+        var model: Any?
+        
+        if self.cached {
+            model = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath)
+        } else {
+            self.parseError()
+            return
+        }
+        
+        let content = self.selectedContent(((self.model as? AKIUser)?.newsArray?.objects)!)
+        content?.dataText = model as! String
+    }
+    
+    override func save() {
+        self.removeCachedModel()
+        self.fileManager.createFile(atPath: self.filePath, contents: nil, attributes: nil)
+        NSKeyedArchiver.archiveRootObject(self.archivingContentModel(), toFile: self.filePath)
+        }
+    
+    func archivingContentModel() -> String {
+        return self.selectedContent(((self.model as? AKIUser)?.newsArray?.objects)!)!.dataText!
     }
 }

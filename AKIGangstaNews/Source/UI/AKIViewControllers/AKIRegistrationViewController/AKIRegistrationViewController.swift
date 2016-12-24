@@ -43,18 +43,18 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
         self.loadUser()        
         
         context.model = self.model
-        let observer = context.observer()
+        self.setObserver(context, cls: AKISignUpContext.self)
         
-        observer.subscribe(onNext: { next in
-            print(next)
-        }, onError: { error in
-            print(error)
-        }, onCompleted: {
-            self.modelDidLoad()
-            
-        }, onDisposed: {
-            
-        }).addDisposableTo(self.disposeBag)
+//        observer.subscribe(onNext: { next in
+//            print(next)
+//        }, onError: { error in
+//            print(error)
+//        }, onCompleted: {
+//            self.modelDidLoad()
+//            
+//        }, onDisposed: {
+//            
+//        }).addDisposableTo(self.disposeBag)
     }
     
     private func loadUser() {

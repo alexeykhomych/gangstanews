@@ -12,7 +12,7 @@ import UIKit
     //Update your UI here
 //}
 
-let kAKIAPIURL = "http://52f03058.ngrok.io/"
+let kAKIAPIURL = "http://news-api.hol.es/"
 
 let kAKIAuth = "auth"
 let kAKILogin = "login"
@@ -62,3 +62,23 @@ let kAKIImageURL: String = "kAKIImageURL"
 class AKIConstants {
     
 }
+
+/*
+ 
+ static var obsr: PublishSubject<AKIImageModel>? = nil
+ 
+ AKIImageView.obsr = PublishSubject<AKIImageModel>()
+ AKIImageView.obsr?.subscribe(onNext: { model in
+ imageModel = model
+ model.load()
+ }, onError: { error in
+ print(error)
+ }, onCompleted: {
+ self.modelDidLoad(imageModel!)
+ }, onDisposed: {
+ 
+ }).addDisposableTo(self.disposeBag)
+ 
+ AKIImageView.obsr?.onNext(imageModel!)
+ 
+ */

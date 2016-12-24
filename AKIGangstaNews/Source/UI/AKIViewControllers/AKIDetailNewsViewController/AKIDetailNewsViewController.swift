@@ -33,17 +33,17 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController {
         let context = AKIDetailNewsContext()
         context.model = self.model as! AKIUser?
         context.id = self.content?.id
-        let observer = context.observer()
+        self.setObserver(context, cls: AKIDetailNewsContext.self)
         
-        observer.subscribe(onNext: { next in
-            print(next)
-        }, onError: { error in
-            print(error)
-        }, onCompleted: {
-            self.modelDidLoad()
-        }, onDisposed: {
-            
-        }).addDisposableTo(self.disposeBag)
+//        observer.subscribe(onNext: { next in
+//            print(next)
+//        }, onError: { error in
+//            print(error)
+//        }, onCompleted: {
+//            self.modelDidLoad()
+//        }, onDisposed: {
+//            
+//        }).addDisposableTo(self.disposeBag)
     }
     
     override func modelDidLoad() {

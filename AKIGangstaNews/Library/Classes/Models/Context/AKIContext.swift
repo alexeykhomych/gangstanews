@@ -19,9 +19,10 @@ public enum AuthorizationType: String {
 }
 
 class AKIContext {
+    
     var model: AnyObject?
     
-    var method: HTTPMethod? {
+    var httpMethod: HTTPMethod? {
         return .get
     }
     
@@ -41,37 +42,54 @@ class AKIContext {
         return JSONEncoding.default
     }
     
-    func observer() -> Observable<(AKIContext)> {
-        return Observable<AKIContext>.create { (observer) -> Disposable in
-            let requestReference = Alamofire.request(self.url!,
-                                                     method: self.method!,
-                                                     parameters: self.parameters,
-                                                     encoding: self.encoding,
-                                                     headers: self.headers()).responseJSON
-                {
-                    response in
-                    
-                    switch(response.result) {
-                    case .success(_):
-                        if let json = response.result.value as? NSDictionary {
-                            self.parseJSON(json)
-                            observer.onCompleted()
-                        }
-                        
-                        break
-                        
-                    case .failure(_):
-                        //                    observer.onError()
-                        
-                        break
-                    }
-            }
-            
-            return Disposables.create(with: { requestReference.cancel() })
+    func execute() {
+        DispatchQueue.global().async {
+            self.request()
         }
     }
     
+    func performExecute() {
+        DispatchQueue.main.async {
+            self.request()
+        }
+    }
+    
+    func request() {
+        _ = Alamofire.request(self.url!,
+                              method: self.httpMethod!,
+                              parameters: self.parameters,
+                              encoding: self.encoding,
+                              headers: self.headers()).responseJSON
+            {
+                response in
+                self.switchResponse(response)
+        }
+    }
+    
+    func switchResponse(_ response: Alamofire.DataResponse<Any>) {
+        switch(response.result) {
+            case .success(_):
+                if let json = response.result.value as? NSDictionary {
+                    self.parseJSON(json)
+                    self.parseCompleted()
+                }
+                break
+                
+            case .failure(_):
+                self.parseError()
+                break
+            }
+    }
+    
     func parseJSON(_ json: NSDictionary) {
-
+        
+    }
+    
+    func parseCompleted() {
+        AKIGangstaNewsViewController.observer?.onCompleted()
+    }
+    
+    func parseError() {
+        AKIGangstaNewsViewController.observer?.onError(Error.self as! (Error))
     }
 }

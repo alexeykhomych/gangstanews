@@ -35,6 +35,5 @@ class AKICategoriesContext: AKIContext {
             guard let dictionary = category as? [String: Any] else { return }
             categories?.addObject(AKICategory(name: dictionary[kAKIParserTitle]! as! String, selected: true))
         }
-
     }
 }

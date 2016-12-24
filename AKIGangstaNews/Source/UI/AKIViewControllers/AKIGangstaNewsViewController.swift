@@ -68,4 +68,27 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         objc_sync_exit(lock)
     }
     
+    var test: PublishSubject<AKINewsContext>? {
+        return PublishSubject<AKINewsContext>()
+    }
+    
+    static var observer: PublishSubject<AKIContext>?
+    func setObserver(_ context: AKIContext, cls: AnyClass) {
+        AKIGangstaNewsViewController.observer = PublishSubject<AKIContext>()
+        AKIGangstaNewsViewController.observer?.subscribe(onNext: { context in
+            context.execute()
+        }, onError: { error in
+            self.loadCachedModel()
+        }, onCompleted: {
+            self.modelDidLoad()
+        }, onDisposed: {
+            
+        }).addDisposableTo(self.disposeBag)
+        
+        AKIGangstaNewsViewController.observer?.onNext(context)
+    }
+    
+    func loadCachedModel() {
+        
+    }
 }

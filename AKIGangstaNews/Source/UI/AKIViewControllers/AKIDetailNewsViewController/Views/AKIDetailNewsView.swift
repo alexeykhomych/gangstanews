@@ -22,13 +22,16 @@ class AKIDetailNewsView: UIView {
     
     public func parseContent(content: AKIContent) {
         self.imageView?.imageModel = content.imageModel
-        self.contentField?.text = content.dataText
+        
+        let contentField = self.contentField
+        
+        do {
+            let data = content.dataText?.data(using: String.Encoding.unicode, allowLossyConversion: true)
+            contentField?.attributedText = try NSAttributedString(data: data!,
+                                                                  options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType],
+                                                                  documentAttributes: nil)
+        } catch {
+            print(error)
+        }
     }
-    
-    func updateContentFieldSize() {
-        
-        
-        
-    }
-
 }

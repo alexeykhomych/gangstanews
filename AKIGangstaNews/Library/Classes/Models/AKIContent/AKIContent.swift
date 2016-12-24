@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKIContent: NSCopying, NSCoding {
+class AKIContent: NSObject, NSCopying, NSCoding {
     
     public var id: String?
     public var header: String?
@@ -31,19 +31,22 @@ class AKIContent: NSCopying, NSCoding {
         self.imageURL = imageURL
     }
     
-    public required init?(coder aDecoder: NSCoder){
+    required init?(coder aDecoder: NSCoder){
+        super.init()
         self.id = self.decode(decoder: aDecoder, key: kAKIID)
         self.header = self.decode(decoder: aDecoder, key: kAKIHeader)
         self.dataText = self.decode(decoder: aDecoder, key: kAKIDataText)
+        self.imageURL = URL(string: self.decode(decoder: aDecoder, key: kAKIImageURL))
     }
     
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         self.encode(encoder: aCoder, field: self.id!, key: kAKIID)
         self.encode(encoder: aCoder, field: self.header!, key: kAKIHeader)
         self.encode(encoder: aCoder, field: self.dataText!, key: kAKIDataText)
+        self.encode(encoder: aCoder, field: self.imageURL!.absoluteString, key: kAKIImageURL)
     }
     
-    public func copy(with zone: NSZone? = nil) -> Any {
+    func copy(with zone: NSZone? = nil) -> Any {
         return AKIContent(id: self.id!, header: self.header!, dataText: self.dataText!, imageURL: self.imageURL!, category: self.category!)
     }
     

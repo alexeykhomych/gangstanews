@@ -14,8 +14,6 @@ import RxCocoa
 class AKIImageView: UIView {
     
     let disposeBag = DisposeBag()
-    
-    
     static var obsr: PublishSubject<AKIImageModel>? = nil
     
     @IBOutlet var imageView: UIImageView? {
@@ -26,10 +24,10 @@ class AKIImageView: UIView {
             }
         }
     }
+    
     var imageModel: AKIImageModel? = nil {
         willSet(value) {
             self.imageModel = value
-//            self.imageModel?.load()
             self.loadImageModel()
         }
     }
