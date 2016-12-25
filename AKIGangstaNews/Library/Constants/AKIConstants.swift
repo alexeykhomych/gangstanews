@@ -42,6 +42,7 @@ let kAKIParserData = "data"
 let kAKIParserCategory = "category"
 let kAKIParserTitle = "title"
 let kAKIParserID = "id"
+let kAKIParserImage = "image"
 let kAKIParserImageThumb = "image_thumb"
 let kAKIParserAuthKey = "auth_key"
 
@@ -62,23 +63,3 @@ let kAKIImageURL: String = "kAKIImageURL"
 class AKIConstants {
     
 }
-
-/*
- 
- static var obsr: PublishSubject<AKIImageModel>? = nil
- 
- AKIImageView.obsr = PublishSubject<AKIImageModel>()
- AKIImageView.obsr?.subscribe(onNext: { model in
- imageModel = model
- model.load()
- }, onError: { error in
- print(error)
- }, onCompleted: {
- self.modelDidLoad(imageModel!)
- }, onDisposed: {
- 
- }).addDisposableTo(self.disposeBag)
- 
- AKIImageView.obsr?.onNext(imageModel!)
- 
- */

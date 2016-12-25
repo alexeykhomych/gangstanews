@@ -14,6 +14,8 @@ import RxKeyboard
 
 class AKIGangstaNewsViewController: AKIAbstractViewController {
     
+    static var observer: PublishSubject<AKIContext>?
+    
     let disposeBag = DisposeBag()
     var context: AKIContext?
     
@@ -26,7 +28,7 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     }
     
     func modelDidLoad() {
-        print("modelDidLoad")
+        
     }
     
     func keyboardObserver(_ scrollView: UIScrollView) {
@@ -58,8 +60,10 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     }
     
     func pushViewController(_ viewController: AKIGangstaNewsViewController, model: AKIUser) {
-        viewController.model = model
-        self.navigationController?.pushViewController(viewController, animated: true)
+        DispatchQueue.main.async {
+            viewController.model = model
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     func synced(lock: AnyObject, closure: () -> ()) {
@@ -67,18 +71,13 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         closure()
         objc_sync_exit(lock)
     }
-    
-    var test: PublishSubject<AKINewsContext>? {
-        return PublishSubject<AKINewsContext>()
-    }
-    
-    static var observer: PublishSubject<AKIContext>?
-    func setObserver(_ context: AKIContext, cls: AnyClass) {
+
+    func setObserver(_ context: AKIContext) {
         AKIGangstaNewsViewController.observer = PublishSubject<AKIContext>()
         AKIGangstaNewsViewController.observer?.subscribe(onNext: { context in
             context.execute()
         }, onError: { error in
-            self.loadCachedModel()
+            self.showErrorAllert()
         }, onCompleted: {
             self.modelDidLoad()
         }, onDisposed: {
@@ -88,7 +87,9 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         AKIGangstaNewsViewController.observer?.onNext(context)
     }
     
-    func loadCachedModel() {
-        
+    func showErrorAllert() {
+        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

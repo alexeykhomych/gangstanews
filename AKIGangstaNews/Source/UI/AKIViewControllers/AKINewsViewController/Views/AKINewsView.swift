@@ -8,8 +8,11 @@
 
 import UIKit
 
-class AKINewsView: UIView {
+class AKINewsView: AKIView {
 
     @IBOutlet var tableView: UITableView?
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

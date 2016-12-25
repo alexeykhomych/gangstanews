@@ -85,26 +85,13 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         let user = self.model
         let context = AKINewsContext()
         context.model = user
-        self.setObserver(context, cls: AKINewsContext.self)
-        
-//        let observer = context.observer()
-//        
-//        observer.subscribe(onNext: { next in
-//            print(next)
-//            print("AKINewsViewController - loadContext next")
-//        }, onError: { error in
-//            print(error)
-//            print("AKINewsViewController - loadContext error")
-//        }, onCompleted: {
-//            self.modelDidLoad()
-//            
-//        }, onDisposed: {
-//            print("AKINewsViewController - loadContext disposed")
-//        }).addDisposableTo(self.disposeBag)
+        self.setObserver(context)
     }
     
     internal override func modelDidLoad() {
         DispatchQueue.main.async {
+            AKISpinnerViewContainer.observer?.onCompleted()
+            self.newsView?.spinnerViewVisible = false
             self.newsView?.tableView?.reloadData()
         }
     }
@@ -147,20 +134,12 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     
     func logout() {
         self.newsView?.tableView?.reloadData()
-//        let user = self.model as? AKIUser
-//        
+        self.showErrorAllert()
+        
+//        let user = self.model as! AKIUser?
 //        let context = AKILogoutContext()
 //        context.model = user
-//        let observer = context.observer()
-//        
-//        observer.subscribe(onNext: { next in
-//            print(next)
-//        }, onError: { error in
-//            print(error)
-//        }, onCompleted: {
-//            _ = self.navigationController?.popToRootViewController(animated: true)
-//        }, onDisposed: {
-//            
-//        }).addDisposableTo(self.disposeBag)
+//        self.setObserver(context)
+//        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)r
     }
 }

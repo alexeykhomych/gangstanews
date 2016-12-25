@@ -60,7 +60,7 @@ class AKINewsContext: AKIContext {
             
         case .failure(_):
             self.load()
-            self.parseCompleted()
+            self.parseError()
             break
         }
     }
@@ -79,7 +79,7 @@ class AKINewsContext: AKIContext {
             let content = AKIContent(id: (id?.stringValue)!,
                                      header: (dictionary[kAKIParserTitle] as! String?)!,
                                      dataText: "",
-                                     imageURL: URL(string: (dictionary[kAKIParserImageThumb] as! String?)!)!,
+                                     imageURL: URL(string: (dictionary[kAKIParserImage] as! String?)!)!,
                                      category: AKICategory(name: categoriesDictionary[kAKIParserTitle] as! String))
             
             objects.add(content)
@@ -94,7 +94,7 @@ class AKINewsContext: AKIContext {
         if self.cached {
             model = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath)
         } else {
-            //error
+            self.parseError()
             return
         }
         

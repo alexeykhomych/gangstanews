@@ -23,7 +23,7 @@ class AKILoginViewController: AKIGangstaNewsViewController {
         super.viewDidLoad()
         self.keyboardObserver((self.loginView?.scrollView)!)
         
-        self.loadUser()
+        self.loadAuthKey()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,52 +50,41 @@ class AKILoginViewController: AKIGangstaNewsViewController {
         self.navigationController?.pushViewController(AKIRegistrationViewController(), animated: true)
     }
     
-    @IBAction func forgotPasswordButton(_ sender: UIButton) {
-        
-    }
-    
     //MARK: Private methods
     
     private func loadContext() {
+        self.loadUser()
         let context = AKILoginContext()
         context.model = self.model as! AKIUser?
-        self.setObserver(context, cls: AKILoginContext.self)
-        
-//        observer.subscribe(onNext: { next in
-//            print(next)
-//        }, onError: { error in
-//            print(error)
-//        }, onCompleted: {
-//            self.modelDidLoad()
-//            
-//        }, onDisposed: {
-//            
-//        }).addDisposableTo(self.disposeBag)
+        self.setObserver(context)
     }
     
-    private func loadUser() {
+    private func loadAuthKey() {
         DispatchQueue.global().async {
             let user = AKIUser()
             self.model = user
             user.authKey = self.loadDataFromDisk(key: kAKIParserAuthKey)! as? String
             
             if user.authKey == nil {
-                let loginView = self.loginView
-                user.login = loginView?.mailField?.text
-                user.password = loginView?.passwordField?.text
+                self.loadUser()
             } else {
                 self.pushViewController(AKINewsViewController(), model: user)
             }
         }
-        
+    }
+    
+    private func loadUser() {
+        let user = AKIUser()
+        self.model = user
+        let loginView = self.loginView
+        user.email = loginView?.mailField?.text
+        user.password = loginView?.passwordField?.text
     }
     
     override func modelDidLoad() {
-        DispatchQueue.global().async {
-            let user = self.model as! AKIUser?
-            self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
-            self.pushViewController(AKINewsViewController(), model: user!)
-        }
+        let user = self.model as! AKIUser?
+        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
+        self.pushViewController(AKINewsViewController(), model: user!)
     }
     
     

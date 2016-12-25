@@ -57,18 +57,7 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     private func loadContext() {
         let context = AKICategoriesContext()
         context.model = self.model
-        self.setObserver(context, cls: AKICategoriesContext.self)
-        
-//        observer.subscribe(onNext: { next in
-//            print(next)
-//        }, onError: { error in
-//            print(error)
-//        }, onCompleted: {
-//            self.modelDidLoad()
-//            
-//        }, onDisposed: {
-//            
-//        }).addDisposableTo(self.disposeBag)
+        self.setObserver(context)
     }
 
     internal override func modelDidLoad() {
