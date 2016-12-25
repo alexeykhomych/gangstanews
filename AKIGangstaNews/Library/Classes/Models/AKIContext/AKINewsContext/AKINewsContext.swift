@@ -17,7 +17,7 @@ let kAKIArchivedCategoryModel = "AKIArchivedCategoryModel"
 
 class AKINewsContext: AKIContext {
     
-    override func headers() -> HTTPHeaders {
+    override var headers: HTTPHeaders {
         return [
             kAKIContentType: kAKIApplicationJSON,
             kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"

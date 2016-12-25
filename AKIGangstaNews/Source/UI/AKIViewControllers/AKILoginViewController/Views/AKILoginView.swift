@@ -8,14 +8,13 @@
 
 import UIKit
 
-class AKILoginView: UIView {
+class AKILoginView: AKIView {
     @IBOutlet var scrollView: UIScrollView?
-    @IBOutlet var supportView: UIView?
     
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var mailField: UITextField?
     @IBOutlet var passwordField: UITextField?
-    @IBOutlet var authorizationButton: UIButton?
+    @IBOutlet var registrationButton: UIButton?
     @IBOutlet var loginButton: UIButton?
     @IBOutlet var tapRecognizer: UITapGestureRecognizer?
     

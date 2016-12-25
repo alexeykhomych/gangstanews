@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKICategoriesView: UIView {
+class AKICategoriesView: AKISpinnerViewContainer {
 
     @IBOutlet var logoImage: UIImageView?
     @IBOutlet var tableView: UITableView?

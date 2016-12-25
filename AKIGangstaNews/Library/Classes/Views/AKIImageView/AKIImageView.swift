@@ -11,14 +11,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AKIImageView: UIView {
+class AKIImageView: AKISpinnerViewContainer {
     
-    let disposeBag = DisposeBag()
     static var obsr: PublishSubject<AKIImageModel>? = nil
     
     @IBOutlet var imageView: UIImageView? {
         willSet(newImageView) {
             if self.imageView != newImageView {
+                self.imageView?.removeFromSuperview()
                 self.imageView = newImageView
                 self.addSubview(newImageView!)
             }
@@ -28,6 +28,7 @@ class AKIImageView: UIView {
     var imageModel: AKIImageModel? = nil {
         willSet(value) {
             self.imageModel = value
+            self.model = value
             self.loadImageModel()
         }
     }
@@ -63,6 +64,8 @@ class AKIImageView: UIView {
     func modelDidLoad(_ model: AKIImageModel) {
         DispatchQueue.main.async {
             self.imageView?.image = model.image
+            print("modelDidLoad - imageview")
+            super.modelDidLoad()
         }
     }
     

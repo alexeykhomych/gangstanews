@@ -15,7 +15,7 @@ import Alamofire
 
 class AKISignUpContext: AKIContext {
     
-    override func headers() -> HTTPHeaders {
+    override var headers: HTTPHeaders? {
         return [
             kAKIContentType: kAKIApplicationJSON
         ]

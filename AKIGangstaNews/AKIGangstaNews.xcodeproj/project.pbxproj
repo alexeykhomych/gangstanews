@@ -51,6 +51,7 @@
 		843DB0191DFF21D6001CFD54 /* AKICategoriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DB0171DFF21D6001CFD54 /* AKICategoriesViewCell.swift */; };
 		843DB01A1DFF21D6001CFD54 /* AKICategoriesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */; };
 		843DB01C1DFF230C001CFD54 /* AKICategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DB01B1DFF230C001CFD54 /* AKICategoriesView.swift */; };
+		8443E7651E10366F00BC99B4 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E7641E10366F00BC99B4 /* UINib.swift */; };
 		848CECC61DEEF8CE008209B2 /* AKIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CECC51DEEF8CE008209B2 /* AKIUser.swift */; };
 		84AA53661E0041A50022CC72 /* AKICategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA53651E0041A50022CC72 /* AKICategory.swift */; };
 		84AA53691E0165790022CC72 /* AKISortedArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA53681E0165790022CC72 /* AKISortedArrayModel.swift */; };
@@ -67,7 +68,7 @@
 		840DB87D1E0ECFF8000F84F3 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		840DB8801E0EEA95000F84F3 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		840DB8841E0EF550000F84F3 /* AKICategoriesContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesContext.swift; sourceTree = "<group>"; };
-		840DB8851E0EF550000F84F3 /* AKIContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKIContext.swift; path = AKIContext/AKIContext.swift; sourceTree = "<group>"; };
+		840DB8851E0EF550000F84F3 /* AKIContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIContext.swift; sourceTree = "<group>"; };
 		840DB8871E0EF550000F84F3 /* AKILoginContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKILoginContext.swift; sourceTree = "<group>"; };
 		840DB8891E0EF550000F84F3 /* AKILogoutContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKILogoutContext.swift; sourceTree = "<group>"; };
 		840DB88C1E0EF550000F84F3 /* AKIDetailNewsContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIDetailNewsContext.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		843DB0171DFF21D6001CFD54 /* AKICategoriesViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesViewCell.swift; sourceTree = "<group>"; };
 		843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKICategoriesViewCell.xib; sourceTree = "<group>"; };
 		843DB01B1DFF230C001CFD54 /* AKICategoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesView.swift; sourceTree = "<group>"; };
+		8443E7641E10366F00BC99B4 /* UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
 		848CECC51DEEF8CE008209B2 /* AKIUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIUser.swift; sourceTree = "<group>"; };
 		84AA53651E0041A50022CC72 /* AKICategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategory.swift; sourceTree = "<group>"; };
 		84AA53681E0165790022CC72 /* AKISortedArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKISortedArrayModel.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				840DB8881E0EF550000F84F3 /* AKILogoutContext */,
 				840DB88A1E0EF550000F84F3 /* AKINewsContext */,
 				840DB88E1E0EF550000F84F3 /* AKISignUpContext */,
+				840DB8851E0EF550000F84F3 /* AKIContext.swift */,
 			);
 			path = AKIContext;
 			sourceTree = "<group>";
@@ -369,7 +372,6 @@
 				843DB00D1DFB2FFF001CFD54 /* AKICategoryModel */,
 				840F8BAC1DF0C1510045D9C3 /* AKIContent */,
 				840DB8821E0EF550000F84F3 /* AKIContext */,
-				840DB8851E0EF550000F84F3 /* AKIContext.swift */,
 				848CECC41DEEF8B2008209B2 /* AKIUser */,
 				843D97541DE4AB9D004E06D7 /* AKIImage */,
 				843D97551DE4AB9D004E06D7 /* AKIModel */,
@@ -435,6 +437,7 @@
 		843D975B1DE4AB9D004E06D7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8443E7631E10366F00BC99B4 /* UINib+AKIExtension */,
 				840DB8A31E0F1910000F84F3 /* Array+AKIExtension */,
 				840DB8A01E0F171E000F84F3 /* Bundle+AKIExtension */,
 				840DB87F1E0EEA7C000F84F3 /* String+AKIExtension */,
@@ -579,6 +582,14 @@
 				843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */,
 			);
 			path = AKICategoriesViewCell;
+			sourceTree = "<group>";
+		};
+		8443E7631E10366F00BC99B4 /* UINib+AKIExtension */ = {
+			isa = PBXGroup;
+			children = (
+				8443E7641E10366F00BC99B4 /* UINib.swift */,
+			);
+			path = "UINib+AKIExtension";
 			sourceTree = "<group>";
 		};
 		848CECC41DEEF8B2008209B2 /* AKIUser */ = {
@@ -781,6 +792,7 @@
 				840DB8911E0EF550000F84F3 /* AKIContext.swift in Sources */,
 				843DB01C1DFF230C001CFD54 /* AKICategoriesView.swift in Sources */,
 				8426CD8A1E0836B50050C234 /* AKIImageView.swift in Sources */,
+				8443E7651E10366F00BC99B4 /* UINib.swift in Sources */,
 				840DB87E1E0ECFF8000F84F3 /* Data.swift in Sources */,
 				84B63EF71DE6262A000E6467 /* AKIRegistrationView.swift in Sources */,
 				8425E4271DF8439E003E978E /* AKINewsViewCell.swift in Sources */,

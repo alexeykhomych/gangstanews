@@ -12,8 +12,6 @@ import RxSwift
 import RxCocoa
 
 class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let cellReuseIdentifier = "AKICategoriesViewCell"
     
     var categoriesView: AKICategoriesView? {
         return self.getView()
@@ -22,8 +20,9 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.categoriesView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil),
-                                                 forCellReuseIdentifier: self.cellReuseIdentifier)
+        let classNewsViewCell = AKICategoriesViewCell.self
+        self.categoriesView?.tableView?.register(UINib.nibWithClass(classNewsViewCell),
+                                           forCellReuseIdentifier: String(describing: classNewsViewCell.self))
         self.loadContext()
     }
 
@@ -36,7 +35,8 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKICategoriesViewCell
+        let cls = String(describing: AKINewsViewCell.self)
+        let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: cls) as! AKICategoriesViewCell
         
         let user = self.model as? AKIUser
         

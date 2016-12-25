@@ -34,7 +34,7 @@ class AKIContext {
         return nil
     }
     
-    func headers() -> HTTPHeaders? {
+    var headers: HTTPHeaders? {
         return nil
     }
     
@@ -59,11 +59,11 @@ class AKIContext {
                               method: self.httpMethod!,
                               parameters: self.parameters,
                               encoding: self.encoding,
-                              headers: self.headers()).responseJSON
+                              headers: self.headers).responseJSON
             {
                 response in
                 self.switchResponse(response)
-        }
+            }
     }
     
     func switchResponse(_ response: Alamofire.DataResponse<Any>) {
@@ -90,6 +90,7 @@ class AKIContext {
     }
     
     func parseError() {
-        AKIGangstaNewsViewController.observer?.onError(Error.self as! (Error))
+//        AKIGangstaNewsViewController.observer?.onError(Swift.fatalError("pizda"))
+        Swift.fatalError("pizda")
     }
 }

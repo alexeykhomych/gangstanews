@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKIDetailNewsView: UIView {
+class AKIDetailNewsView: AKISpinnerViewContainer {
 
     @IBOutlet var scrollView: UIScrollView?
     @IBOutlet var supportView: UIView?

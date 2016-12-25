@@ -15,7 +15,7 @@ import Alamofire
 
 class AKICategoriesContext: AKIContext {
     
-    override func headers() -> HTTPHeaders {
+    override var headers: HTTPHeaders {
         return [
             kAKIContentType: kAKIApplicationJSON,
             kAKIAuthorization: "\(AuthorizationType.Bearer) \(((self.model as? AKIUser)?.authKey)!)"

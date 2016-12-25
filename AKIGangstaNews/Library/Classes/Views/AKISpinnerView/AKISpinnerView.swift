@@ -15,15 +15,15 @@ class AKISpinnerView: UIView {
     @IBOutlet var spinnerView: UIActivityIndicatorView?
     var visible: Bool? {
         willSet(newValue) {
-            self.setVisible(newValue!)
             self.visible = newValue
+            self.setVisible(newValue!)
         }
     }
     
     static func loadingViewInSuperview(_ superview: UIView) -> AKISpinnerView {
         let view = Bundle.objectWithClass(AKISpinnerView.self) as! AKISpinnerView
         view.frame = superview.bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin]
         
         return view
     }
@@ -53,15 +53,16 @@ class AKISpinnerView: UIView {
     }
     
     func setVisible(_ visible: Bool, animated: Bool, completionHandler: @escaping (_ finished: Bool) -> Void) {
-        let result = animated ? kAKIDuration : 0
-        let result2 = visible ? kAKIDuration : 0
-        self.superview?.bringSubview(toFront: self)
+        self.superview?.bringSubview(toFront: self.spinnerView!)
         
-        UIView.animate(withDuration: result,
+        let duration = animated ? kAKIDuration : 0
+        let animations = visible ? kAKIDuration : 0
+        
+        UIView.animate(withDuration: duration,
                        animations: {
-                            self.alpha = CGFloat(result2)
+                            self.alpha = CGFloat(animations)
                         },
-                       completion:  { (finished: Bool) -> Void in
+                       completion:  { (shouldFinish: Bool) -> Void in
                             self.visible = visible
                             completionHandler(visible)                                
                         })

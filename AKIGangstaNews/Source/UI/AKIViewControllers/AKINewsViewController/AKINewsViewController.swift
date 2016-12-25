@@ -15,7 +15,6 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     
     let kAKICategories = "Categories"
     let kAKILogout = "Logout"
-    let cellReuseIdentifier = "AKINewsViewCell"
     
     private var sortedArrayModel: AKISortedArrayModel?
     
@@ -29,8 +28,9 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         self.initLeftBarButtonItem()
         self.initRightBarButtonItem()
 
-        self.newsView?.tableView?.register(UINib(nibName: self.cellReuseIdentifier, bundle: nil),
-                                           forCellReuseIdentifier: self.cellReuseIdentifier)
+        let classNewsViewCell = AKINewsViewCell.self
+        self.newsView?.tableView?.register(UINib.nibWithClass(classNewsViewCell),
+                                           forCellReuseIdentifier: String(describing: classNewsViewCell.self))
         self.loadContext()
     }
 
@@ -53,7 +53,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:AKINewsViewCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier) as! AKINewsViewCell
+        let cell:AKINewsViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: AKINewsViewCell.self)) as! AKINewsViewCell
         
         let content: AKIContent?
         let sortedArrayModel = self.sortedArrayModel
@@ -90,9 +90,8 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     
     internal override func modelDidLoad() {
         DispatchQueue.main.async {
-            AKISpinnerViewContainer.observer?.onCompleted()
-            self.newsView?.spinnerViewVisible = false
-            self.newsView?.tableView?.reloadData()
+            self.newsView?.spinnerView?.visible = false
+            self.reloadTableView()
         }
     }
     
@@ -104,8 +103,9 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
             sort.addObjects(sort.sortArrayModel(arrayModel: ((self.model as? AKIUser)?.newsArray)!,
                                                 parameters: (category?.name)!))
             self.sortedArrayModel = sort
-            self.newsView?.tableView?.reloadData()
         }
+        
+        self.reloadTableView()
     }
     
     private func initLeftBarButtonItem() {
@@ -132,14 +132,16 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         self.pushViewController(controller)
     }
     
-    func logout() {
+    func reloadTableView() {
         self.newsView?.tableView?.reloadData()
-        self.showErrorAllert()
-        
-//        let user = self.model as! AKIUser?
-//        let context = AKILogoutContext()
-//        context.model = user
-//        self.setObserver(context)
-//        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)r
+    }
+    
+    func logout() {
+        let user = self.model as! AKIUser?
+        let context = AKILogoutContext()
+        context.model = user
+        self.setObserver(context)
+        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

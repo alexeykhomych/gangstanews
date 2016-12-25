@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKINewsView: AKIView {
+class AKINewsView: AKISpinnerViewContainer {
 
     @IBOutlet var tableView: UITableView?
     

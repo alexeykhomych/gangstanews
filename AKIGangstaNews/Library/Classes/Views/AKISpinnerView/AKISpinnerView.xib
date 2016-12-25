@@ -8,18 +8,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKISpinnerView" customModule="AKIGangstaNews" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="jHu-n6-k96" customClass="AKISpinnerView" customModule="AKIGangstaNews" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ekf-wD-NCF">
-                    <rect key="frame" x="169" y="314" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ekf-wD-NCF">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75161637930000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Ekf-wD-NCF" firstAttribute="centerY" secondItem="jHu-n6-k96" secondAttribute="centerY" id="Mg2-FP-1eU"/>
+                <constraint firstItem="Ekf-wD-NCF" firstAttribute="centerX" secondItem="jHu-n6-k96" secondAttribute="centerX" id="leB-Yg-F5i"/>
+            </constraints>
             <connections>
                 <outlet property="spinnerView" destination="Ekf-wD-NCF" id="nku-IO-559"/>
             </connections>

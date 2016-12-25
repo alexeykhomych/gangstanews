@@ -15,7 +15,7 @@ import Alamofire
 
 class AKILoginContext: AKIContext {
     
-    override func headers() -> HTTPHeaders {
+    override var headers: HTTPHeaders {
         return [
             kAKIContentType: kAKIApplicationJSON,
             kAKIAuthorization: "\(AuthorizationType.Basic) \(self.accessToken())"

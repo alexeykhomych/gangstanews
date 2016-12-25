@@ -22,7 +22,6 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.keyboardObserver((self.loginView?.scrollView)!)
-        
         self.loadAuthKey()
     }
 
@@ -36,17 +35,13 @@ class AKILoginViewController: AKIGangstaNewsViewController {
         self.loginView?.fillFields(user: (self.model as! AKIUser?))
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        self.activeTextField = textField;
-    }
-    
     //MARK: View Lifecycle
     
     @IBAction func loginButton(_ sender: UIButton) {
         self.loadContext()
     }
     
-    @IBAction func authorizationButton(_ sender: UIButton) {
+    @IBAction func registrationButton(_ sender: UIButton) {
         self.navigationController?.pushViewController(AKIRegistrationViewController(), animated: true)
     }
     

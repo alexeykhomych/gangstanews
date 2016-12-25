@@ -14,7 +14,7 @@ class AKIView: UIView {
         willSet(newSpinnerView) {
             self.spinnerView?.removeFromSuperview()
             self.spinnerView = newSpinnerView
-            self.spinnerView?.addSubview(newSpinnerView!)
+            self.addSubview(newSpinnerView!)
         }
     }
     
@@ -37,7 +37,6 @@ class AKIView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.spinnerView = self.defaultSpinnerView
     }
     
     override func awakeFromNib() {
@@ -46,9 +45,5 @@ class AKIView: UIView {
         if self.spinnerView == nil {
             self.spinnerView = self.defaultSpinnerView
         }
-    }
-    
-    func setSpinnerViewVisible(_ spinnerViewVisible: Bool) {
-        self.spinnerView?.visible = spinnerViewVisible
     }
 }

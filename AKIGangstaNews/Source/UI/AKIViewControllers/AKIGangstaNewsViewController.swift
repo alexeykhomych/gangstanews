@@ -12,6 +12,10 @@ import RxSwift
 import RxCocoa
 import RxKeyboard
 
+let kAKIErrorTitle = "Error message"
+let kAKIErrorMessage = "Check your Internet connection"
+let kAKIErrorButtonText = "Ok"
+
 class AKIGangstaNewsViewController: AKIAbstractViewController {
     
     static var observer: PublishSubject<AKIContext>?
@@ -29,6 +33,19 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     
     func modelDidLoad() {
         
+    }
+    
+    
+    var spinnerContainer: AKISpinnerViewContainer? {
+        return self.getView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        let model = self.context
+//        self.spinnerContainer?.model = model
+//        AKIGangstaNewsViewController.observer?.onNext(model!)
     }
     
     func keyboardObserver(_ scrollView: UIScrollView) {
@@ -88,8 +105,8 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     }
     
     func showErrorAllert() {
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: kAKIErrorTitle, message: kAKIErrorMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: kAKIErrorButtonText, style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
