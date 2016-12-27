@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AKIRegistrationView: AKISpinnerViewContainer {
+class AKIRegistrationView: AKIView {
 
     @IBOutlet var scrollView: UIScrollView?
     @IBOutlet var supportView: UIView?

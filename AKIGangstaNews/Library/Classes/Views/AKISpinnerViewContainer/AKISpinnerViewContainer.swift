@@ -13,16 +13,6 @@ import RxCocoa
 
 class AKISpinnerViewContainer: AKIView {
     
-    static var observer: PublishSubject<AKIModel>?
-    let disposeBag = DisposeBag()
-
-    var model: AKIModel? {
-        willSet(newModel) {            
-            self.model = newModel
-//            self.setObserver(newModel!)
-        }
-    }
-    
     static func viewWithFrame(_ frame: CGRect) -> AKISpinnerViewContainer {
         return AKISpinnerViewContainer.init(frame: frame)
     }
@@ -36,7 +26,6 @@ class AKISpinnerViewContainer: AKIView {
     func modelDidLoad() {
         DispatchQueue.main.async {
             self.spinnerViewVisible = false
-            print("modelDidLoad - spinner")
         }
     }
     
@@ -44,18 +33,5 @@ class AKISpinnerViewContainer: AKIView {
         DispatchQueue.main.async {
             self.spinnerViewVisible = false
         }
-    }
-    
-    func setObserver(_ model: AKIModel) {
-        AKISpinnerViewContainer.observer = PublishSubject<AKIModel>()
-        AKISpinnerViewContainer.observer?.subscribe(onNext: { model in
-            self.modelWillLoad()
-        }, onError: { error in
-            self.modelFailLoading()
-        }, onCompleted: {
-            self.modelDidLoad()
-        }, onDisposed: {
-            
-        }).addDisposableTo(self.disposeBag)
     }
 }

@@ -35,7 +35,7 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cls = String(describing: AKINewsViewCell.self)
+        let cls = String(describing: AKICategoriesViewCell.self)
         let cell:AKICategoriesViewCell = tableView.dequeueReusableCell(withIdentifier: cls) as! AKICategoriesViewCell
         
         let user = self.model as? AKIUser
@@ -62,6 +62,7 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
 
     internal override func modelDidLoad() {
         DispatchQueue.main.async {
+            self.categoriesView?.spinnerView?.visible = false
             self.categoriesView?.tableView?.reloadData()
         }
     }

@@ -52,6 +52,7 @@
 		843DB01A1DFF21D6001CFD54 /* AKICategoriesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */; };
 		843DB01C1DFF230C001CFD54 /* AKICategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DB01B1DFF230C001CFD54 /* AKICategoriesView.swift */; };
 		8443E7651E10366F00BC99B4 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443E7641E10366F00BC99B4 /* UINib.swift */; };
+		846552B01E11C57A00714EC1 /* AKIObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846552AF1E11C57A00714EC1 /* AKIObservableObject.swift */; };
 		848CECC61DEEF8CE008209B2 /* AKIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CECC51DEEF8CE008209B2 /* AKIUser.swift */; };
 		84AA53661E0041A50022CC72 /* AKICategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA53651E0041A50022CC72 /* AKICategory.swift */; };
 		84AA53691E0165790022CC72 /* AKISortedArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA53681E0165790022CC72 /* AKISortedArrayModel.swift */; };
@@ -111,6 +112,7 @@
 		843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKICategoriesViewCell.xib; sourceTree = "<group>"; };
 		843DB01B1DFF230C001CFD54 /* AKICategoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesView.swift; sourceTree = "<group>"; };
 		8443E7641E10366F00BC99B4 /* UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
+		846552AF1E11C57A00714EC1 /* AKIObservableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIObservableObject.swift; sourceTree = "<group>"; };
 		848CECC51DEEF8CE008209B2 /* AKIUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIUser.swift; sourceTree = "<group>"; };
 		84AA53651E0041A50022CC72 /* AKICategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategory.swift; sourceTree = "<group>"; };
 		84AA53681E0165790022CC72 /* AKISortedArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKISortedArrayModel.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 		843D97521DE4AB9D004E06D7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				846552AE1E11C55B00714EC1 /* AKIObservableObject */,
 				84AA53671E01654B0022CC72 /* AKISortedArrayModel */,
 				84AA53641E0041870022CC72 /* AKICategory */,
 				843DB0131DFDE27A001CFD54 /* AKIModelCache */,
@@ -592,6 +595,14 @@
 			path = "UINib+AKIExtension";
 			sourceTree = "<group>";
 		};
+		846552AE1E11C55B00714EC1 /* AKIObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				846552AF1E11C57A00714EC1 /* AKIObservableObject.swift */,
+			);
+			path = AKIObservableObject;
+			sourceTree = "<group>";
+		};
 		848CECC41DEEF8B2008209B2 /* AKIUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +795,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843DB00B1DFB2B69001CFD54 /* AKIModel.swift in Sources */,
+				846552B01E11C57A00714EC1 /* AKIObservableObject.swift in Sources */,
 				84B63EEE1DE60113000E6467 /* AKILoginViewController.swift in Sources */,
 				840DB8991E0F0B75000F84F3 /* AKISpinnerViewContainer.swift in Sources */,
 				84B63EFB1DE62822000E6467 /* AKIDetailNewsView.swift in Sources */,

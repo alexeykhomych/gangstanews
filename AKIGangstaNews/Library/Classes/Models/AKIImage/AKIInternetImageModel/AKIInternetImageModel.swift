@@ -74,6 +74,10 @@ class AKIInternetImageModel: AKILocalImageModel {
     
     func loadFromInternet() {
         self.downloadTask = self.session.downloadTask(with: self.fileURL, completionHandler: self.completionHandler())
+        DispatchQueue.main.async {
+            print("==\(self.url)")
+            print("===== \(self.filePath)")
+        }
     }
     
     func completionHandler() -> (URL?, URLResponse?, Error?) -> Swift.Void {

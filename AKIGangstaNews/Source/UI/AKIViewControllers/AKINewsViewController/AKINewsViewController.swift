@@ -91,6 +91,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     internal override func modelDidLoad() {
         DispatchQueue.main.async {
             self.newsView?.spinnerView?.visible = false
+//            self.newsView?.spinnerView?.setVisible(false)
             self.reloadTableView()
         }
     }
@@ -133,15 +134,18 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func reloadTableView() {
-        self.newsView?.tableView?.reloadData()
+        DispatchQueue.main.async {
+            self.newsView?.tableView?.reloadData()
+        }
     }
     
     func logout() {
-        let user = self.model as! AKIUser?
-        let context = AKILogoutContext()
-        context.model = user
-        self.setObserver(context)
-        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        self.reloadTableView()
+//        let user = self.model as! AKIUser?
+//        let context = AKILogoutContext()
+//        context.model = user
+//        self.setObserver(context)
+//        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
+//        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

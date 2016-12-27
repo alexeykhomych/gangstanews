@@ -15,6 +15,7 @@ class AKILocalImageModel: AKIImageModel {
     }
     
     public func loadImageAtURL(_ url: URL) -> UIImage? {
+        print("\(url.absoluteString)")
         return UIImage(named: url.absoluteString)
     }
 }

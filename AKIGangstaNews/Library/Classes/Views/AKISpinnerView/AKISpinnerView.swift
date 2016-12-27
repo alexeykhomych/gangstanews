@@ -14,8 +14,9 @@ class AKISpinnerView: UIView {
 
     @IBOutlet var spinnerView: UIActivityIndicatorView?
     var visible: Bool? {
-        willSet(newValue) {
-            self.visible = newValue
+        get {
+            return self.spinnerView?.isHidden
+        } set (newValue) {
             self.setVisible(newValue!)
         }
     }
@@ -42,30 +43,54 @@ class AKISpinnerView: UIView {
     
     func setVisible(_ visible: Bool) {
         self.setVisible(visible, animated: true)
+//        self.block!()
     }
     
+    var block: (() -> Void)?
+    
     func setVisible(_ visible: Bool, animated: Bool) {
-        self.setVisible(visible, animated: animated, completionHandler: { value in
-            if !value {
+//        block = { [weak self] in
+//            self?.printMessage()
+//            
+//            self?.setVisible(visible, animated: animated, completionHandler: {_ in
+//                guard let strongSelf = self else {
+//                    return
+//                }
+//                
+//                strongSelf.printMessage()
+//                if !visible {
+//                    strongSelf.removeFromSuperview()
+//                }
+//            })
+//        }
+        
+        self.setVisible(visible, animated: animated, completionHandler: {_ in
+            if !visible {
+                self.printMessage()
                 self.removeFromSuperview()
             }
         })
     }
     
-    func setVisible(_ visible: Bool, animated: Bool, completionHandler: @escaping (_ finished: Bool) -> Void) {
-        self.superview?.bringSubview(toFront: self.spinnerView!)
+    func setVisible(_ visible: Bool, animated: Bool, completionHandler: @escaping (Bool) -> Void) {
+        self.superview?.bringSubview(toFront: self)
         
         let duration = animated ? kAKIDuration : 0
         let animations = visible ? kAKIDuration : 0
         
         UIView.animate(withDuration: duration,
                        animations: {
-                            self.alpha = CGFloat(animations)
+                            self.alpha = visible ? 1.0 : 0
                         },
-                       completion:  { (shouldFinish: Bool) -> Void in
-                            self.visible = visible
-                            completionHandler(visible)                                
+                       completion:  { shouldFinish in
+                            if !visible {
+                                completionHandler(visible)
+                            }
                         })
+    }
+    
+    func printMessage() {
+        print("print")
     }
 
 }

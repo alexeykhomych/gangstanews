@@ -16,7 +16,6 @@ class AKIContent: NSObject, NSCopying, NSCoding {
     public var header: String?
     public var dataText: String?
     public var imageURL: URL?
-    public var imageURLThumb: String?
     public var category: AKICategory?
     
     var imageModel: AKIImageModel? {

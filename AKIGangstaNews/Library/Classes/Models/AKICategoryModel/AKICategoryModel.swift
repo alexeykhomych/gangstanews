@@ -19,10 +19,8 @@ class AKICategoryModel: AKIArrayModel {
     
     var selectedCategory: AKICategory? = nil {
         willSet (newSelectedCategory) {
-            self.synced(lock: self) {
-                self.selectedCategory?.selected = false
-                self.selectedCategory = newSelectedCategory
-            }
+            self.selectedCategory?.selected = false
+            self.selectedCategory = newSelectedCategory
         }
     }
     
@@ -38,13 +36,6 @@ class AKICategoryModel: AKIArrayModel {
         return self.fileManager.fileExists(atPath: self.path)
     }
     
-    //MARK: Initializations and Deallocations
-    
-//    override init() {
-//        super.init()
-//        self.fillCategories()
-//    }
-    
     //MARK: Public
     
     func addObject(_ category: AKICategory) {
@@ -59,7 +50,6 @@ class AKICategoryModel: AKIArrayModel {
             
             if !conteints {
                 super.addObject(category)
-//                self.save()
             }
         }
     }
@@ -67,7 +57,6 @@ class AKICategoryModel: AKIArrayModel {
     func removeObject(_ category: AKICategory) {
         self.synced(lock: self) {
             super.removeObject(category)
-//            self.save()
         }
     }
     
@@ -86,30 +75,8 @@ class AKICategoryModel: AKIArrayModel {
     override func removeObjectAtIndex(_ index: Int) {
         self.synced(lock: self) {
             super.removeObjectAtIndex(index)
-//            self.save()
         }
     }
-    
-//    override func performLoading() {
-//        var model: Any?
-//        
-//        if self.cached {
-//            model = NSKeyedUnarchiver.unarchiveObject(withFile: self.path)
-//        } else {
-//            model = self.fillCategories()
-//        }
-//        
-//        self.addObjects(model as! NSArray)
-//        print("\(self) load")
-//    }
-//    
-//    public func save() {
-//        self.synced(lock: self) {
-//            self.fileManager.createFile(atPath: self.path, contents: nil, attributes: nil)
-//            NSKeyedArchiver.archiveRootObject(self.objects, toFile: self.path)
-//            print("\(self) save")
-//        }
-//    }
     
     func selectedCategory(newCategory: AKICategory) {
         self.synced(lock: self) {
@@ -117,14 +84,4 @@ class AKICategoryModel: AKIArrayModel {
             self.selectedCategory = newCategory
         }
     }
-    
-    //MARK: Private
-    
-//    private func fillCategories() {
-//        self.synced(lock: self) {
-//            if self.cached {
-//                self.load()
-//            }
-//        }
-//    }
 }

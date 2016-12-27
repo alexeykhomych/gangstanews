@@ -13,7 +13,26 @@ import RxCocoa
 
 class AKIImageView: AKISpinnerViewContainer {
     
-    static var obsr: PublishSubject<AKIImageModel>? = nil
+    let disposeBag = DisposeBag()
+    static var obsr: PublishSubject<AKIImageModel>? = PublishSubject<AKIImageModel>()
+    
+    private func observContext(_ context: AKIContext) {
+        let disposebag = DisposeBag()
+        let observer = context.observer()
+        
+        observer.subscribe(onNext: { next in
+            print(next)
+        }, onError: { error in
+            print(error)
+        }, onCompleted: {
+            print("user context completed")
+            
+        }, onDisposed: {
+            
+        }).addDisposableTo(disposebag)
+    }
+
+    
     
     @IBOutlet var imageView: UIImageView? {
         willSet(newImageView) {
@@ -28,7 +47,7 @@ class AKIImageView: AKISpinnerViewContainer {
     var imageModel: AKIImageModel? = nil {
         willSet(value) {
             self.imageModel = value
-            self.model = value
+//            self.model = value
             self.loadImageModel()
         }
     }
@@ -64,14 +83,12 @@ class AKIImageView: AKISpinnerViewContainer {
     func modelDidLoad(_ model: AKIImageModel) {
         DispatchQueue.main.async {
             self.imageView?.image = model.image
-            print("modelDidLoad - imageview")
             super.modelDidLoad()
         }
     }
     
     private func loadImageModel() {
         var imageModel = self.imageModel
-        AKIImageView.obsr = PublishSubject<AKIImageModel>()
         AKIImageView.obsr?.subscribe(onNext: { model in
             imageModel = model
             model.load()

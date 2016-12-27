@@ -22,6 +22,7 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.keyboardObserver((self.loginView?.scrollView)!)
+        self.loginView?.spinnerView?.visible = false
         self.loadAuthKey()
     }
 
