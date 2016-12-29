@@ -19,13 +19,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="3x6-qF-QeS">
-                    <rect key="frame" x="15" y="13" width="344" height="313"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="313" id="kVw-hx-05g"/>
-                    </constraints>
+                    <rect key="frame" x="16" y="13" width="344" height="313"/>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dS8-lN-nBG">
-                    <rect key="frame" x="15" y="334" width="344" height="313"/>
+                    <rect key="frame" x="16" y="334" width="344" height="313"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="omt-EG-pIC"/>
@@ -35,13 +32,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="3x6-qF-QeS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="P1Y-ns-6iO"/>
-                <constraint firstItem="3x6-qF-QeS" firstAttribute="trailing" secondItem="dS8-lN-nBG" secondAttribute="trailing" id="UNz-MA-MhT"/>
-                <constraint firstItem="3x6-qF-QeS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="XPe-Kg-knR"/>
-                <constraint firstItem="3x6-qF-QeS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cnB-cg-tfO"/>
-                <constraint firstAttribute="bottom" secondItem="dS8-lN-nBG" secondAttribute="bottom" constant="20" id="fj3-oL-hNv"/>
-                <constraint firstItem="3x6-qF-QeS" firstAttribute="leading" secondItem="dS8-lN-nBG" secondAttribute="leading" id="kIY-1s-Ecn"/>
-                <constraint firstItem="dS8-lN-nBG" firstAttribute="top" secondItem="3x6-qF-QeS" secondAttribute="bottom" constant="8" symbolic="YES" id="yN7-PO-hJZ"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="3eN-H1-Hhf"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="trailing" secondItem="dS8-lN-nBG" secondAttribute="trailing" id="4zw-nk-xhA"/>
+                <constraint firstItem="dS8-lN-nBG" firstAttribute="top" secondItem="3x6-qF-QeS" secondAttribute="bottom" constant="8" symbolic="YES" id="8bK-ON-7dA"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="height" secondItem="dS8-lN-nBG" secondAttribute="height" id="BkH-5d-ZkV"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="-31" id="QAG-aW-HuA"/>
+                <constraint firstAttribute="bottom" secondItem="dS8-lN-nBG" secondAttribute="bottom" constant="20" id="iZY-k6-gEG"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rag-qk-xOf"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="width" secondItem="dS8-lN-nBG" secondAttribute="width" id="th5-wP-lBK"/>
             </constraints>
             <connections>
                 <outlet property="logoImage" destination="3x6-qF-QeS" id="aA7-KK-w1V"/>

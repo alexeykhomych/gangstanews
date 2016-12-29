@@ -76,10 +76,6 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         controller.content = user?.newsArray?.objectAtIndexSubscript(indexPath.row) as? AKIContent
         self.pushViewController(controller)
     }
-    
-    private func tableView(_ tableView: UITableView, didEndDisplaying cell: AKINewsViewCell, forRowAt indexPath: IndexPath) {
-        cell.fillModel(content: nil)
-    }
 
     private func loadContext() {
         let user = self.model
@@ -90,8 +86,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     
     internal override func modelDidLoad() {
         DispatchQueue.main.async {
-            self.newsView?.spinnerView?.visible = false
-//            self.newsView?.spinnerView?.setVisible(false)
+            self.newsView?.spinnerView?.setVisible(false)
             self.reloadTableView()
         }
     }

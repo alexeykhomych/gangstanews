@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 
 let kAKIErrorTitle = "Error message"
-let kAKIErrorMessage = "Check your Internet connection"
+let kAKIErrorMessage = "You use illegal characters"
 let kAKIErrorButtonText = "Ok"
 
 class AKIGangstaNewsViewController: AKIAbstractViewController {
@@ -35,6 +35,13 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         
     }
     
+    func modelDidFailLoading() {
+        
+    }
+    
+    func modelWillLoading() {
+        
+    }
     
     var spinnerContainer: AKISpinnerViewContainer? {
         return self.getView()
@@ -92,9 +99,11 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     func setObserver(_ context: AKIContext) {
         AKIGangstaNewsViewController.observer = PublishSubject<AKIContext>()
         AKIGangstaNewsViewController.observer?.subscribe(onNext: { context in
+            self.modelWillLoading()
             context.execute()
         }, onError: { error in
-            self.showErrorAllert()
+            self.showErrorAllert(message: context.errorMessage!)
+            self.modelDidFailLoading()
         }, onCompleted: {
             self.modelDidLoad()
         }, onDisposed: {
@@ -104,8 +113,8 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         AKIGangstaNewsViewController.observer?.onNext(context)
     }
     
-    func showErrorAllert() {
-        let alert = UIAlertController(title: kAKIErrorTitle, message: kAKIErrorMessage, preferredStyle: UIAlertControllerStyle.alert)
+    func showErrorAllert(message: String) {
+        let alert = UIAlertController(title: kAKIErrorTitle, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: kAKIErrorButtonText, style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

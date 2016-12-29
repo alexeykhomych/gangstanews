@@ -39,7 +39,11 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     //MARK: View Lifecycle
     
     @IBAction func loginButton(_ sender: UIButton) {
-        self.loadContext()
+        if self.checkValidationEmail((self.loginView?.mailField?.text)!) {
+            self.loadContext()
+        } else {
+            self.showErrorAllert(message: kAKIErrorMessage)
+        }
     }
     
     @IBAction func registrationButton(_ sender: UIButton) {
@@ -83,15 +87,10 @@ class AKILoginViewController: AKIGangstaNewsViewController {
         self.pushViewController(AKINewsViewController(), model: user!)
     }
     
-    
-    func check() {
-//        if 5 > (user?.login?.characters.count)! {
-//            
-//        }
-//        
-//        if 6 > (user?.password?.characters.count)! {
-//            
-//        }
-    }
-    
+    private func checkValidationEmail(_ field: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: field)
+    }    
 }

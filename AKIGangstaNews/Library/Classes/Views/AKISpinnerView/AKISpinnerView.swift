@@ -11,6 +11,8 @@ import UIKit
 let kAKIDuration = 1.0
 
 class AKISpinnerView: UIView {
+    
+    var model: AKIModel?
 
     @IBOutlet var spinnerView: UIActivityIndicatorView?
     var visible: Bool? {
@@ -75,10 +77,7 @@ class AKISpinnerView: UIView {
     func setVisible(_ visible: Bool, animated: Bool, completionHandler: @escaping (Bool) -> Void) {
         self.superview?.bringSubview(toFront: self)
         
-        let duration = animated ? kAKIDuration : 0
-        let animations = visible ? kAKIDuration : 0
-        
-        UIView.animate(withDuration: duration,
+        UIView.animate(withDuration: animated ? kAKIDuration : 0,
                        animations: {
                             self.alpha = visible ? 1.0 : 0
                         },

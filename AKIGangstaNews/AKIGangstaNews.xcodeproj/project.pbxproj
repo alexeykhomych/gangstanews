@@ -108,7 +108,7 @@
 		843DB00E1DFB303B001CFD54 /* AKICategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoryModel.swift; sourceTree = "<group>"; };
 		843DB0111DFB3072001CFD54 /* AKIArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIArrayModel.swift; sourceTree = "<group>"; };
 		843DB0141DFDE294001CFD54 /* AKIModelCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKIModelCache.swift; sourceTree = "<group>"; };
-		843DB0171DFF21D6001CFD54 /* AKICategoriesViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesViewCell.swift; sourceTree = "<group>"; };
+		843DB0171DFF21D6001CFD54 /* AKICategoriesViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKICategoriesViewCell.swift; path = AKICategoriesViewCell/AKICategoriesViewCell.swift; sourceTree = "<group>"; };
 		843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKICategoriesViewCell.xib; sourceTree = "<group>"; };
 		843DB01B1DFF230C001CFD54 /* AKICategoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKICategoriesView.swift; sourceTree = "<group>"; };
 		8443E7641E10366F00BC99B4 /* UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
@@ -492,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				843DB0161DFF21A1001CFD54 /* AKICategoriesViewCell */,
+				843DB0171DFF21D6001CFD54 /* AKICategoriesViewCell.swift */,
 				843D97761DE4B419004E06D7 /* Views */,
 				843D979F1DE4B515004E06D7 /* AKICategoriesViewController.swift */,
 				843D97A01DE4B515004E06D7 /* AKICategoriesViewController.xib */,
@@ -581,7 +582,6 @@
 		843DB0161DFF21A1001CFD54 /* AKICategoriesViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				843DB0171DFF21D6001CFD54 /* AKICategoriesViewCell.swift */,
 				843DB0181DFF21D6001CFD54 /* AKICategoriesViewCell.xib */,
 			);
 			path = AKICategoriesViewCell;
@@ -697,7 +697,7 @@
 				TargetAttributes = {
 					843D97371DE48F1B004E06D7 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = WD3U2NTNC9;
+						DevelopmentTeam = M2WK6CS22K;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -957,6 +957,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M2WK6CS22K;
 				INFOPLIST_FILE = AKIGangstaNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AKI.AKIGangstaNews;
@@ -971,6 +972,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M2WK6CS22K;
 				INFOPLIST_FILE = AKIGangstaNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AKI.AKIGangstaNews;

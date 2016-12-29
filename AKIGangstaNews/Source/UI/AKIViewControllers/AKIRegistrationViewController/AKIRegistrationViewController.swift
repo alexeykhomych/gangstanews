@@ -17,6 +17,7 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.keyboardObserver((self.registrationView?.scrollView)!)
+        self.registrationView?.spinnerView?.visible = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +32,11 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
     // MARK: - View Lifecycle
     
     @IBAction func registrationButton(_ sender: UIButton) {
-        self.loadContext()
+        if self.checkValidationEmail((self.registrationView?.emailField?.text)!) {
+            self.loadContext()
+        } else {
+            self.showErrorAllert(message: kAKIErrorMessage)
+        }
     }
     
     // MARK: request context
@@ -47,25 +52,43 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
     }
     
     private func loadUser() {
-        DispatchQueue.global().async {
-            let user = AKIUser()
-            let registrationView = self.registrationView
-            user.email = registrationView?.emailField?.text
-            user.login = registrationView?.loginField?.text
-            user.password = registrationView?.passwordField?.text
-            
-            self.model = user
-        }
+        let user = AKIUser()
+        let registrationView = self.registrationView
+        user.email = registrationView?.emailField?.text
+        user.login = registrationView?.loginField?.text
+        user.password = registrationView?.passwordField?.text
+        
+        self.model = user
     }
     
     override func modelDidLoad() {
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             let controllers = self.navigationController?.viewControllers
             let rootViewController = controllers?[(controllers?.count)! - 2] as? AKILoginViewController
             rootViewController?.model = self.model
             
+            self.registrationView?.spinnerViewVisible = false
+            
             _ = self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    override func modelDidFailLoading() {
+        DispatchQueue.main.async {
+            self.registrationView?.spinnerView?.visible = false
+        }
+    }
+    
+    override func modelWillLoading() {
+        DispatchQueue.main.async {
+            self.registrationView?.spinnerView?.visible = true
+        }
+    }
 
+    private func checkValidationEmail(_ field: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: field)
+    }
 }

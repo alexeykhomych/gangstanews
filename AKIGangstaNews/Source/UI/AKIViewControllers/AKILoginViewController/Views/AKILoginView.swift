@@ -10,6 +10,7 @@ import UIKit
 
 class AKILoginView: AKIView {
     @IBOutlet var scrollView: UIScrollView?
+    @IBOutlet var supportView: UIView?
     
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var mailField: UITextField?

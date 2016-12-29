@@ -21,6 +21,7 @@ class AKIDetailNewsView: AKISpinnerViewContainer {
     }
     
     public func parseContent(content: AKIContent) {
+        sleep(5)
         self.imageView?.imageModel = content.imageModel
         
         let contentField = self.contentField

@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,9 +18,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-k5-EXO">
-                        <rect key="frame" x="74" y="-3" width="238" height="46"/>
+                        <rect key="frame" x="74" y="0.0" width="238" height="43"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="238" id="qeQ-DN-6T8"/>
+                            <constraint firstAttribute="width" constant="238" id="0e0-Cz-Oc5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,16 +29,19 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-tZ-a0L" customClass="AKIImageView" customModule="AKIGangstaNews" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="66" height="44"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="MZ4-VM-Hh7"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="AFn-tZ-a0L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0zP-dC-mkd"/>
-                    <constraint firstItem="FxR-k5-EXO" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="DpY-MF-zHI"/>
-                    <constraint firstItem="AFn-tZ-a0L" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LvK-3c-mTd"/>
-                    <constraint firstItem="FxR-k5-EXO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-11" id="Rf1-Sl-6JY"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="FxR-k5-EXO" secondAttribute="bottom" constant="-7.5" id="a5e-MM-bRN"/>
-                    <constraint firstItem="AFn-tZ-a0L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="g3T-I8-rsH"/>
-                    <constraint firstItem="FxR-k5-EXO" firstAttribute="leading" secondItem="AFn-tZ-a0L" secondAttribute="trailing" constant="8" symbolic="YES" id="oFx-N4-oB1"/>
+                    <constraint firstAttribute="bottom" secondItem="FxR-k5-EXO" secondAttribute="bottom" id="6Yw-NV-t8x"/>
+                    <constraint firstAttribute="bottom" secondItem="AFn-tZ-a0L" secondAttribute="bottom" id="Lec-jc-AwJ"/>
+                    <constraint firstItem="AFn-tZ-a0L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YJh-Hp-Eg9"/>
+                    <constraint firstItem="AFn-tZ-a0L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iKd-pZ-rk1"/>
+                    <constraint firstAttribute="trailing" secondItem="FxR-k5-EXO" secondAttribute="trailing" constant="8" id="j6e-jr-Djl"/>
+                    <constraint firstItem="FxR-k5-EXO" firstAttribute="leading" secondItem="AFn-tZ-a0L" secondAttribute="trailing" constant="8" symbolic="YES" id="rbH-2E-5F9"/>
+                    <constraint firstItem="FxR-k5-EXO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xDc-s4-ZWa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

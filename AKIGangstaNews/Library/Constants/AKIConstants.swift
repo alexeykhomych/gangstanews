@@ -45,6 +45,7 @@ let kAKIParserID = "id"
 let kAKIParserImage = "image"
 let kAKIParserImageThumb = "image_thumb"
 let kAKIParserAuthKey = "auth_key"
+let kAKIParserMessage = "message"
 
 //MARK: Categories
 

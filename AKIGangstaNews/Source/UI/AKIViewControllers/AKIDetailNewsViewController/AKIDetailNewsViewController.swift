@@ -38,7 +38,7 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController {
     
     override func modelDidLoad() {
         self.detailNewsView?.parseContent(content: self.content!)
-        self.detailNewsView?.spinnerView?.visible = false
+        self.detailNewsView?.spinnerView?.setVisible(false)
         self.resizeScrollView()
     }
     

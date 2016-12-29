@@ -22,6 +22,8 @@ class AKIContext {
     
     var model: AnyObject?
     
+    var errorMessage: String?
+    
     var httpMethod: HTTPMethod? {
         return .get
     }
@@ -90,7 +92,23 @@ class AKIContext {
     }
     
     func parseError() {
-//        AKIGangstaNewsViewController.observer?.onError(Swift.fatalError("pizda"))
-        Swift.fatalError("pizda")
+        AKIGangstaNewsViewController.observer?.onError(NSError(domain: self.errorMessage!, code: 1, userInfo: nil))
+    }
+    
+    func setErrorMessage(_ json: NSDictionary) {
+        let message = (json.object(forKey: kAKIParserData) as? [String: Any])?[kAKIParserMessage] as? String
+        self.errorMessage = self.constructMessage(self.parseErrorMessage(message!) as NSArray)
+        self.parseError()        
+    }
+    
+    func parseErrorMessage(_ message: String) -> [String] {
+        return message.components(separatedBy: "\"")
+    }
+    
+    func constructMessage(_ array: NSArray) -> String {
+        let errorSubject = array[1]
+        let error = array[5]
+        
+        return "\(errorSubject) \(error)"
     }
 }

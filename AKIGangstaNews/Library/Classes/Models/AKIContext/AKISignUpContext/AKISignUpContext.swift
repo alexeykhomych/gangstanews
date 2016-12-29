@@ -40,7 +40,12 @@ class AKISignUpContext: AKIContext {
     }
     
     override func parseJSON(_ json: NSDictionary) {
-        guard let data = json.object(forKey: kAKIParserData) as? [Any] else { return }
+        guard let data = json.object(forKey: kAKIParserData) as? [Any] else {
+            self.setErrorMessage(json)
+            
+            return
+        }
+        
         guard let dictionary = data[0] as? [String: Any] else { return }
         
         let user = self.model as? AKIUser

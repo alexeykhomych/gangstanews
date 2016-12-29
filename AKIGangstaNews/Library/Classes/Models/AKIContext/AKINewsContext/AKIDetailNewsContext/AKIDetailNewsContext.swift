@@ -56,7 +56,7 @@ class AKIDetailNewsContext: AKINewsContext {
         }
         
         let content = self.selectedContent(((self.model as? AKIUser)?.newsArray?.objects)!)
-        content?.dataText = model as! String
+        content?.dataText = model as? String
     }
     
     override func save() {
