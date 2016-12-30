@@ -118,8 +118,10 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     }
     
     func showErrorAllert(message: String) {
-        let alert = UIAlertController(title: kAKIErrorTitle, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: kAKIErrorButtonText, style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: kAKIErrorTitle, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: kAKIErrorButtonText, style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

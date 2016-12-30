@@ -132,17 +132,15 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func reloadTableView() {
-        DispatchQueue.main.async {
-            self.newsView?.tableView?.reloadData()
-        }
+        self.newsView?.tableView?.reloadData()
     }
     
     func logout() {
         let user = self.model as! AKIUser?
         let context = AKILogoutContext()
         context.model = user
-        self.setObserver(context)
-        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
+        context.execute()
+        self.saveDataToDisk(data: "" as AnyObject, key: kAKIParserAuthKey)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

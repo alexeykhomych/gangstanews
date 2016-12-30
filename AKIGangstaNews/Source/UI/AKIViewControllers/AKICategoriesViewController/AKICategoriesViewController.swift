@@ -17,6 +17,8 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
         return self.getView()
     }
     
+    //MARK: Initializations and Deallocations
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,8 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //MARK: View Lifecycle
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ((self.model as! AKIUser?)?.categories?.count)!
@@ -53,6 +57,8 @@ class AKICategoriesViewController: AKIGangstaNewsViewController, UITableViewDele
         categories?.selectedCategory = categories?.objectAtIndexSubscript(indexPath.row) as! AKICategory?
         let _ = self.navigationController?.popViewController(animated: true)
     }
+    
+    //MARK: Private
     
     private func loadContext() {
         let context = AKICategoriesContext()

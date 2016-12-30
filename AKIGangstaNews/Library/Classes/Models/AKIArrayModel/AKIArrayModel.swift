@@ -63,15 +63,11 @@ class AKIArrayModel: AKIModel {
     }
     
     public func objectAtIndexSubscript(_ index: Int) -> Any {
-//        self.synced(lock: self) {
-            return self.mutableObjects![index]
-//        }
+        return self.mutableObjects![index]
     }
     
     public func indexOfObject(_ object: Any) -> Int {
-//        self.synced(lock: self) {
-            return (self.mutableObjects?.index(of: object))!
-//        }
+        return (self.mutableObjects?.index(of: object))!
     }
     
 }

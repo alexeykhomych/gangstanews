@@ -404,16 +404,8 @@
 				840DB89A1E0F0B9D000F84F3 /* AKIView */,
 				840DB8971E0F0AD4000F84F3 /* AKISpinnerViewContainer */,
 				8426CD881E0836970050C234 /* AKIImageView */,
-				843D97571DE4AB9D004E06D7 /* AKILoadingView */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		843D97571DE4AB9D004E06D7 /* AKILoadingView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AKILoadingView;
 			sourceTree = "<group>";
 		};
 		843D97591DE4AB9D004E06D7 /* Resources */ = {

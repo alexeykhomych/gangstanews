@@ -25,9 +25,13 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController {
         self.loadContext()        
     }
 
+    //MARK: Initializations and Deallocations
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //MARK: Public
     
     private func loadContext() {
         let context = AKIDetailNewsContext()
@@ -37,9 +41,11 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController {
     }
     
     override func modelDidLoad() {
-        self.detailNewsView?.parseContent(content: self.content!)
-        self.detailNewsView?.spinnerView?.setVisible(false)
-        self.resizeScrollView()
+        DispatchQueue.main.async {
+            self.detailNewsView?.parseContent(content: self.content!)
+            self.detailNewsView?.spinnerView?.setVisible(false)
+            self.resizeScrollView()
+        }
     }
     
     private func resizeScrollView() {

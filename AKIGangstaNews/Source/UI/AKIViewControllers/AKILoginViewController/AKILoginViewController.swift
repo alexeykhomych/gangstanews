@@ -18,6 +18,8 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     var loginView: AKILoginView? {
         return self.getView()
     }
+    
+    //MARK: Initializations and Deallocations
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,16 +62,12 @@ class AKILoginViewController: AKIGangstaNewsViewController {
     }
     
     private func loadAuthKey() {
-        DispatchQueue.global().async {
-            let user = AKIUser()
-            self.model = user
-            user.authKey = self.loadDataFromDisk(key: kAKIParserAuthKey)! as? String
-            
-            if user.authKey == nil {
-                self.loadUser()
-            } else {
-                self.pushViewController(AKINewsViewController(), model: user)
-            }
+        let user = AKIUser()
+        self.model = user
+        user.authKey = self.loadDataFromDisk(key: kAKIParserAuthKey)! as? String
+        
+        if user.authKey != nil && !(user.authKey?.isEmpty)! {
+            self.pushViewController(AKINewsViewController(), model: user)
         }
     }
     

@@ -46,14 +46,12 @@ class AKIContext {
     
     func execute() {
         DispatchQueue.global().async {
-            self.request()
+            self.performExecute()
         }
     }
     
     func performExecute() {
-        DispatchQueue.main.async {
-            self.request()
-        }
+        self.request()
     }
     
     func request() {

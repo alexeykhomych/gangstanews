@@ -13,6 +13,8 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
     var registrationView: AKIRegistrationView? {
         return self.getView()
     }
+    
+    //MARK: Initializations and Deallocations
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,6 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func awakeFromNib() {
