@@ -68,16 +68,12 @@ class AKIInternetImageModel: AKILocalImageModel {
         do {
             try self.fileManager.removeItem(atPath: self.filePath)
         } catch {
-            
+            print("fail: remove corrupted image from url - \(self.filePath)")
         }
     }
     
     func loadFromInternet() {
         self.downloadTask = self.session.downloadTask(with: self.fileURL, completionHandler: self.completionHandler())
-        DispatchQueue.main.async {
-            print("==\(self.url)")
-            print("===== \(self.filePath)")
-        }
     }
     
     func completionHandler() -> (URL?, URLResponse?, Error?) -> Swift.Void {
@@ -87,8 +83,8 @@ class AKIInternetImageModel: AKILocalImageModel {
                     try self.fileManager.copyItem(atPath: (location?.path)!, toPath: self.filePath)
                     self.finishLoadingImage(self.loadImageAtURL(URL(string: self.filePath)!)!)
                 }
-            } catch let error as NSError {
-                print(error.localizedDescription)
+            } catch {
+                print("fail: load image from url - \(location)")
             }
         }
     }

@@ -32,7 +32,7 @@ class AKIDetailNewsView: AKISpinnerViewContainer {
                                                                   options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType],
                                                                   documentAttributes: nil)
         } catch {
-            print(error)
+            
         }
     }
 }

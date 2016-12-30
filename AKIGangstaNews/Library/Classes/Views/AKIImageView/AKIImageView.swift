@@ -13,18 +13,17 @@ import RxCocoa
 
 class AKIImageView: AKISpinnerViewContainer {
     
-    let disposeBag = DisposeBag()
     static var obsr: PublishSubject<AKIImageModel>? = PublishSubject<AKIImageModel>()
     static var observable: Observable<(AKIImageModel)>?
     
-    func observModel(_ imageModel: AKIImageModel) {
+    func observModel(_ imageModel: AKIImageModel) {        
         let disposebag = DisposeBag()
         let obser = self.setObserver(imageModel)
         
         obser.subscribe(onNext: { next in
-            next.load()
+            next.performLoading()
         }, onError: { error in
-            print(error)
+            
         }, onCompleted: {
             self.modelDidLoad(imageModel)
         }, onDisposed: {
@@ -33,8 +32,7 @@ class AKIImageView: AKISpinnerViewContainer {
     }
     
     func setObserver(_ imageModel: AKIImageModel) -> Observable<(AKIImageModel)> {
-        return Observable<AKIImageModel>.create { (observer) -> Disposable in
-            print("\(observer)")
+        return Observable<AKIImageModel>.create { (observer) -> Disposable in            
             observer.onNext(imageModel)
             observer.onCompleted()
             
@@ -55,8 +53,7 @@ class AKIImageView: AKISpinnerViewContainer {
     var imageModel: AKIImageModel? = nil {
         willSet(value) {
             self.imageModel = value
-//            self.model = value
-//            self.loadImageModel()
+            self.model = value
             self.observModel(value!)
         }
     }
@@ -95,23 +92,7 @@ class AKIImageView: AKISpinnerViewContainer {
             super.modelDidLoad()
         }
     }
-    
-//    private func loadImageModel() {
-//        var imageModel = self.imageModel
-//        AKIImageView.obsr?.subscribe(onNext: { model in
-//            imageModel = model
-//            model.load()
-//        }, onError: { error in
-//            print(error)
-//        }, onCompleted: {
-//            self.modelDidLoad(imageModel!)
-//        }, onDisposed: {
-//            
-//        }).addDisposableTo(self.disposeBag)
-//        
-//        AKIImageView.obsr?.onNext(imageModel!)
-//    }
-    
+
     func synced(lock: AnyObject, closure: () -> ()) {
         objc_sync_enter(lock)
         closure()

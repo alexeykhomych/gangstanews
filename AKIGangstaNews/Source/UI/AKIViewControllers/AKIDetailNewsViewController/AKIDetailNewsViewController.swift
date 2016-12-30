@@ -58,6 +58,6 @@ class AKIDetailNewsViewController: AKIGangstaNewsViewController {
         textView?.frame = newFrame!
         
         scrollView?.layoutIfNeeded()
-        scrollView?.contentSize.height = (scrollView?.contentSize.height)! + (textView?.bounds.size.height)!
+        scrollView?.contentSize.height += (textView?.bounds.size.height)! - (self.detailNewsView?.imageView?.bounds.size.height)!
     }
 }

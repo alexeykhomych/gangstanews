@@ -34,13 +34,6 @@ class AKIImageModel: AKIModel {
     }
     
     func finishLoadingImage(_ loadedImage: UIImage) {
-        self.image = loadedImage
-        if self.image != nil {
-//            AKIImageView.obsr?.onCompleted()
-//            AKIImageView.observable?.asObservable().onCompleted()
-        } else {
-            print("didn't load")
-        }
-        
+        self.image = loadedImage        
     }
 }

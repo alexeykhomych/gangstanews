@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kAKIImageName = "logonews"
+
 class AKICategoriesViewCell: UITableViewCell {
     
     @IBOutlet var categoryNameLabel: UILabel?
@@ -19,7 +21,7 @@ class AKICategoriesViewCell: UITableViewCell {
     
     func fillCategory(category: AKICategory) {
         self.categoryNameLabel?.text = category.name
-        self.categoryImageView?.image = UIImage(named: "logonews")
+        self.categoryImageView?.image = UIImage(named: kAKIImageName)
     }
     
     func editCategory(category: AKICategory) {

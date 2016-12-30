@@ -85,10 +85,8 @@ class AKIRegistrationViewController: AKIGangstaNewsViewController {
         }
     }
 
-    private func checkValidationEmail(_ field: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    private func checkValidationEmail(_ field: String) -> Bool {        
+        let emailTest = NSPredicate(format:kAKIMatches, kEmailRegEx)
         return emailTest.evaluate(with: field)
     }
 }

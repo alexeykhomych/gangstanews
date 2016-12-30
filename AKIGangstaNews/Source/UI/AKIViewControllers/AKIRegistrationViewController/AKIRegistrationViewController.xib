@@ -52,12 +52,16 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjv-WI-Qvq">
-                                    <rect key="frame" x="39" y="575" width="296" height="30"/>
+                                    <rect key="frame" x="39" y="568" width="296" height="30"/>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <state key="normal" title="Registration">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="registrationButton:" destination="-1" eventType="touchUpInside" id="dmX-VT-AZY"/>
                                     </connections>
@@ -72,7 +76,7 @@
                                 <constraint firstItem="th1-1O-YtK" firstAttribute="top" secondItem="BWH-U5-o0q" secondAttribute="bottom" constant="17" id="6iU-Oy-ZML"/>
                                 <constraint firstItem="0Pg-dW-1Om" firstAttribute="width" secondItem="BWH-U5-o0q" secondAttribute="width" id="AZ8-3x-bYd"/>
                                 <constraint firstItem="BWH-U5-o0q" firstAttribute="leading" secondItem="th1-1O-YtK" secondAttribute="leading" id="BLG-fX-cnx"/>
-                                <constraint firstItem="Cjv-WI-Qvq" firstAttribute="top" secondItem="th1-1O-YtK" secondAttribute="bottom" constant="30" id="Gew-Xk-WkN"/>
+                                <constraint firstItem="Cjv-WI-Qvq" firstAttribute="top" secondItem="th1-1O-YtK" secondAttribute="bottom" constant="23" id="Gew-Xk-WkN"/>
                                 <constraint firstItem="th1-1O-YtK" firstAttribute="leading" secondItem="Cjv-WI-Qvq" secondAttribute="leading" id="HrB-eL-4XQ"/>
                                 <constraint firstAttribute="trailing" secondItem="rMx-dk-WJs" secondAttribute="trailing" constant="25" id="IER-Gx-UZM"/>
                                 <constraint firstItem="BWH-U5-o0q" firstAttribute="width" secondItem="th1-1O-YtK" secondAttribute="width" id="IOG-qz-y29"/>
@@ -86,7 +90,7 @@
                                 <constraint firstItem="rMx-dk-WJs" firstAttribute="width" secondItem="lYI-iM-r16" secondAttribute="width" constant="-46" id="fvh-30-O6x"/>
                                 <constraint firstItem="0Pg-dW-1Om" firstAttribute="height" secondItem="BWH-U5-o0q" secondAttribute="height" id="k9t-3S-TyB"/>
                                 <constraint firstItem="0Pg-dW-1Om" firstAttribute="top" secondItem="rMx-dk-WJs" secondAttribute="bottom" constant="21" id="p8f-xN-h1B"/>
-                                <constraint firstAttribute="bottom" secondItem="Cjv-WI-Qvq" secondAttribute="bottom" constant="62" id="pEA-uN-ayS"/>
+                                <constraint firstAttribute="bottom" secondItem="Cjv-WI-Qvq" secondAttribute="bottom" constant="69" id="pEA-uN-ayS"/>
                                 <constraint firstItem="th1-1O-YtK" firstAttribute="trailing" secondItem="Cjv-WI-Qvq" secondAttribute="trailing" id="qBI-z0-TLH"/>
                                 <constraint firstItem="BWH-U5-o0q" firstAttribute="trailing" secondItem="th1-1O-YtK" secondAttribute="trailing" id="udx-HU-0Rq"/>
                             </constraints>

@@ -11,8 +11,6 @@ import UIKit
 let kAKIDuration = 1.0
 
 class AKISpinnerView: UIView {
-    
-    var model: AKIModel?
 
     @IBOutlet var spinnerView: UIActivityIndicatorView?
     var visible: Bool? {
@@ -45,30 +43,13 @@ class AKISpinnerView: UIView {
     
     func setVisible(_ visible: Bool) {
         self.setVisible(visible, animated: true)
-//        self.block!()
     }
     
     var block: (() -> Void)?
     
     func setVisible(_ visible: Bool, animated: Bool) {
-//        block = { [weak self] in
-//            self?.printMessage()
-//            
-//            self?.setVisible(visible, animated: animated, completionHandler: {_ in
-//                guard let strongSelf = self else {
-//                    return
-//                }
-//                
-//                strongSelf.printMessage()
-//                if !visible {
-//                    strongSelf.removeFromSuperview()
-//                }
-//            })
-//        }
-        
         self.setVisible(visible, animated: animated, completionHandler: {_ in
             if !visible {
-                self.printMessage()
                 self.removeFromSuperview()
             }
         })
@@ -87,9 +68,4 @@ class AKISpinnerView: UIView {
                             }
                         })
     }
-    
-    func printMessage() {
-        print("print")
-    }
-
 }

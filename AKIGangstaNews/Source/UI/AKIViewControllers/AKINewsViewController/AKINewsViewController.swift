@@ -22,6 +22,8 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         return self.getView()
     }
     
+    //MARK: Initializations and Deallocations
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +35,8 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
                                            forCellReuseIdentifier: String(describing: classNewsViewCell.self))
         self.loadContext()
     }
+    
+    //MARK: Views Lifecycle
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,12 +73,13 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
         return cell
     }
     
+    //MARK: Private
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = AKIDetailNewsViewController()
         let user = self.model as? AKIUser
-        controller.model = user!
         controller.content = user?.newsArray?.objectAtIndexSubscript(indexPath.row) as? AKIContent
-        self.pushViewController(controller)
+        self.pushViewController(controller, model: user)
     }
 
     private func loadContext() {
@@ -123,9 +128,7 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func selectCategory() {
-        let controller = AKICategoriesViewController()
-        controller.model = self.model
-        self.pushViewController(controller)
+        self.pushViewController(AKICategoriesViewController(), model: self.model as! AKIUser?)
     }
     
     func reloadTableView() {
@@ -135,12 +138,11 @@ class AKINewsViewController: AKIGangstaNewsViewController, UITableViewDelegate, 
     }
     
     func logout() {
-        self.reloadTableView()
-//        let user = self.model as! AKIUser?
-//        let context = AKILogoutContext()
-//        context.model = user
-//        self.setObserver(context)
-//        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
-//        _ = self.navigationController?.popToRootViewController(animated: true)
+        let user = self.model as! AKIUser?
+        let context = AKILogoutContext()
+        context.model = user
+        self.setObserver(context)
+        self.saveDataToDisk(data: user?.authKey as AnyObject, key: kAKIParserAuthKey)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

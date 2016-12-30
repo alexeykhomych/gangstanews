@@ -23,6 +23,12 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
     let disposeBag = DisposeBag()
     var context: AKIContext?
     
+    var spinnerContainer: AKISpinnerViewContainer? {
+        return self.getView()
+    }
+    
+    //MARK: Initializations and Deallocations
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,28 +37,14 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func modelDidLoad() {
-        
-    }
-    
-    func modelDidFailLoading() {
-        
-    }
-    
-    func modelWillLoading() {
-        
-    }
-    
-    var spinnerContainer: AKISpinnerViewContainer? {
-        return self.getView()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        let model = self.context
-//        self.spinnerContainer?.model = model
-//        AKIGangstaNewsViewController.observer?.onNext(model!)
+    }
+    
+    //MARK: Interface Handling
+    
+    @IBAction func tapGestureRecognizer(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
     func keyboardObserver(_ scrollView: UIScrollView) {
@@ -67,27 +59,27 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
             .addDisposableTo(disposeBag)
     }
     
-    func saveDataToDisk(data: AnyObject, key: String) {
-        UserDefaults.standard.set(data, forKey: key)
-    }
-    
-    func loadDataFromDisk(key: String) -> AnyObject? {
-        return UserDefaults.standard.string(forKey: key) as AnyObject
-    }
-    
-    @IBAction func tapGestureRecognizer(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
-    
     func pushViewController(_ viewController: AKIGangstaNewsViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.pushViewController(viewController, model: nil)
     }
     
-    func pushViewController(_ viewController: AKIGangstaNewsViewController, model: AKIUser) {
+    func pushViewController(_ viewController: AKIGangstaNewsViewController, model: AKIUser?) {
         DispatchQueue.main.async {
             viewController.model = model
             self.navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+    
+    //MARK: Public
+    
+    func saveDataToDisk(data: AnyObject, key: String) {
+        DispatchQueue.global().async {
+            UserDefaults.standard.set(data, forKey: key)
+        }
+    }
+    
+    func loadDataFromDisk(key: String) -> AnyObject? {
+        return UserDefaults.standard.string(forKey: key) as AnyObject
     }
     
     func synced(lock: AnyObject, closure: () -> ()) {
@@ -111,6 +103,18 @@ class AKIGangstaNewsViewController: AKIAbstractViewController {
         }).addDisposableTo(self.disposeBag)
         
         AKIGangstaNewsViewController.observer?.onNext(context)
+    }
+    
+    func modelDidLoad() {
+        
+    }
+    
+    func modelDidFailLoading() {
+        
+    }
+    
+    func modelWillLoading() {
+        
     }
     
     func showErrorAllert(message: String) {

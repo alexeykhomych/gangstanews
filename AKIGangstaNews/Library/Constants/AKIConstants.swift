@@ -60,6 +60,9 @@ let kAKIHeader: String = "kAKIHeader"
 let kAKIDataText: String = "kAKIDataText"
 let kAKIImageURL: String = "kAKIImageURL"
 
+//MARK: Regex
+let kEmailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+let kAKIMatches = "SELF MATCHES %@"
 
 class AKIConstants {
     

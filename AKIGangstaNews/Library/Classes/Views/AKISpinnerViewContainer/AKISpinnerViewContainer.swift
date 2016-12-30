@@ -13,6 +13,28 @@ import RxCocoa
 
 class AKISpinnerViewContainer: AKIView {
     
+    var model: AKIModel? {
+        willSet (newModel) {
+            self.model = newModel
+            self.observeModel()
+        }
+    }
+    var observer: Variable<AKIModel>?
+    
+    let disposeBag = DisposeBag()
+    
+    func observeModel() {
+        _ = self.observer?.asObservable()
+            .subscribe(onNext: { image in
+                self.modelWillLoad()
+            },onError: { error in
+                self.modelFailLoading()
+            }, onCompleted: {
+                self.modelDidLoad()
+            },
+               onDisposed: { })
+    }
+    
     static func viewWithFrame(_ frame: CGRect) -> AKISpinnerViewContainer {
         return AKISpinnerViewContainer.init(frame: frame)
     }

@@ -10,13 +10,21 @@ import UIKit
 
 class AKIModel {
     
-    public func load() {
-        DispatchQueue.global().async {
-            self.performLoading()
+    func load() {
+        self.synced(lock: self) {
+            DispatchQueue.global().async {
+                self.performLoading()
+            }
         }
     }
     
     func performLoading() {
         
+    }
+        
+    func synced(lock: AnyObject, closure: () -> ()) {
+        objc_sync_enter(lock)
+        closure()
+        objc_sync_exit(lock)
     }
 }
