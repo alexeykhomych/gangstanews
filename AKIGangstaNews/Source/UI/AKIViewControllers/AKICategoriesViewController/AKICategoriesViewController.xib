@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKICategoriesViewController" customModule="AKIGangstaNews" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="AKICategoriesView" customModule="AKIGangstaNews" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="3x6-qF-QeS">
+                    <rect key="frame" x="16" y="13" width="344" height="313"/>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dS8-lN-nBG">
+                    <rect key="frame" x="16" y="334" width="344" height="313"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="omt-EG-pIC"/>
+                        <outlet property="delegate" destination="-1" id="dYS-sm-DCx"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="3eN-H1-Hhf"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="trailing" secondItem="dS8-lN-nBG" secondAttribute="trailing" id="4zw-nk-xhA"/>
+                <constraint firstItem="dS8-lN-nBG" firstAttribute="top" secondItem="3x6-qF-QeS" secondAttribute="bottom" constant="8" symbolic="YES" id="8bK-ON-7dA"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="height" secondItem="dS8-lN-nBG" secondAttribute="height" id="BkH-5d-ZkV"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="-31" id="QAG-aW-HuA"/>
+                <constraint firstAttribute="bottom" secondItem="dS8-lN-nBG" secondAttribute="bottom" constant="20" id="iZY-k6-gEG"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rag-qk-xOf"/>
+                <constraint firstItem="3x6-qF-QeS" firstAttribute="width" secondItem="dS8-lN-nBG" secondAttribute="width" id="th5-wP-lBK"/>
+            </constraints>
+            <connections>
+                <outlet property="logoImage" destination="3x6-qF-QeS" id="aA7-KK-w1V"/>
+                <outlet property="tableView" destination="dS8-lN-nBG" id="gMA-rK-3vh"/>
+            </connections>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="476" height="350"/>
+    </resources>
+</document>
